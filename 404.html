@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nie znaleziono – Gra Zwiadowca</title>
+<meta name="robots" content="noindex">
+<script>
+// GitHub Pages pokazuje ten plik dla nieistniejących adresów.
+// Adres …/test/N przekierowujemy do gry w trybie testowym planszy N.
+(() => {
+  const m = location.pathname.match(/^(.*\/)test\/(\d+)\/?$/);
+  if (m) location.replace(m[1] + 'index.html?test=' + m[2]);
+})();
+</script>
+<style>
+:root { color-scheme: dark; }
+body {
+  margin: 0; min-height: 100vh; display: grid; place-items: center; text-align: center;
+  background: #100d08; color: #f0e8d5; font-family: Georgia, serif; padding: 16px; box-sizing: border-box;
+}
+a { color: #8db86a; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Nie ma takiej strony</h1>
+  <p><a id="home" href="/">Wróć do gry</a></p>
+</main>
+<script>
+// Strona projektu na GitHub Pages leży w podkatalogu o nazwie repozytorium.
+const seg = location.pathname.split('/').filter(Boolean)[0];
+if (seg && location.hostname.endsWith('github.io')) document.getElementById('home').href = '/' + seg + '/';
+</script>
+</body>
+</html>

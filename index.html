@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gra Zwiadowca</title>
-<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Redmont: strzelaj z łuku, rzucaj nożem, pal kalkary płonącymi strzałami i zmierz się z Temudżeinem.">
+<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Redmont: strzelaj z łuku, rzucaj nożem, pal kalkary płonącymi strzałami, zmierz się z Temudżeinem i powstrzymaj wargale.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -265,12 +265,13 @@ canvas {
     </div>
   </div>
   <div class="rules">
-    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 5 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
+    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 6 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
     <p><strong>Plansza 1: strzelnica.</strong> Przytrzymaj przycisk myszy w dowolnym miejscu sceny i odciągnij w lewo, jak cięciwę. Im dłuższy naciąg, tym mocniejszy strzał, a odciągnięcie w dół unosi łuk. Puść, aby strzelić. Esc anuluje naciąg. Wiatr znosi strzałę, a proporczyk na środku strzelnicy pokazuje jego kierunek. Do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 2: rzut nożem.</strong> Tarcza pojawia się w losowym miejscu: pierwsza zostaje na 3 sekundy, druga na 2 sekundy, a trzecia tylko na 1,5 sekundy. Kliknij w nią, zanim zniknie. Masz 3 noże, a do zaliczenia potrzeba co najmniej 24 na 30.</p>
     <p><strong>Plansza 3: znikające tarcze.</strong> Wracasz do łuku, ale tarcza pojawia się w losowym miejscu tylko na 3 sekundy i trzeba zdążyć napiąć łuk i strzelić. Masz 5 strzał, a do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 4: kalkary.</strong> Kalkar zbliża się z prawej strony w trzech skokach między skałami. Za każdym razem widać go tylko przez 2 sekundy, potem chowa się za skałą, więc trafić go można tylko w skoku. Zaraz po pierwszym kalkarze wychodzi drugi i porusza się szybciej. Masz 3 płonące strzały, a planszę zaliczasz, gdy spalisz oba kalkary. Każdy spalony kalkar to 10 punktów.</p>
     <p><strong>Plansza 5: Temudżein.</strong> Z prawej strony nadjeżdża konny Temudżein. Mała okrągła tarcza osłania mu tułów, a koń jest opancerzony, więc trafienie w tarczę, zbroję albo konia go nie zatrzyma. Trzeba trafić w głowę albo w odsłonięte ramię. Masz 2 strzały. Temudżein strzela do ciebie co 5 sekund, ale każdy twój strzał, nawet chybiony, zmusza go do odliczania od nowa. Każde jego trafienie to −10 punktów, a pokonany Temudżein daje 30 punktów i otwiera drogę dalej.</p>
+    <p><strong>Plansza 6: wargale.</strong> Trzy wargale nadbiegają z prawej strony jeden po drugim i chowają się kolejno za niskim drzewem, głazem i drugim niskim drzewem. Kryjówki są niskie, więc da się strzelać nad nimi, a wargal jest od nich odrobinę wyższy. Kiedy dobiegnie do kryjówki, chowa się za nią cały i wybiega w losowym momencie. Trafienie w głowę zabija wargala od razu, w tułów (od pasa do szyi) trzeba trafić 2 razy, a strzał poniżej pasa nic nie daje. W biegu wargal raz po raz zasłania głowę ręką, a strzał w rękę nic nie daje. Czasem w losowym momencie przystaje i kuca, chowając głowę – wtedy można go trafić tylko w tułów. Każdy kolejny wargal jest szybszy. Masz 8 strzał, a planszę zaliczasz, gdy zabijesz wszystkie trzy wargale. Każdy zabity wargal to 10 punktów, a każdy, który dobiegnie do ciebie, to −50 punktów.</p>
     <ul class="rings" aria-label="Punktacja tarczy">
       <li style="--c: var(--ring-gold)">Złoto 10</li>
       <li style="--c: var(--ring-red)">Czerwień 8</li>
@@ -303,9 +304,20 @@ const LVL3_BEST_KEY = 'zwiadowcy-znikajace-rekord';
 const LVL3_SHOW = 180, LVL2_TO_3 = 24;
 const LVL4_BEST_KEY = 'zwiadowcy-kalkary-rekord';
 const LVL3_TO_4 = 40, KALKARS = 2, FIRE_ARROWS = 3, JUMP_FRAMES = [120, 80], JUMP_H = 55;
-const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 5;
+const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 6;
 const LVL5_BEST_KEY = 'zwiadowcy-temudzein-rekord';
 const RIDER_ARROWS = 2, ENEMY_EVERY = 300, ENEMY_HIT = 0.7, ENEMY_DMG = 10, KILL_PTS = 30;
+const LVL6_BEST_KEY = 'zwiadowcy-wargale-rekord';
+const WARGALS = 3, WARG_ARROWS = 8, WARG_PTS = 10, WARG_DMG = 50, WARG_SPEEDS = [1.7, 2.1, 2.5];
+// Kryjówki od prawej: niskie drzewo, głaz, niskie drzewo. Są niskie, więc da się nad nimi strzelać.
+const LOW_RX = 46, LOW_RY = 80;
+const COVERS = [['tree', 750], ['rock', 570], ['tree', 390]].map(([kind, x], n) => {
+  const r = rng(53 + n);
+  return { kind, x, b: Array.from({ length: 13 }, () => r() * 0.07) };
+});
+// Trasa wargala: zza prawej krawędzi, od kryjówki do kryjówki i prosto na łucznika.
+const WARG_PATH = [W + 50, ...COVERS.map(c => c.x), ARCHER_X + 40];
+const TEST_BOARD = readTestBoard();
 const RESULTS_KEY = 'zwiadowcy-wyniki', NAME_KEY = 'zwiadowcy-gracz';
 const ROCK_RX = 52, ROCK_RY = 84;
 const ROCKS = [770, 625, 480, 340].map((x, n) => {
@@ -341,9 +353,26 @@ let tier = 1;
 let playerName = '', total = 0, gameOver = false, started = false, lastEntry = null;
 let rider = null, enemyArrows = [], hurt = 0, best5 = loadBest(LVL5_BEST_KEY);
 let kal = null, kalIndex = 0, kalDelay = 0, kalStatus = [], best4 = loadBest(LVL4_BEST_KEY);
+let warg = null, wargIndex = 0, wargDelay = 0, wargStatus = [], best6 = loadBest(LVL6_BEST_KEY);
 
 function loadBest(key) { try { return Number(localStorage.getItem(key)) || 0; } catch { return 0; } }
-function saveBest(key, v) { try { localStorage.setItem(key, String(v)); } catch {} }
+function saveBest(key, v) { if (TEST_BOARD) return; try { localStorage.setItem(key, String(v)); } catch {} }
+
+// Ukryty tryb testowy: index.html?test=N (lub /test/N na GitHub Pages przez 404.html) od razu
+// uruchamia planszę N na poziomie 1, bez imienia i bez zapisu wyników ani rekordów.
+function readTestBoard() {
+  const m = location.search.match(/[?&]test=(\d+)/) || location.hash.match(/^#\/?test\/(\d+)/) ||
+    location.pathname.match(/\/test\/(\d+)\/?$/);
+  const n = m ? Number(m[1]) : 0;
+  return n >= 1 && n <= BOARDS ? n : 0;
+}
+
+function startBoard(n) {
+  tier = 1;
+  total = 0;
+  gameOver = false;
+  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6][n - 1]();
+}
 
 /* ── Tło (rysowane raz) ─────────────────────────── */
 
@@ -688,15 +717,18 @@ function drawFx() {
 }
 
 function drawHud() {
-  const k4 = level === 4, k5 = level === 5, n = k4 ? FIRE_ARROWS : k5 ? RIDER_ARROWS : SHOTS;
+  const k4 = level === 4, k5 = level === 5, k6 = level === 6;
+  const n = k4 ? FIRE_ARROWS : k5 ? RIDER_ARROWS : k6 ? WARG_ARROWS : SHOTS;
   label(k4 ? 'KALKARY' : 'WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
   label(String(score), 20, 60, 'left', score < 0 ? MISS : INK, 30, 800);
-  for (let i = 0; i < (k4 ? KALKARS : n); i++) {
+  for (let i = 0; i < (k4 ? KALKARS : k6 ? WARGALS : n); i++) {
     const x = 20 + i * 24;
-    const v = k4 ? (kalStatus[i] ? (kalStatus[i] === 'dead' ? 1 : 0) : undefined) : shots[i];
+    const v = k4 ? (kalStatus[i] ? (kalStatus[i] === 'dead' ? 1 : 0) : undefined)
+      : k6 ? (wargStatus[i] ? (wargStatus[i] === 'dead' ? WARG_PTS : -WARG_DMG) : undefined)
+      : shots[i];
     ctx.fillStyle = 'rgba(240,232,213,.08)';
     ctx.fillRect(x, 70, 20, 16);
-    if (v !== undefined) label(String(v), x + 10, 82, 'center', v ? (v >= 10 || k4 ? GOLD : INK) : MISS, 10, 600);
+    if (v !== undefined) label(String(v), x + 10, 82, 'center', v > 0 ? (v >= 10 || k4 ? GOLD : INK) : MISS, v < -9 ? 9 : 10, 600);
   }
 
   const cx = W / 2, lvl = Math.abs(windLevel);
@@ -726,8 +758,8 @@ function drawHud() {
     ctx.beginPath(); ctx.moveTo(x, 36); ctx.lineTo(x - 3, 42); ctx.lineTo(x + 3, 42); ctx.closePath(); ctx.fill();
     if (k4 && on) { ctx.save(); ctx.translate(x, 37); ctx.rotate(Math.PI / 2); drawFlame(0, 0, 0.7); ctx.restore(); }
   }
-  label(`REKORD ${k4 ? best4 : k5 ? best5 : level === 3 ? best3 : best}`, W - 20, 84, 'right', DIM, 10, 600, '2px');
-  if (level >= 3) label(['PLANSZA 3 · ZNIKAJĄCE TARCZE', 'PLANSZA 4 · KALKARY', 'PLANSZA 5 · TEMUDŻEIN'][level - 3], 20, 106, 'left', DIM, 9, 600, '2px');
+  label(`REKORD ${k4 ? best4 : k5 ? best5 : k6 ? best6 : level === 3 ? best3 : best}`, W - 20, 84, 'right', DIM, 10, 600, '2px');
+  if (level >= 3) label(['PLANSZA 3 · ZNIKAJĄCE TARCZE', 'PLANSZA 4 · KALKARY', 'PLANSZA 5 · TEMUDŻEIN', 'PLANSZA 6 · WARGALE'][level - 3], 20, 106, 'left', DIM, 9, 600, '2px');
 }
 
 function progressLabel() {
@@ -1290,14 +1322,303 @@ function drawEnemyArrows() {
   }
 }
 
+/* ── Plansza 6: wargale ─────────────────────────── */
+
+function wargalRank() {
+  const dead = wargStatus.filter(s => s === 'dead').length;
+  if (dead === WARGALS) return ['Pogromca wargali', 'Żaden wargal nie wyszedł żywy zza drzew.', GOLD];
+  if (dead > 0) return ['Poharatany', 'Część wargali padła, ale reszta cię dopadła.', '#e0a050'];
+  return ['Rozszarpany', 'Wargale wyszły zza drzew i dopadły cię jeden po drugim.', MISS];
+}
+
+// Niskie, krzaczaste drzewo: korona sięga ziemi, więc zasłania całego wargala.
+function drawLowTree(c) {
+  const x = c.x;
+  const g = ctx.createLinearGradient(0, GY - LOW_RY, 0, GY);
+  g.addColorStop(0, '#2d4a2c');
+  g.addColorStop(1, '#122015');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  for (let i = 0; i <= 26; i++) {
+    const a = Math.PI + i / 26 * Math.PI, k = (i % 2 ? 0.92 : 1.04) + c.b[i % c.b.length];
+    const px = x + Math.cos(a) * LOW_RX * k, py = GY + 2 + Math.sin(a) * LOW_RY * k;
+    if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.save();
+  ctx.clip();
+  ctx.fillStyle = 'rgba(0,0,0,.24)';
+  ctx.fillRect(x + 4, GY - LOW_RY - 12, LOW_RX + 12, LOW_RY + 14);
+  ctx.fillStyle = 'rgba(141,184,106,.13)';
+  shaggy(x - 14, GY - 56, 14, 10, 0, 10);
+  shaggy(x - 22, GY - 28, 12, 9, 0, 10);
+  shaggy(x + 6, GY - 40, 11, 8, 0, 10);
+  ctx.restore();
+  ctx.fillStyle = '#141f15';
+  ctx.beginPath(); ctx.ellipse(x, GY + 1, LOW_RX + 4, 7, 0, Math.PI, Math.PI * 2); ctx.fill();
+}
+
+function drawCover(c) {
+  if (c.kind === 'rock') drawRock(c); else drawLowTree(c);
+}
+
+function inCover(c, x, y) {
+  return c.kind === 'rock' ? inRock(c, x, y) : inEllipse(x, y, c.x, GY, LOW_RX, LOW_RY) && y <= GY;
+}
+
+// Strefa trafienia wargala: głowa zabija od razu, tułów (od pasa do szyi) za drugim razem,
+// nogi (poniżej pasa) i ręka zasłaniająca głowę nic nie dają. Przy kryjówce wargal chowa się cały.
+// Współrzędne są względem wargala; gdy kuca, całe ciało jest niżej o c * WARG_CROUCH.
+const WARG_WAIST = -42, WARG_CROUCH = 30;
+const lerp = (a, b, t) => a + (b - a) * t;
+const lerpPt = (p, q, t) => ({ x: lerp(p.x, q.x, t), y: lerp(p.y, q.y, t) });
+
+function wargRun(w) {
+  return w.mode === 'move' && !calm ? Math.sin(w.dist * 0.14) : 0;
+}
+
+// Przednia ręka: zwykle przy boku, a przy zasłanianiu (g) albo kucaniu (c) uniesiona przed głową.
+function wargArm(w) {
+  const run = wargRun(w), lunge = w.mode === 'attack' ? Math.min(1, w.t / 10) : 0;
+  const up = Math.max(w.g, w.c);
+  return {
+    sh: { x: 1, y: -72 },
+    el: lerpPt({ x: -10 - run * 3, y: -60 }, { x: -34, y: -72 }, up),
+    hand: lerpPt({ x: -22 - run * 6 - lunge * 10, y: -50 - lunge * 10 }, { x: -30, y: -106 }, up),
+    up,
+  };
+}
+
+function wargZone(w, x, y) {
+  const dx = x - w.x, dy = y - GY - w.c * WARG_CROUCH, arm = wargArm(w);
+  if (arm.up > 0.5 && (segDist(dx, dy, arm.el, arm.hand) <= 6 || segDist(dx, dy, arm.sh, arm.el) <= 5)) return 'arm';
+  if (Math.hypot(dx + 12, dy + 88) <= 11 || inEllipse(dx, dy, -26, -87, 9, 5)) return w.c > 0.5 ? 'arm' : 'head';
+  if (dy < WARG_WAIST && (inEllipse(dx, dy, 1, -60, 18, 25) || inEllipse(dx, dy, 7, -78, 12, 9))) return 'body';
+  if (dy >= WARG_WAIST - 2 && dx > -14 && dx < 20) return 'legs';
+  return null;
+}
+
+function strokePath(pts) {
+  ctx.beginPath();
+  pts.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+  ctx.stroke();
+}
+
+// Wargal patrzy w lewo, na łucznika; (0, 0) to ziemia pod jego stopami.
+function drawWargal(w) {
+  const dead = w.mode === 'dead', attack = w.mode === 'attack';
+  const run = wargRun(w), c = w.c;
+  const lunge = attack ? Math.min(1, w.t / 10) : 0;
+  const fur = dead ? '#2a1f15' : '#3b2a1c', fur2 = dead ? '#1d150e' : '#2a1d12';
+  const foot = -c * WARG_CROUCH, knee = (WARG_WAIST + foot) / 2;
+  ctx.save();
+  ctx.translate(w.x - lunge * 14, GY - lunge * 6 + c * WARG_CROUCH);
+  if (dead) {
+    ctx.globalAlpha = w.t > 60 ? Math.max(0, 1 - (w.t - 60) / 30) : 1;
+    ctx.rotate(Math.min(1, w.t / 25) * 1.4);
+  } else if (attack && w.t > 30) ctx.globalAlpha = Math.max(0, 1 - (w.t - 30) / 15);
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = fur2;
+  ctx.lineWidth = 9;
+  strokePath([{ x: 6, y: WARG_WAIST }, { x: 9 + c * 12 - run * 5, y: knee }, { x: 12 - run * 10, y: foot - 1 }]);
+  ctx.lineWidth = 7;
+  strokePath([{ x: -2, y: -74 }, lerpPt({ x: -16 + run * 6, y: -50 }, { x: -22, y: -102 }, c)]);
+  ctx.strokeStyle = fur;
+  ctx.lineWidth = 10;
+  strokePath([{ x: -3, y: WARG_WAIST }, { x: -5 - c * 14 + run * 5, y: knee }, { x: -7 + run * 10, y: foot }]);
+  ctx.fillStyle = fur;
+  shaggy(1, -60, 17, 24, -0.12, 20);
+  shaggy(7, -78, 12, 9, 0, 10);
+  ctx.fillStyle = '#4a3220';
+  ctx.fillRect(-16, WARG_WAIST - 3, 32, 5);
+  ctx.fillStyle = fur;
+  shaggy(-12, -88, 11, 10, 0, 12);
+  ctx.fillStyle = '#2f2116';
+  ctx.beginPath(); ctx.moveTo(-18, -94); ctx.lineTo(-33, -88); ctx.lineTo(-32, -83); ctx.lineTo(-18, -81); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = '#0c0805';
+  ctx.beginPath(); ctx.arc(-32.5, -86.5, 2, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#e8e0c8';
+  ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.moveTo(-28, -83.5); ctx.lineTo(-27, -80); ctx.moveTo(-23, -83); ctx.lineTo(-22, -79.5); ctx.stroke();
+  ctx.fillStyle = fur2;
+  ctx.beginPath(); ctx.moveTo(-9, -96); ctx.lineTo(-5, -106); ctx.lineTo(-2, -95); ctx.closePath(); ctx.fill();
+  if (!dead || w.t < 30) {
+    ctx.shadowColor = '#f2c94c';
+    ctx.shadowBlur = 6;
+    ctx.fillStyle = '#f2c94c';
+    ctx.beginPath(); ctx.arc(-16, -91, 1.8, 0, Math.PI * 2); ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  for (const s of w.stuck) {
+    ctx.save();
+    ctx.translate(s.dx, s.dy);
+    ctx.rotate(s.ang);
+    drawArrowShape(true);
+    ctx.restore();
+  }
+  ctx.strokeStyle = fur;
+  ctx.lineWidth = 8;
+  const arm = wargArm(w), hx = arm.hand.x, hy = arm.hand.y;
+  strokePath([arm.sh, arm.el, arm.hand]);
+  ctx.strokeStyle = '#c9c0a8';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  for (const d of [-3, 0, 3]) { ctx.moveTo(hx - 2, hy + d); ctx.lineTo(hx - 8, hy + d + 3); }
+  ctx.stroke();
+  ctx.restore();
+}
+
+function startLevel6() {
+  level = 6;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  kal = null;
+  rider = null;
+  enemyArrows = [];
+  hurt = 0;
+  score = 0;
+  shots = [];
+  newRecord = false;
+  windLevel = Math.floor(Math.random() * 4) * (Math.random() < 0.5 ? -1 : 1);
+  wind = windLevel / 10 * WIND_MAX;
+  warg = null;
+  wargIndex = 0;
+  wargDelay = 50;
+  wargStatus = [];
+  phase = 'ready';
+}
+
+function spawnWargal() {
+  // Każdy kolejny wargal biegnie szybciej.
+  warg = { i: 0, x: WARG_PATH[0], mode: 'move', t: 0, wait: 0, dist: 0, hits: 0, stuck: [],
+    g: 0, gWait: 30 + Math.random() * 60, gHold: 25, c: 0, hold: 0, stopIn: 60 + Math.random() * 120, sp: WARG_SPEEDS[Math.min(wargIndex, WARG_SPEEDS.length - 1)] };
+}
+
+function nextWargal() {
+  warg = null;
+  wargIndex++;
+  wargDelay = 40;
+}
+
+function updateWargal() {
+  const w = warg;
+  if (!w) {
+    if (wargIndex < WARGALS && --wargDelay <= 0) spawnWargal();
+    return;
+  }
+  if (w.mode === 'move' || w.mode === 'crouch') {
+    // Raz po raz unosi rękę i zasłania nią głowę.
+    if (w.gWait > 0) { w.gWait--; w.g = Math.max(0, w.g - 0.12); }
+    else if (w.gHold > 0) { w.gHold--; w.g = Math.min(1, w.g + 0.12); }
+    else { w.gWait = 40 + Math.random() * 80; w.gHold = 25 + Math.random() * 25; }
+  }
+  if (w.mode === 'hidden') {
+    // Gdy skończą się strzały, wargale już nie czekają długo za drzewami.
+    if (phase === 'noarrows') w.wait = Math.min(w.wait, 20);
+    if (--w.wait <= 0) w.mode = 'move';
+  } else if (w.mode === 'crouch') {
+    // Kucanie: 10 klatek w dół, losowo długo w przysiadzie, 10 klatek w górę.
+    w.t++;
+    if (w.t <= 10) w.c = w.t / 10;
+    else if (w.t <= 10 + w.hold) w.c = 1;
+    else if (w.t <= 20 + w.hold) w.c = 1 - (w.t - 10 - w.hold) / 10;
+    else { w.c = 0; w.mode = 'move'; }
+  } else if (w.mode === 'move') {
+    const goal = WARG_PATH[w.i + 1];
+    // W losowym momencie przystaje i kuca na otwartym polu, chowając głowę.
+    // Jeśli wylosowana chwila wypadnie przy kryjówce, kuca przy pierwszej okazji dalej.
+    if (--w.stopIn <= 0 && phase !== 'noarrows') {
+      if (w.x < W - 40 && w.x - goal > 40 && COVERS.every(c => Math.abs(w.x - c.x) > 65)) {
+        w.stopIn = 40 + Math.random() * 160;
+        w.mode = 'crouch';
+        w.t = 0;
+        w.hold = 40 + Math.floor(Math.random() * 80);
+        return;
+      }
+    }
+    w.x = Math.max(goal, w.x - w.sp);
+    w.dist += w.sp;
+    if (w.x > goal) return;
+    w.i++;
+    if (w.i < WARG_PATH.length - 1) {
+      w.mode = 'hidden';
+      w.wait = 30 + Math.floor(Math.random() * 180); // wybiega w losowym momencie: 0,5–3,5 s
+      return;
+    }
+    w.mode = 'attack';
+    w.t = 0;
+    wargStatus[wargIndex] = 'reached';
+    if (phase !== 'over') {
+      score -= WARG_DMG;
+      hurt = 30;
+      popup = { x: ARCHER_X + 30, y: GY - 120, pts: -WARG_DMG, t: 0, text: `Wargal cię dopadł! −${WARG_DMG}` };
+    }
+  } else if (w.mode === 'attack') {
+    if (++w.t > 45) nextWargal();
+  } else if (w.mode === 'dead') {
+    if (++w.t > 90) nextWargal();
+  }
+}
+
+function wargArrowHit(a, px, py) {
+  // Sprawdzamy co 3 px, żeby szybka strzała nie przeskoczyła wargala ani drzewa.
+  const n = Math.max(1, Math.ceil(Math.hypot(a.x - px, a.y - py) / 3));
+  for (let i = 1; i <= n; i++) {
+    const x = px + (a.x - px) * i / n, y = py + (a.y - py) * i / n;
+    if (y >= GY) return false;
+    for (const c of COVERS) {
+      if (inCover(c, x, y)) { land(x, y, 0); popup.text = c.kind === 'rock' ? 'W głaz' : 'W drzewo'; return true; }
+    }
+    const w = warg;
+    const zone = w && (w.mode === 'move' || w.mode === 'crouch') ? wargZone(w, x, y) : null;
+    if (zone) {
+      // Strzała w ręce spada; w tułowiu i nogach zostaje wbita i porusza się z wargalem.
+      if (zone !== 'arm') w.stuck.push({ dx: x - w.x, dy: y - GY - w.c * WARG_CROUCH, ang: Math.atan2(a.vy, a.vx) });
+      arrow.inKal = true;
+      const kill = zone === 'head' || (zone === 'body' && ++w.hits >= 2);
+      land(x, y, kill ? WARG_PTS : 0);
+      popup.text = kill ? (zone === 'head' ? `Strzał w głowę! +${WARG_PTS}` : `Wargal powalony! +${WARG_PTS}`)
+        : zone === 'body' ? 'Ranny! Jeszcze raz w tułów' : zone === 'arm' ? 'W rękę · zasłonił głowę' : 'W nogi · bez skutku';
+      if (kill) {
+        w.mode = 'dead';
+        w.t = 0;
+        wargStatus[wargIndex] = 'dead';
+      }
+      return true;
+    }
+  }
+  return false;
+}
+
+function endLevel6() {
+  drag = null;
+  newRecord = score > best6;
+  if (newRecord) { best6 = score; saveBest(LVL6_BEST_KEY, best6); }
+  unlocked = wargStatus.filter(s => s === 'dead').length === WARGALS;
+  finishBoard();
+}
+
+function updateLevel6() {
+  if (hurt > 0) hurt--;
+  updateWargal();
+  if (phase === 'over') return;
+  if (phase === 'flight') stepArrow();
+  else if (phase === 'landed' && --timer <= 0) finishShot();
+  else if ((phase === 'ready' || phase === 'aiming' || phase === 'noarrows') && !warg && wargIndex >= WARGALS) endLevel6();
+}
+
 function drawOver() {
   ctx.fillStyle = 'rgba(8,7,4,.74)';
   ctx.fillRect(0, 0, W, H);
-  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank][level - 1](score);
+  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank][level - 1](score);
   label(`POZIOM ${tier} · KONIEC PLANSZY ${level}`, cx, 118, 'center', DIM, 11, 600, '3px');
   label(`SUMA PUNKTÓW ${total}`, cx, 380, 'center', DIM, 10, 600, '2px');
 
-  const big = String(score), small = ` / ${level === 5 ? KILL_PTS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
+  const big = String(score), small = ` / ${level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
   ctx.font = '800 64px Cinzel, Georgia, serif';
   const w1 = ctx.measureText(big).width;
   ctx.font = '600 20px Cinzel, Georgia, serif';
@@ -1311,6 +1632,11 @@ function drawOver() {
   ctx.fillStyle = 'rgba(240,232,213,.75)';
   ctx.textAlign = 'center';
   ctx.fillText(sub, cx, 264);
+  if (TEST_BOARD) {
+    label(unlocked ? 'PLANSZA ZALICZONA' : 'PLANSZA NIEZALICZONA', cx, 302, 'center', unlocked ? GOLD : MISS, 12, 600, '3px');
+    label('TRYB TESTOWY · KLIKNIJ, ABY ZAGRAĆ TĘ PLANSZĘ JESZCZE RAZ', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
   if (level === 1 && unlocked) {
     label('ŚWIETNA SERIA · PLANSZA 2 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
     label('KLIKNIJ, ABY RZUCAĆ NOŻAMI', cx, 340, 'center', INK, 11, 600, '2px');
@@ -1331,8 +1657,13 @@ function drawOver() {
     label('KLIKNIJ, ABY ZMIERZYĆ SIĘ Z TEMUDŻEINEM', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
-  if (level === 5 && unlocked && tier < MAX_TIER) {
-    label(`TEMUDŻEIN POKONANY · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
+  if (level === 5 && unlocked) {
+    label('TEMUDŻEIN POKONANY · PLANSZA 6 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY STAWIĆ CZOŁA WARGALOM', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 6 && unlocked && tier < MAX_TIER) {
+    label(`WARGALE POKONANE · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
     label('KLIKNIJ, ABY ZACZĄĆ OD PLANSZY 1 Z CELOWNIKIEM KRÓTSZYM O POŁOWĘ', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
@@ -1355,6 +1686,7 @@ function sortResults(list) {
 function finishBoard() {
   phase = 'over';
   total += level === 4 ? score * 10 : score;
+  if (TEST_BOARD) { gameOver = false; return; }
   const won = unlocked && level === BOARDS && tier === MAX_TIER;
   gameOver = !unlocked || won;
   if (!gameOver) return;
@@ -1742,6 +2074,7 @@ function stepArrow() {
   if (a.trail.length > 24) a.trail.splice(0, 2);
   if (level === 4 && fireArrowHit(a)) return;
   if (level === 5 && riderArrowHit(a, px, py)) return;
+  if (level === 6 && wargArrowHit(a, px, py)) return;
   if (t && px < t.x && a.x >= t.x) {
     const yc = py + (t.x - px) / (a.x - px) * (a.y - py), d = Math.abs(yc - t.y);
     if (d <= t.r) { t.hit = true; return land(t.x, yc, ringPoints(d / t.r)); }
@@ -1751,6 +2084,12 @@ function stepArrow() {
 }
 
 function finishShot() {
+  if (level === 6) {
+    // Bez strzał gra trwa dalej, aż pozostałe wargale dobiegną.
+    arrow = null;
+    phase = shots.length < WARG_ARROWS ? 'ready' : 'noarrows';
+    return;
+  }
   if (level === 5) {
     if (!rider.dead && shots.length < RIDER_ARROWS) { arrow = null; phase = 'ready'; return; }
     newRecord = score > best5;
@@ -1788,6 +2127,7 @@ function update() {
   if (level === 3) { if (phase !== 'over') updateLevel3(); return; }
   if (level === 4) { updateLevel4(); return; }
   if (level === 5) { updateLevel5(); return; }
+  if (level === 6) { updateLevel6(); return; }
   if (phase === 'flight') stepArrow();
   else if (phase === 'landed' && --timer <= 0) finishShot();
 }
@@ -1814,15 +2154,21 @@ function draw() {
     if (kal && kal.mode !== 'hidden') drawKalkar(kal);
     for (const r of ROCKS) drawRock(r);
   }
+  if (level === 6) {
+    if (warg && warg.mode !== 'hidden') drawWargal(warg);
+    for (const c of COVERS) drawCover(c);
+  }
   if (arrow && arrow.stuck && !arrow.inKal) drawArrow(arrow);
   const aim = phase === 'aiming' ? aimNow() : null;
   drawArcher(aim ? aim.ang : lastAng, aim ? aim.pull : 0, phase === 'ready' || phase === 'aiming' || phase === 'await');
   if (aim && aim.pull > 0.02) { drawPreview(aim.ang, aim.pull); drawPower(aim.pull); }
   if (arrow && !arrow.stuck) drawArrow(arrow);
-  if (level === 5) drawEnemyArrows();
+  if (level >= 5) drawEnemyArrows();
   drawFx();
   drawHud();
-  const hint = level === 5
+  const hint = level === 6
+    ? (phase === 'ready' ? 'GŁOWA ZABIJA OD RAZU · TUŁÓW 2 RAZY · RĘKA I NOGI NIC' : phase === 'noarrows' ? 'BRAK STRZAŁ · WARGALE NADCHODZĄ' : '')
+    : level === 5
     ? (phase === 'ready' ? 'TRAF W GŁOWĘ LUB RAMIĘ · TARCZA, ZBROJA I PANCERZ KONIA CHRONIĄ' : '')
     : level === 4
     ? (phase === 'ready' ? 'KALKAR SKACZE MIĘDZY SKAŁAMI · TRAF GO W SKOKU' : '')
@@ -1845,12 +2191,14 @@ canvas.addEventListener('pointerdown', e => {
   e.preventDefault();
   if (!started) return;
   if (phase === 'over') {
-    if (gameOver) showTable();
+    if (TEST_BOARD) startBoard(TEST_BOARD);
+    else if (gameOver) showTable();
     else if (level === 1 && unlocked) startKnives();
     else if (level === 2 && unlocked) startLevel3();
     else if (level === 3 && unlocked) startLevel4();
     else if (level === 4 && unlocked) startLevel5();
-    else if (level === 5 && unlocked) { tier++; newGame(); }
+    else if (level === 5 && unlocked) startLevel6();
+    else if (level === 6 && unlocked) { tier++; newGame(); }
     else newGame();
     return;
   }
@@ -1897,8 +2245,15 @@ function frame(now) {
 
 paintBackground();
 if (document.fonts) document.fonts.load('600 9px Cinzel').then(paintBackground, () => {});
-newGame();
-askName();
+if (TEST_BOARD) {
+  playerName = 'TEST';
+  started = true;
+  nameOverlay.hidden = true;
+  startBoard(TEST_BOARD);
+} else {
+  newGame();
+  askName();
+}
 requestAnimationFrame(frame);
 })();
 </script>
