@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gra Zwiadowca</title>
-<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Dębowym Grodzie: strzelaj z łuku, rzucaj nożem, pal mroczniaki płonącymi strzałami, zmierz się z jeźdźcami, powstrzymaj wilczury i wygraj bitwę.">
+<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Dębowym Grodzie: strzelaj z łuku, rzucaj nożem, pal mroczniaki płonącymi strzałami, zmierz się z jeźdźcami, powstrzymaj wilczury, wygraj bitwę i przeskocz kłody w konnej jeździe.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -265,7 +265,7 @@ canvas {
     </div>
   </div>
   <div class="rules">
-    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 7 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
+    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 8 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
     <p><strong>Plansza 1: strzelnica.</strong> Przytrzymaj przycisk myszy w dowolnym miejscu sceny i odciągnij w lewo, jak cięciwę. Im dłuższy naciąg, tym mocniejszy strzał, a odciągnięcie w dół unosi łuk. Puść, aby strzelić. Esc anuluje naciąg. Wiatr znosi strzałę, a proporczyk na środku strzelnicy pokazuje jego kierunek. Do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 2: rzut nożem.</strong> Tarcza pojawia się w losowym miejscu: pierwsza zostaje na 3 sekundy, druga na 2 sekundy, a trzecia tylko na 1,5 sekundy. Kliknij w nią, zanim zniknie. Masz 3 noże, a do zaliczenia potrzeba co najmniej 24 na 30.</p>
     <p><strong>Plansza 3: znikające tarcze.</strong> Wracasz do łuku, ale tarcza pojawia się w losowym miejscu tylko na 3 sekundy i trzeba zdążyć napiąć łuk i strzelić. Masz 5 strzał, a do zaliczenia potrzeba co najmniej 40 na 50.</p>
@@ -273,6 +273,7 @@ canvas {
     <p><strong>Plansza 5: jeźdźcy.</strong> Z prawej strony nadjeżdża dwóch jeźdźców: czasem razem, czasem jeden po drugim. Jeżdżą losowo do przodu i do tyłu, raz wolno, raz szybko, czasem przystają. Każdy z nich 2 razy w losowym momencie pochyla się i chowa głowę za głową konia. Koń trafiony 3 razy pada, a jeździec walczy dalej pieszo i nie może się już pochylać. Obu zabija się tak samo: trafienie w głowę zabija od razu, a trafienie w rękę albo tułów trzeba powtórzyć 2 razy. Strzał w konia albo w małą tarczę pierwszego jeźdźca nic nie daje, a łuk nie zatrzymuje strzał. Masz 5 strzał. Każdy jeździec strzela do ciebie co 5 sekund, ale każdy twój strzał, nawet chybiony, zmusza ich do odliczania od nowa. Każde ich trafienie to −10 punktów, a każdy pokonany jeździec daje 30 punktów. Planszę zaliczasz, gdy pokonasz obu.</p>
     <p><strong>Plansza 6: wilczury.</strong> Trzy wilczury nadbiegają z prawej strony jeden po drugim i chowają się kolejno za niskim drzewem, głazem i drugim niskim drzewem. Kryjówki są niskie, więc da się strzelać nad nimi, a wilczur jest od nich odrobinę wyższy. Kiedy dobiegnie do kryjówki, chowa się za nią cały i wybiega w losowym momencie. Trafienie w głowę zabija wilczura od razu, w tułów (od pasa do szyi) trzeba trafić 2 razy, a strzał poniżej pasa nic nie daje. W biegu wilczur raz po raz zasłania głowę ręką, a strzał w rękę nic nie daje. Czasem w losowym momencie przystaje i kuca, chowając głowę – wtedy można go trafić tylko w tułów. Drugi wilczur jest szybszy od pierwszego, a trzeci biegnie tak samo jak drugi. Masz 8 strzał, a planszę zaliczasz, gdy zabijesz wszystkie trzy wilczury. Każdy zabity wilczur to 10 punktów, a każdy, który dobiegnie do ciebie, to −50 punktów.</p>
     <p><strong>Plansza 7: bitwa.</strong> Wrogowie atakują pojedynczo, w losowej kolejności: 2 mroczniaki, 2 wilczury i 2 jeźdźców. Na polu stoją dwa głazy, a między nimi rośnie wysoka trawa. Wrogowie chowają się za głazami i w trawie. Głazy zatrzymują strzały i noże, a przez trawę można strzelać. Masz trzy bronie i przed strzałem musisz wybrać właściwą przyciskiem na dole sceny albo klawiszem 1, 2 lub 3: ostra strzała (8 sztuk), płonąca strzała (6 sztuk) i nóż do rzucania (3 sztuki). Płonąca strzała zabija tylko mroczniaka. Ostra strzała zabija wilczura i jeźdźca na tych samych zasadach co na planszach 5 i 6. Nóż rzucasz, klikając w miejsce, do którego ma polecieć, i zabija tylko trafieniem w głowę wilczura albo jeźdźca. Mroczniak i wilczur dają po 10 punktów, a jeździec 30. Wilczur, który do ciebie dobiegnie, to −50 punktów, a każde trafienie od jeźdźca −10. Jeździec po trzech strzałach odjeżdża. Planszę zaliczasz, gdy pokonasz wszystkich sześciu wrogów.</p>
+    <p><strong>Plansza 8: konna jazda.</strong> Łucznik galopuje konno przez las. Na drodze pojawia się kolejno 15 kłód, w losowych odstępach. Naciśnij klawisz W (albo kliknij lub dotknij sceny), aby koń przeskoczył kłodę. Po każdej przeskoczonej kłodzie koń przyspiesza o 10%, więc kolejne skoki są coraz trudniejsze. Skok za wcześnie albo za późno kończy się zahaczeniem o kłodę i koń na chwilę zwalnia. Każda przeskoczona kłoda to 10 punktów, a planszę zaliczasz, gdy przeskoczysz co najmniej 12 kłód.</p>
     <ul class="rings" aria-label="Punktacja tarczy">
       <li style="--c: var(--ring-gold)">Złoto 10</li>
       <li style="--c: var(--ring-red)">Czerwień 8</li>
@@ -305,7 +306,7 @@ const LVL3_BEST_KEY = 'zwiadowcy-znikajace-rekord';
 const LVL3_SHOW = 180, LVL2_TO_3 = 24;
 const LVL4_BEST_KEY = 'zwiadowcy-kalkary-rekord';
 const LVL3_TO_4 = 40, KALKARS = 2, FIRE_ARROWS = 3, JUMP_FRAMES = [120, 80], JUMP_H = 55;
-const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 7;
+const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 8;
 const LVL5_BEST_KEY = 'zwiadowcy-temudzein-rekord';
 const RIDER_ARROWS = 5, RIDERS = 2, ENEMY_EVERY = 300, ENEMY_HIT = 0.7, ENEMY_DMG = 10, KILL_PTS = 30;
 const LVL6_BEST_KEY = 'zwiadowcy-wargale-rekord';
@@ -372,7 +373,7 @@ function startBoard(n) {
   tier = 1;
   total = 0;
   gameOver = false;
-  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6, startLevel7][n - 1]();
+  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6, startLevel7, startLevel8][n - 1]();
 }
 
 /* ── Tło (rysowane raz) ─────────────────────────── */
@@ -408,35 +409,7 @@ function paintBackground() {
   const c = bg.getContext('2d');
   c.setTransform(dpr, 0, 0, dpr, 0, 0);
   const r = rng(7);
-
-  const sky = c.createLinearGradient(0, 0, 0, GY);
-  sky.addColorStop(0, '#121a26');
-  sky.addColorStop(0.5, '#2a2e3b');
-  sky.addColorStop(0.82, '#6b4a33');
-  sky.addColorStop(1, '#b97d40');
-  c.fillStyle = sky;
-  c.fillRect(0, 0, W, GY);
-
-  const glow = c.createRadialGradient(360, GY, 10, 360, GY, 420);
-  glow.addColorStop(0, 'rgba(240,170,90,.35)');
-  glow.addColorStop(1, 'rgba(240,170,90,0)');
-  c.fillStyle = glow;
-  c.fillRect(0, 0, W, GY);
-
-  for (let i = 0; i < 46; i++) {
-    const x = r() * W, y = r() * GY * 0.45, s = r() < 0.15 ? 1.6 : 1;
-    c.fillStyle = `rgba(255,250,235,${0.2 + 0.5 * (1 - y / (GY * 0.45))})`;
-    c.fillRect(x, y, s, s);
-  }
-
-  const mx = 680, my = 74;
-  const halo = c.createRadialGradient(mx, my, 4, mx, my, 70);
-  halo.addColorStop(0, 'rgba(250,240,215,.28)');
-  halo.addColorStop(1, 'rgba(250,240,215,0)');
-  c.fillStyle = halo;
-  c.fillRect(mx - 70, my - 70, 140, 140);
-  c.fillStyle = '#f3ead2';
-  c.beginPath(); c.arc(mx, my, 15, 0, Math.PI * 2); c.fill();
+  paintSky(c, r);
 
   c.fillStyle = '#26302f';
   for (let x = -10; x < W + 20; x += 16 + r() * 14) fir(c, x, GY - 4, 60 + r() * 70, 26 + r() * 18);
@@ -467,6 +440,38 @@ function paintBackground() {
     c.fillRect(x - 1, GY + 3, 2, 7);
     c.fillText(m + ' m', x, GY + 22);
   }
+}
+
+// Niebo, gwiazdy i księżyc: wspólne dla strzelnicy i konnej jazdy (tam las i ziemia się przesuwają).
+function paintSky(c, r) {
+  const sky = c.createLinearGradient(0, 0, 0, GY);
+  sky.addColorStop(0, '#121a26');
+  sky.addColorStop(0.5, '#2a2e3b');
+  sky.addColorStop(0.82, '#6b4a33');
+  sky.addColorStop(1, '#b97d40');
+  c.fillStyle = sky;
+  c.fillRect(0, 0, W, GY);
+
+  const glow = c.createRadialGradient(360, GY, 10, 360, GY, 420);
+  glow.addColorStop(0, 'rgba(240,170,90,.35)');
+  glow.addColorStop(1, 'rgba(240,170,90,0)');
+  c.fillStyle = glow;
+  c.fillRect(0, 0, W, GY);
+
+  for (let i = 0; i < 46; i++) {
+    const x = r() * W, y = r() * GY * 0.45, s = r() < 0.15 ? 1.6 : 1;
+    c.fillStyle = `rgba(255,250,235,${0.2 + 0.5 * (1 - y / (GY * 0.45))})`;
+    c.fillRect(x, y, s, s);
+  }
+
+  const mx = 680, my = 74;
+  const halo = c.createRadialGradient(mx, my, 4, mx, my, 70);
+  halo.addColorStop(0, 'rgba(250,240,215,.28)');
+  halo.addColorStop(1, 'rgba(250,240,215,0)');
+  c.fillStyle = halo;
+  c.fillRect(mx - 70, my - 70, 140, 140);
+  c.fillStyle = '#f3ead2';
+  c.beginPath(); c.arc(mx, my, 15, 0, Math.PI * 2); c.fill();
 }
 
 /* ── Elementy sceny ─────────────────────────────── */
@@ -2179,11 +2184,11 @@ function drawWeaponBar() {
 function drawOver() {
   ctx.fillStyle = 'rgba(8,7,4,.74)';
   ctx.fillRect(0, 0, W, H);
-  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank, battleRank][level - 1](score);
+  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank, battleRank, rideRank][level - 1](score);
   label(`POZIOM ${tier} · KONIEC PLANSZY ${level}`, cx, 118, 'center', DIM, 11, 600, '3px');
   label(`SUMA PUNKTÓW ${total}`, cx, 380, 'center', DIM, 10, 600, '2px');
 
-  const big = String(score), small = ` / ${level === 7 ? BATTLE_MAX : level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS * RIDERS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
+  const big = String(score), small = ` / ${level === 8 ? LOGS * LOG_PTS : level === 7 ? BATTLE_MAX : level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS * RIDERS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
   ctx.font = '800 64px Cinzel, Georgia, serif';
   const w1 = ctx.measureText(big).width;
   ctx.font = '600 20px Cinzel, Georgia, serif';
@@ -2232,14 +2237,294 @@ function drawOver() {
     label('KLIKNIJ, ABY RUSZYĆ DO BITWY', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
-  if (level === 7 && unlocked && tier < MAX_TIER) {
-    label(`BITWA WYGRANA · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
+  if (level === 7 && unlocked) {
+    label('BITWA WYGRANA · PLANSZA 8 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY RUSZYĆ KONNO', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 8 && unlocked && tier < MAX_TIER) {
+    label(`KŁODY ZA TOBĄ · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
     label('KLIKNIJ, ABY ZACZĄĆ OD PLANSZY 1 Z CELOWNIKIEM KRÓTSZYM O POŁOWĘ', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
   if (unlocked) label(`WSZYSTKIE ${MAX_TIER} POZIOMY UKOŃCZONE · KONIEC GRY`, cx, 302, 'center', GOLD, 12, 600, '3px');
   else label(newRecord ? 'NOWY REKORD PLANSZY · KONIEC GRY' : 'PLANSZA NIEZALICZONA · KONIEC GRY', cx, 302, 'center', newRecord ? GOLD : MISS, 12, 600, '3px');
   label('KLIKNIJ, ABY ZOBACZYĆ TABELĘ GRACZY', cx, 340, 'center', INK, 11, 600, '2px');
+}
+
+/* ── Plansza 8: konna jazda ─────────────────────── */
+
+const LVL8_BEST_KEY = 'zwiadowcy-jazda-rekord';
+const LOGS = 15, LOGS_TO_PASS = 12, LOG_PTS = 10, LOG_W = 40, LOG_H = 22;
+// Po każdym przeskoczonym pniu koń przyspiesza o 10%.
+const SPEED_UP = 1.1;
+const RIDE_SPEED = 6, HORSE_X = 150, JUMP_V = 7.6, JUMP_G = 0.38;
+// Kopyta konia (zwróconego w prawo) sięgają od HOOF_BACK do HOOF_FRONT względem HORSE_X.
+const HOOF_BACK = -34, HOOF_FRONT = 29;
+// Warstwy krajobrazu powtarzają się co RIDE_P pikseli; dalsze przesuwają się wolniej.
+const RIDE_P = W + 120;
+const rideLayer = (seed, step, make) => {
+  const r = rng(seed), a = [];
+  for (let x = 0; x < RIDE_P; x += step(r)) a.push({ x, ...make(r) });
+  return a;
+};
+const RIDE_FAR = rideLayer(81, r => 16 + r() * 14, r => ({ h: 60 + r() * 70, w: 26 + r() * 18 }));
+const RIDE_NEAR = rideLayer(82, r => 34 + r() * 40, r => ({ h: 110 + r() * 80, w: 40 + r() * 24 }));
+const RIDE_GRASS = rideLayer(83, r => 2 + r() * 4, r => ({ h: 2 + r() * 6, c: r() < 0.5 ? '#5d6d33' : '#45522a' }));
+const RIDE_STONES = rideLayer(84, r => 30 + r() * 70, r => ({ y: GY + 10 + r() * (H - GY - 22), s: 1 + r() * 2.5 }));
+const wrap = (v, p) => ((v % p) + p) % p;
+const bgRide = document.createElement('canvas');
+bgRide.width = W * dpr;
+bgRide.height = H * dpr;
+let ride = null, best8 = loadBest(LVL8_BEST_KEY);
+
+function paintRideSky() {
+  const c = bgRide.getContext('2d');
+  c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  paintSky(c, rng(7));
+}
+
+function rideRank(s) {
+  if (s >= LOGS * LOG_PTS) return ['Jeździec jak wiatr', 'Koń przefrunął nad kłodami, a ty nawet nie drgnąłeś w siodle.', GOLD];
+  if (s >= LOGS_TO_PASS * LOG_PTS) return ['Pewny jeździec', 'Kilka kłód zahaczyłeś, ale koń dowiózł cię do celu.', '#d9dee3'];
+  if (s > 0) return ['Twarde lądowanie', 'Część kłód za tobą, ale koń zbyt często zahaczał kopytem.', '#e0a050'];
+  return ['Potknięcia', 'Koń zahaczał o każdą kłodę. Czas na lekcje jazdy.', MISS];
+}
+
+function startLevel8() {
+  level = 8;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  knife = null;
+  shield = null;
+  kal = null;
+  warg = null;
+  riders = [];
+  enemyArrows = [];
+  hurt = 0;
+  score = 0;
+  shots = [];
+  popup = null;
+  newRecord = false;
+  windLevel = 0;
+  wind = 0;
+  ride = { off: 0, t: 0, h: 0, vy: 0, air: false, logs: [], left: LOGS, wait: 120 + Math.random() * 60, results: [], stumble: 0, end: 0, mult: 1, gait: 0 };
+  phase = 'ride';
+}
+
+function jumpHorse() {
+  if (level !== 8 || phase !== 'ride' || ride.air) return;
+  ride.air = true;
+  ride.vy = JUMP_V;
+}
+
+function updateLevel8() {
+  const R = ride;
+  R.t++;
+  // Po potknięciu koń przez chwilę zwalnia.
+  const speed = RIDE_SPEED * R.mult * (R.stumble > 0 ? 0.45 : 1);
+  R.gait += 1.9 * speed / RIDE_SPEED;
+  if (R.stumble > 0) R.stumble--;
+  R.off += speed;
+  if (R.air) {
+    R.h += R.vy;
+    R.vy -= JUMP_G;
+    if (R.h <= 0) { R.h = 0; R.vy = 0; R.air = false; }
+  }
+  for (const lg of R.logs) lg.x -= speed;
+  R.logs = R.logs.filter(lg => lg.x > -LOG_W);
+  if (phase !== 'ride') return;
+
+  // Kłody w losowych odstępach, jedna po drugiej.
+  if (R.left > 0 && --R.wait <= 0) {
+    R.logs.push({ x: W + LOG_W, hit: false, done: false });
+    R.left--;
+    R.wait = 90 + Math.random() * 110;
+  }
+  for (const lg of R.logs) {
+    if (lg.done) continue;
+    const over = lg.x - LOG_W / 2 < HORSE_X + HOOF_FRONT && lg.x + LOG_W / 2 > HORSE_X + HOOF_BACK;
+    if (over && R.h < LOG_H - 2) {
+      lg.hit = lg.done = true;
+      R.stumble = 50;
+      R.results.push('hit');
+      popup = { x: HORSE_X + 60, y: GY - 140, pts: 0, t: 0, text: 'Koń zahaczył o kłodę!' };
+    } else if (lg.x + LOG_W / 2 < HORSE_X + HOOF_BACK) {
+      lg.done = true;
+      score += LOG_PTS;
+      R.mult *= SPEED_UP;
+      R.results.push('ok');
+      popup = { x: HORSE_X + 60, y: GY - 140, pts: LOG_PTS, t: 0, text: `Skok! +${LOG_PTS}` };
+    }
+  }
+  if (R.results.length === LOGS && ++R.end > 70) endLevel8();
+}
+
+function endLevel8() {
+  newRecord = score > best8;
+  if (newRecord) { best8 = score; saveBest(LVL8_BEST_KEY, best8); }
+  unlocked = ride.results.filter(s => s === 'ok').length >= LOGS_TO_PASS;
+  finishBoard();
+}
+
+function drawRideScenery() {
+  ctx.drawImage(bgRide, 0, 0, W, H);
+  const off = ride.off;
+  const layer = (list, speed, margin, fn) => {
+    for (const it of list) {
+      const x = wrap(it.x - off * speed, RIDE_P) - margin;
+      if (x < W + margin) fn(it, x);
+    }
+  };
+  ctx.fillStyle = '#26302f';
+  layer(RIDE_FAR, 0.25, 40, (t, x) => fir(ctx, x, GY - 4, t.h, t.w));
+  ctx.fillStyle = '#151b17';
+  layer(RIDE_NEAR, 0.55, 60, (t, x) => fir(ctx, x, GY + 2, t.h, t.w));
+  const ground = ctx.createLinearGradient(0, GY, 0, H);
+  ground.addColorStop(0, '#34351f');
+  ground.addColorStop(1, '#14140b');
+  ctx.fillStyle = ground;
+  ctx.fillRect(0, GY, W, H - GY);
+  ctx.fillStyle = '#56652f';
+  ctx.fillRect(0, GY, W, 2);
+  layer(RIDE_GRASS, 1, 10, (g, x) => { ctx.fillStyle = g.c; ctx.fillRect(x, GY - g.h + 1, 1.2, g.h); });
+  ctx.fillStyle = 'rgba(240,232,213,.14)';
+  layer(RIDE_STONES, 1, 10, (s, x) => ctx.fillRect(x, s.y, s.s * 2, s.s));
+}
+
+function drawLog(lg) {
+  const x = lg.x - LOG_W / 2, y = GY + 1 - LOG_H, r = LOG_H / 2;
+  ctx.fillStyle = '#4a3020';
+  ctx.beginPath();
+  ctx.moveTo(x + r, y); ctx.lineTo(x + LOG_W - 4, y);
+  ctx.quadraticCurveTo(x + LOG_W + 3, y + r, x + LOG_W - 4, y + LOG_H);
+  ctx.lineTo(x + r, y + LOG_H); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = 'rgba(0,0,0,.35)';
+  ctx.lineWidth = 1;
+  for (const dy of [6, 12, 17]) { ctx.beginPath(); ctx.moveTo(x + r + 3, y + dy); ctx.lineTo(x + LOG_W - 6, y + dy + 1); ctx.stroke(); }
+  // Ścięty koniec z słojami i sęk.
+  ctx.fillStyle = '#c9a063';
+  ctx.beginPath(); ctx.ellipse(x + r, y + r, r * 0.65, r, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#8a6a3c';
+  for (const k of [0.35, 0.7]) { ctx.beginPath(); ctx.ellipse(x + r, y + r, r * 0.65 * k, r * k, 0, 0, Math.PI * 2); ctx.stroke(); }
+  ctx.fillStyle = '#4a3020';
+  ctx.fillRect(x + 26, y - 5, 4, 7);
+}
+
+// Łucznik w siodle; (0, GY) to ziemia pod środkiem konia, koń patrzy w prawo.
+function drawRanger(bob) {
+  const t = ride.t, hip = { x: -4, y: GY + bob - 70 };
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  // Peleryna powiewa za plecami.
+  const flap = calm ? 0 : Math.sin(t * 0.3) * 4;
+  ctx.fillStyle = '#4a5640';
+  ctx.beginPath();
+  ctx.moveTo(hip.x - 2, hip.y - 34);
+  ctx.quadraticCurveTo(hip.x - 22, hip.y - 20 + flap, hip.x - 30, hip.y - 2 + flap);
+  ctx.lineTo(hip.x - 8, hip.y + 2);
+  ctx.closePath(); ctx.fill();
+  // Kołczan i łuk na plecach.
+  ctx.save();
+  ctx.translate(hip.x - 10, hip.y - 26);
+  ctx.rotate(-0.5);
+  ctx.fillStyle = '#5c3b1f';
+  ctx.fillRect(-4, -12, 8, 24);
+  ctx.fillStyle = '#8db86a';
+  for (const dx of [-2.5, 0, 2.5]) ctx.fillRect(dx - 1, -19, 2, 7);
+  ctx.restore();
+  ctx.strokeStyle = '#7a4a20';
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(hip.x - 2, hip.y - 22, 24, Math.PI * 0.62, Math.PI * 1.38); ctx.stroke();
+  ctx.strokeStyle = 'rgba(240,232,213,.6)';
+  ctx.lineWidth = 1;
+  const a0 = Math.PI * 0.62, a1 = Math.PI * 1.38;
+  ctx.beginPath();
+  ctx.moveTo(hip.x - 2 + 24 * Math.cos(a0), hip.y - 22 + 24 * Math.sin(a0));
+  ctx.lineTo(hip.x - 2 + 24 * Math.cos(a1), hip.y - 22 + 24 * Math.sin(a1));
+  ctx.stroke();
+  // Noga w strzemieniu.
+  ctx.strokeStyle = '#2f2b21';
+  ctx.lineWidth = 5;
+  ctx.beginPath(); ctx.moveTo(hip.x, hip.y); ctx.lineTo(hip.x + 10, hip.y + 12); ctx.lineTo(hip.x + 6, hip.y + 26); ctx.stroke();
+  ctx.fillStyle = '#3d2b19';
+  ctx.fillRect(hip.x + 2, hip.y + 24, 10, 4);
+  // Tułów w pelerynie, lekko pochylony do przodu.
+  ctx.fillStyle = '#566349';
+  ctx.beginPath();
+  ctx.moveTo(hip.x + 2, hip.y - 38);
+  ctx.quadraticCurveTo(hip.x - 12, hip.y - 20, hip.x - 10, hip.y + 2);
+  ctx.lineTo(hip.x + 12, hip.y + 1);
+  ctx.quadraticCurveTo(hip.x + 14, hip.y - 20, hip.x + 10, hip.y - 36);
+  ctx.closePath(); ctx.fill();
+  // Kaptur i twarz.
+  ctx.fillStyle = '#4a5640';
+  ctx.beginPath(); ctx.arc(hip.x + 7, hip.y - 45, 9.5, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(hip.x + 1, hip.y - 52); ctx.lineTo(hip.x - 9, hip.y - 43); ctx.lineTo(hip.x, hip.y - 38); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = SKIN;
+  ctx.beginPath(); ctx.arc(hip.x + 11.5, hip.y - 43.5, 5.5, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = 'rgba(0,0,0,.25)';
+  ctx.beginPath(); ctx.arc(hip.x + 11.5, hip.y - 43.5, 5.5, Math.PI * 1.05, Math.PI * 1.75); ctx.lineTo(hip.x + 11.5, hip.y - 43.5); ctx.closePath(); ctx.fill();
+  // Ręce trzymają wodze.
+  const hand = { x: hip.x + 22, y: hip.y - 16 };
+  ctx.strokeStyle = SLEEVE;
+  ctx.lineWidth = 4.5;
+  ctx.beginPath(); ctx.moveTo(hip.x + 6, hip.y - 30); ctx.lineTo(hip.x + 16, hip.y - 20); ctx.lineTo(hand.x, hand.y); ctx.stroke();
+  ctx.strokeStyle = '#2a1c12';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.moveTo(hand.x, hand.y); ctx.quadraticCurveTo(hand.x + 20, hand.y + 4, 60, GY + bob - 76); ctx.stroke();
+  ctx.fillStyle = SKIN;
+  ctx.beginPath(); ctx.arc(hand.x, hand.y, 2.8, 0, Math.PI * 2); ctx.fill();
+}
+
+function drawHorseAndRanger() {
+  const R = ride, bob = R.air || calm ? 0 : Math.sin(R.t * 0.34) * 1.5;
+  // Cień na ziemi maleje, gdy koń jest w powietrzu.
+  const sh = Math.max(0.35, 1 - R.h / 120);
+  ctx.fillStyle = 'rgba(0,0,0,.28)';
+  ctx.beginPath(); ctx.ellipse(HORSE_X, GY + 2, 46 * sh, 4 * sh, 0, 0, Math.PI * 2); ctx.fill();
+  const tilt = R.stumble > 0 ? 0.13 * Math.sin(R.stumble / 50 * Math.PI) : R.air ? -0.08 * Math.sign(R.vy) : 0;
+  ctx.save();
+  ctx.translate(HORSE_X, GY - R.h);
+  ctx.rotate(tilt);
+  ctx.translate(0, -GY);
+  ctx.save();
+  ctx.scale(-1, 1);
+  drawHorse({ x: 0, bob, kind: 2, dead: false, pause: R.air ? 1 : 0, t: R.gait });
+  ctx.restore();
+  drawRanger(bob);
+  ctx.restore();
+}
+
+function drawHud8() {
+  const R = ride;
+  label('WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
+  label(String(score), 20, 60, 'left', INK, 30, 800);
+  for (let i = 0; i < LOGS; i++) {
+    const x = 20 + i * 21, s = R.results[i];
+    ctx.fillStyle = 'rgba(240,232,213,.08)';
+    ctx.fillRect(x, 70, 18, 16);
+    if (s) label(s === 'ok' ? String(LOG_PTS) : '0', x + 9, 82, 'center', s === 'ok' ? GOLD : MISS, 9, 600);
+  }
+  label('PLANSZA 8 · KONNA JAZDA', 20, 106, 'left', DIM, 9, 600, '2px');
+  const cx = W / 2;
+  label('KŁODY', cx, 28, 'center', DIM, 10, 600, '2px');
+  label(`${R.results.filter(s => s === 'ok').length} / ${LOGS} · ZALICZENIE OD ${LOGS_TO_PASS}`, cx, 54, 'center', INK, 12, 600);
+  label(`TEMPO ${Math.round(R.mult * 100)}%`, cx, 72, 'center', R.mult > 1 ? '#e0a050' : DIM, 9, 600, '2px');
+  label(progressLabel(), cx, 90, 'center', GOLD, 9, 600, '2px');
+  label(`REKORD ${best8}`, W - 20, 28, 'right', DIM, 10, 600, '2px');
+}
+
+function drawLevel8() {
+  drawRideScenery();
+  for (const lg of ride.logs) drawLog(lg);
+  drawHorseAndRanger();
+  drawFx();
+  drawHud8();
+  if (phase === 'ride') label('NACIŚNIJ W, ABY PRZESKOCZYĆ KŁODĘ', W / 2, H - 14, 'center', 'rgba(240,232,213,.45)', 10, 600, '2px');
+  if (phase === 'over') drawOver();
 }
 
 /* ── Gracz i tabela wyników ─────────────────────── */
@@ -2721,6 +3006,7 @@ function update() {
   if (level === 5) { updateLevel5(); return; }
   if (level === 6) { updateLevel6(); return; }
   if (level === 7) { updateLevel7(); return; }
+  if (level === 8) { updateLevel8(); return; }
   if (phase === 'flight') stepArrow();
   else if (phase === 'landed' && --timer <= 0) finishShot();
 }
@@ -2739,6 +3025,7 @@ function drawKnifeLevel() {
 
 function draw() {
   if (level === 2) { drawKnifeLevel(); return; }
+  if (level === 8) { drawLevel8(); return; }
   ctx.drawImage(bg, 0, 0, W, H);
   drawPennant();
   if (target) drawTarget(target);
@@ -2798,10 +3085,13 @@ canvas.addEventListener('pointerdown', e => {
     else if (level === 4 && unlocked) startLevel5();
     else if (level === 5 && unlocked) startLevel6();
     else if (level === 6 && unlocked) startLevel7();
-    else if (level === 7 && unlocked) { tier++; newGame(); }
+    else if (level === 7 && unlocked) startLevel8();
+    else if (level === 8 && unlocked) { tier++; newGame(); }
     else newGame();
     return;
   }
+  // Na planszy 8 kliknięcie (albo dotknięcie na telefonie) też wybija konia do skoku.
+  if (level === 8) { jumpHorse(); return; }
   if (level === 2) {
     if (phase === 'kshow') throwKnife(toScene(e));
     return;
@@ -2841,6 +3131,7 @@ canvas.addEventListener('pointercancel', () => {
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape' && phase === 'aiming') { drag = null; phase = 'ready'; }
   if (level === 7 && ['1', '2', '3'].includes(e.key)) selectWeapon(Number(e.key) - 1);
+  if (started && level === 8 && !e.repeat && (e.key === 'w' || e.key === 'W')) jumpHorse();
 });
 
 /* ── Start ──────────────────────────────────────── */
@@ -2855,6 +3146,7 @@ function frame(now) {
 }
 
 paintBackground();
+paintRideSky();
 if (document.fonts) document.fonts.load('600 9px Cinzel').then(paintBackground, () => {});
 if (TEST_BOARD) {
   playerName = 'TEST';
