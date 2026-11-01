@@ -1,6 +1,6 @@
 # Gra Zwiadowca
 
-Przeglądarkowa gra zręcznościowa na strzelnicy w Dębowym Grodzie: strzelanie z łuku, rzut nożem, znikające tarcze, mroczniaki, jeźdźcy, wilczury, bitwa, konna jazda i pościg. 4 poziomy po 9 plansz.
+Przeglądarkowa gra zręcznościowa na strzelnicy w Dębowym Grodzie: strzelanie z łuku, rzut nożem, znikające tarcze, mroczniaki, jeźdźcy, wilczury, bitwa, konna jazda, pościg, strzelnica w galopie, obrona palisady i pojedynek z Czarnym Panem. 4 poziomy po 12 plansz.
 
 ## Uruchomienie
 

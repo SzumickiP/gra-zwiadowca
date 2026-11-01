@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gra Zwiadowca</title>
-<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Dębowym Grodzie: strzelaj z łuku, rzucaj nożem, pal mroczniaki płonącymi strzałami, zmierz się z jeźdźcami, powstrzymaj wilczury, wygraj bitwę, przeskocz kłody i rowy w konnej jeździe i rozbij pościg.">
+<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Dębowym Grodzie: strzelaj z łuku, rzucaj nożem, pal mroczniaki płonącymi strzałami, zmierz się z jeźdźcami, powstrzymaj wilczury, wygraj bitwę, przeskocz kłody i rowy, rozbij pościg, strzelaj w galopie, obroń palisadę i pokonaj Czarnego Pana.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -265,7 +265,7 @@ canvas {
     </div>
   </div>
   <div class="rules">
-    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 9 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
+    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 12 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
     <p><strong>Plansza 1: strzelnica.</strong> Przytrzymaj przycisk myszy w dowolnym miejscu sceny i odciągnij w lewo, jak cięciwę. Im dłuższy naciąg, tym mocniejszy strzał, a odciągnięcie w dół unosi łuk. Puść, aby strzelić. Esc anuluje naciąg. Wiatr znosi strzałę, a proporczyk na środku strzelnicy pokazuje jego kierunek. Do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 2: rzut nożem.</strong> Tarcza pojawia się w losowym miejscu: pierwsza zostaje na 3 sekundy, druga na 2 sekundy, a trzecia tylko na 1,5 sekundy. Kliknij w nią, zanim zniknie. Masz 3 noże, a do zaliczenia potrzeba co najmniej 24 na 30.</p>
     <p><strong>Plansza 3: znikające tarcze.</strong> Wracasz do łuku, ale tarcza pojawia się w losowym miejscu tylko na 3 sekundy i trzeba zdążyć napiąć łuk i strzelić. Masz 5 strzał, a do zaliczenia potrzeba co najmniej 40 na 50.</p>
@@ -275,6 +275,9 @@ canvas {
     <p><strong>Plansza 7: bitwa.</strong> Wrogowie atakują pojedynczo, w losowej kolejności: 2 mroczniaki, 2 wilczury i 2 jeźdźców. Na polu stoją dwa głazy, a między nimi rośnie wysoka trawa. Wrogowie chowają się za głazami i w trawie. Głazy zatrzymują strzały i noże, a przez trawę można strzelać. Masz trzy bronie i przed strzałem musisz wybrać właściwą przyciskiem na dole sceny albo klawiszem 1, 2 lub 3: ostra strzała (8 sztuk), płonąca strzała (6 sztuk) i nóż do rzucania (3 sztuki). Płonąca strzała zabija tylko mroczniaka. Ostra strzała zabija wilczura i jeźdźca na tych samych zasadach co na planszach 5 i 6. Nóż rzucasz, klikając w miejsce, do którego ma polecieć, i zabija tylko trafieniem w głowę wilczura albo jeźdźca. Mroczniak i wilczur dają po 10 punktów, a jeździec 30. Wilczur, który do ciebie dobiegnie, to −50 punktów, a każde trafienie od jeźdźca −10. Jeździec po trzech strzałach odjeżdża. Planszę zaliczasz, gdy pokonasz wszystkich sześciu wrogów.</p>
     <p><strong>Plansza 8: konna jazda.</strong> Łucznik galopuje konno przez las. Na drodze pojawia się kolejno 15 przeszkód w losowych odstępach: 10 kłód i 5 rowów, w losowej kolejności. Naciśnij klawisz W (albo kliknij lub dotknij sceny), aby koń skoczył. Kłodę wystarczy przeskoczyć wyżej niż jej wysokość, a nad rowem koń musi być w powietrzu przez cały czas, bo rów jest szerszy. Po każdej udanej przeszkodzie koń przyspiesza o 10%, więc kolejne skoki są coraz trudniejsze. Skok za wcześnie albo za późno kończy się potknięciem i koń na chwilę zwalnia. Każda pokonana przeszkoda to 10 punktów, a planszę zaliczasz, gdy pokonasz co najmniej 12 z 15.</p>
     <p><strong>Plansza 9: pościg.</strong> Łucznik ucieka konno po prawej stronie sceny, a z lewej goni go 5 jeźdźców stepowych, najwyżej dwóch naraz. Strzelasz do tyłu z siodła: przytrzymaj przycisk myszy i odciągnij w prawo, jak cięciwę, potem puść. Masz 12 strzał. Jeźdźcy zachowują się jak na planszy 5: podjeżdżają bliżej i odjeżdżają dalej, chowają głowy za głową konia i strzelają co 5 sekund, a każdy twój strzał zmusza ich do odliczania od nowa. Ich łuki mają mniejszy zasięg: trafić cię mogą dopiero wtedy, gdy przekroczą połowę sceny (zaznaczoną na ziemi), a z dalszej odległości ich strzały spadają za wcześnie. Głowa zabija od razu, ręka i tułów po 2 trafieniach. Koń trafiony 3 razy pada, a jeździec zostaje w tyle i też liczy się jako pokonany. Każdy pokonany jeździec to 30 punktów, każde ich trafienie to −10 punktów. Planszę zaliczasz, gdy pokonasz wszystkich pięciu.</p>
+    <p><strong>Plansza 10: strzelnica w galopie.</strong> Łucznik galopuje konno, a przy drodze stoi 8 tarcz na stojakach. Każda tarcza nadjeżdża z prawej i mija łucznika, więc trzeba trafić, zanim zniknie za plecami. Strzelasz do przodu jak na planszy 1: przytrzymaj, odciągnij w lewo i puść; tarcza się zbliża, więc trzeba to uwzględnić. Masz 8 strzał, a każdą tarczę można trafić raz. Na drodze leżą też 2 kłody, w losowych miejscach: klawisz W albo przycisk SKOK na dole sceny wybija konia w górę. Skok przerywa naciąganie łuku, a w powietrzu nie da się celować. Zahaczona kłoda to −5 punktów i chwilowe zwolnienie. Punkty jak na tarczy (najwyżej 80), a planszę zaliczasz od 56 punktów.</p>
+    <p><strong>Plansza 11: obrona palisady.</strong> Łucznik stoi na drewnianej palisadzie, a z prawej do bramy pojedynczo podchodzi 8 wrogów w losowej kolejności: 2 mroczniaki, 3 wilczury i 2 jeźdźców, a w połowie walki taran. Bronie są te same co w bitwie (ostra strzała 10 sztuk, płonąca 6, nóż 3, wybór przyciskiem albo klawiszem 1, 2 lub 3) i działają na tych samych zasadach. Z góry strzela się inaczej, bo strzała leci w dół. Taran zatrzymuje tylko płonąca strzała w belkę, bo pchający go wrogowie chowają się za tarczami. Brama wytrzymuje 3 uderzenia: mroczniak albo wilczur, który do niej dotrze, zabiera jedno, a taran dwa. Jeźdźcy strzelają do ciebie (−10 punktów) i po trzech strzałach odjeżdżają. Mroczniak i wilczur to 10 punktów, jeździec 30, taran 20. Planszę zaliczasz, gdy po przejściu wszystkich ośmiu wrogów brama wciąż stoi.</p>
+    <p><strong>Plansza 12: Czarny Pan.</strong> Pojedynek z jednym przeciwnikiem w ciemnej zbroi. Chowa się za dwoma głazami i wychodzi zza nich do walki. Zbroja, hełm i tarcza odbijają strzały. Trafić go można tylko w szczelinę zbroi, która świeci na czerwono, gdy unosi miecz albo tarczę. Uniesiony miecz to zapowiedź ciosu: jeśli nie trafisz w szczelinę, zanim go opuści, wyśle w ciebie ostrze cienia (−10 punktów). Hełm pęka po 3 trafieniach i spada, a wtedy odsłonięta głowa też jest słabym miejscem (trafienie kończy fazę tak samo jak strzał w szczelinę). Przed ostrzem cienia możesz się obronić saksą: klawisz S albo przycisk SAKSA wyciąga ją na 0,6 sekundy, a ostrze, które trafi w tym czasie, zostaje odbite bez straty punktów. Z saksą w dłoni nie da się strzelać, a po jej schowaniu trzeba chwilę odczekać. Uniesiona tarcza to wezwanie pomocnika: najpierw wilczura, potem jeźdźca, na końcu znów wilczura, a działają one jak na planszach 5 i 6. Walka ma 3 fazy: każde trafienie w szczelinę kończy fazę, a w kolejnej Czarny Pan jest szybszy. Masz 10 strzał, bez wiatru. Każde trafienie Czarnego Pana to 30 punktów, wilczur 10, jeździec 30. Planszę zaliczasz, gdy pokonasz Czarnego Pana, zanim skończą się strzały.</p>
     <ul class="rings" aria-label="Punktacja tarczy">
       <li style="--c: var(--ring-gold)">Złoto 10</li>
       <li style="--c: var(--ring-red)">Czerwień 8</li>
@@ -307,7 +310,7 @@ const LVL3_BEST_KEY = 'zwiadowcy-znikajace-rekord';
 const LVL3_SHOW = 180, LVL2_TO_3 = 24;
 const LVL4_BEST_KEY = 'zwiadowcy-kalkary-rekord';
 const LVL3_TO_4 = 40, KALKARS = 2, FIRE_ARROWS = 3, JUMP_FRAMES = [120, 80], JUMP_H = 55;
-const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 9;
+const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 12;
 const LVL5_BEST_KEY = 'zwiadowcy-temudzein-rekord';
 const RIDER_ARROWS = 5, RIDERS = 2, ENEMY_EVERY = 300, ENEMY_HIT = 0.7, ENEMY_DMG = 10, KILL_PTS = 30;
 const LVL6_BEST_KEY = 'zwiadowcy-wargale-rekord';
@@ -374,7 +377,7 @@ function startBoard(n) {
   tier = 1;
   total = 0;
   gameOver = false;
-  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6, startLevel7, startLevel8, startLevel9][n - 1]();
+  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6, startLevel7, startLevel8, startLevel9, startLevel10, startLevel11, startLevel12][n - 1]();
 }
 
 /* ── Tło (rysowane raz) ─────────────────────────── */
@@ -628,6 +631,20 @@ function drawArcher(ang, pull, nocked) {
   ctx.lineTo(-9, -21); ctx.quadraticCurveTo(-11, -46, -2, -73);
   ctx.closePath(); ctx.fill();
 
+  // Saksa w pochwie przy pasie; na planszy 12 łucznik może ją wyciągnąć.
+  ctx.save();
+  ctx.translate(6, -37);
+  ctx.rotate(0.95);
+  ctx.fillStyle = '#3a2716';
+  ctx.fillRect(-2.5, 0, 5, 19);
+  if (!saxeDrawn()) {
+    ctx.fillStyle = '#6b4a2a';
+    ctx.fillRect(-2, -8, 4, 8);
+    ctx.fillStyle = '#8a8f96';
+    ctx.fillRect(-4.5, -1.5, 9, 2);
+  }
+  ctx.restore();
+
   ctx.fillStyle = '#4a5640';
   ctx.beginPath(); ctx.arc(2, -81, 9.5, 0, Math.PI * 2); ctx.fill();
   ctx.beginPath(); ctx.moveTo(-5, -88); ctx.lineTo(-15, -79); ctx.lineTo(-6, -74); ctx.closePath(); ctx.fill();
@@ -651,7 +668,7 @@ function drawArcher(ang, pull, nocked) {
   if (nocked) {
     ctx.save();
     ctx.translate(g.nockX + ARROW_LEN, 0);
-    drawArrowShape(false, level === 4 || (level === 7 && battle.weapon === 'fire'));
+    drawArrowShape(false, level === 4 || (isBattle() && battle.weapon === 'fire'));
     ctx.restore();
   }
   ctx.fillStyle = SKIN;
@@ -727,7 +744,7 @@ function drawFx() {
     ctx.lineWidth = 4;
     ctx.lineJoin = 'round';
     ctx.strokeStyle = 'rgba(10,8,4,.85)';
-    ctx.fillStyle = hit ? (popup.pts === 10 ? GOLD : INK) : MISS;
+    ctx.fillStyle = popup.color || (hit ? (popup.pts === 10 ? GOLD : INK) : MISS);
     ctx.strokeText(text, x, y);
     ctx.fillText(text, x, y);
     ctx.restore();
@@ -735,12 +752,12 @@ function drawFx() {
 }
 
 function drawHud() {
-  const k4 = level === 4, k5 = level === 5, k6 = level === 6, k7 = level === 7;
+  const k4 = level === 4, k5 = level === 5, k6 = level === 6, k7 = isBattle();
   // W bitwie zapas broni pokazują przyciski na dole sceny, więc tu nie rysujemy strzał.
   const n = k4 ? FIRE_ARROWS : k5 ? RIDER_ARROWS : k6 ? WARG_ARROWS : k7 ? 0 : SHOTS;
   label(k4 ? 'MROCZNIAKI' : 'WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
   label(String(score), 20, 60, 'left', score < 0 ? MISS : INK, 30, 800);
-  for (let i = 0; i < (k4 ? KALKARS : k6 ? WARGALS : k7 ? BATTLE_FOES.length : n); i++) {
+  for (let i = 0; i < (k4 ? KALKARS : k6 ? WARGALS : k7 ? battle.total : n); i++) {
     const x = 20 + i * 24;
     if (k7) {
       // Pokonani wrogowie na złoto, ci, którzy się przedarli, na czerwono.
@@ -785,8 +802,8 @@ function drawHud() {
     ctx.beginPath(); ctx.moveTo(x, 36); ctx.lineTo(x - 3, 42); ctx.lineTo(x + 3, 42); ctx.closePath(); ctx.fill();
     if (k4 && on) { ctx.save(); ctx.translate(x, 37); ctx.rotate(Math.PI / 2); drawFlame(0, 0, 0.7); ctx.restore(); }
   }
-  label(`REKORD ${k4 ? best4 : k5 ? best5 : k6 ? best6 : k7 ? best7 : level === 3 ? best3 : best}`, W - 20, k7 ? 28 : 84, 'right', DIM, 10, 600, '2px');
-  if (level >= 3) label(['PLANSZA 3 · ZNIKAJĄCE TARCZE', 'PLANSZA 4 · MROCZNIAKI', 'PLANSZA 5 · JEŹDŹCY', 'PLANSZA 6 · WILCZURY', 'PLANSZA 7 · BITWA'][level - 3], 20, 106, 'left', DIM, 9, 600, '2px');
+  label(`REKORD ${k4 ? best4 : k5 ? best5 : k6 ? best6 : k7 ? (level === 11 ? best11 : best7) : level === 3 ? best3 : best}`, W - 20, k7 ? 28 : 84, 'right', DIM, 10, 600, '2px');
+  if (level >= 3) label(['PLANSZA 3 · ZNIKAJĄCE TARCZE', 'PLANSZA 4 · MROCZNIAKI', 'PLANSZA 5 · JEŹDŹCY', 'PLANSZA 6 · WILCZURY', 'PLANSZA 7 · BITWA', 'PLANSZA 8 · KONNA JAZDA', 'PLANSZA 9 · POŚCIG', 'PLANSZA 10 · STRZELNICA W GALOPIE', 'PLANSZA 11 · OBRONA PALISADY', 'PLANSZA 12 · CZARNY PAN'][level - 3], 20, 106, 'left', DIM, 9, 600, '2px');
 }
 
 function progressLabel() {
@@ -1727,11 +1744,11 @@ function startLevel6() {
 
 // W bitwie wilczur chowa się za prawym głazem, w wysokiej trawie i za lewym głazem.
 function wargPath() {
-  return level === 7 ? WARG_PATH7 : WARG_PATH;
+  return level === 7 ? WARG_PATH7 : level === 11 ? WARG_PATH11 : level === 12 ? WARG_PATH12 : WARG_PATH;
 }
 
 function wargHideXs() {
-  return level === 7 ? WARG_PATH7.slice(1, -1) : COVERS.map(c => c.x);
+  return level === 7 ? WARG_PATH7.slice(1, -1) : level === 11 ? WARG_PATH11.slice(1, -1) : level === 12 ? WARG_PATH12.slice(1, -1) : COVERS.map(c => c.x);
 }
 
 function spawnWargal() {
@@ -1799,7 +1816,8 @@ function updateWargal() {
     w.mode = 'attack';
     w.t = 0;
     wargStatus[wargIndex] = 'reached';
-    if (phase !== 'over') {
+    if (phase !== 'over' && level === 11) hitGate(1, 'Wilczur w bramie');
+    else if (phase !== 'over') {
       score -= WARG_DMG;
       hurt = 30;
       popup = { x: ARCHER_X + 30, y: GY - 120, pts: -WARG_DMG, t: 0, text: `Wilczur cię dopadł! −${WARG_DMG}` };
@@ -1875,8 +1893,8 @@ const WEAPONS = [
   { id: 'knife', name: 'NÓŻ', ammo: 3 },
 ];
 const BATTLE_FOES = ['kalkar', 'kalkar', 'wargal', 'wargal', 'rider', 'rider'];
-const FOE_NAME = { kalkar: 'MROCZNIAK', wargal: 'WILCZUR', rider: 'JEŹDZIEC' };
-const FOE_LETTER = { kalkar: 'M', wargal: 'W', rider: 'J' };
+const FOE_NAME = { kalkar: 'MROCZNIAK', wargal: 'WILCZUR', rider: 'JEŹDZIEC', ram: 'TARAN' };
+const FOE_LETTER = { kalkar: 'M', wargal: 'W', rider: 'J', ram: 'T' };
 const KALKAR_PTS = 10, RIDER_LEAVE_AFTER = 3, BATTLE_MAX = 2 * KALKAR_PTS + 2 * WARG_PTS + 2 * KILL_PTS;
 const BTN = { x: 175, y: 398, w: 150, h: 28, gap: 10 };
 // Stała sceneria bitwy: dwa głazy, a pomiędzy nimi wysoka trawa (strzały przez nią przelatują).
@@ -1929,7 +1947,7 @@ function startLevel7() {
   windLevel = Math.floor(Math.random() * 4) * (Math.random() < 0.5 ? -1 : 1);
   wind = windLevel / 10 * WIND_MAX;
   battle = {
-    queue: shuffle(BATTLE_FOES.slice()), cur: null, idx: 0, wait: 70,
+    queue: shuffle(BATTLE_FOES.slice()), total: BATTLE_FOES.length, cur: null, idx: 0, wait: 70,
     n: { kalkar: 0, wargal: 0, rider: 0 }, log: [], results: [], announce: null,
     weapon: 'sharp', ammo: Object.fromEntries(WEAPONS.map(w => [w.id, w.ammo])),
   };
@@ -1943,6 +1961,7 @@ function spawnFoe() {
   B.idx = n;
   if (type === 'kalkar') { kalIndex = n; kalStatus = []; spawnKalkar(); }
   else if (type === 'wargal') { wargIndex = n; wargStatus = []; spawnWargal(); }
+  else if (type === 'ram') spawnRam();
   else { riders = [makeRider(n + 1, 0)]; riders[0].fired = 0; }
   B.announce = { text: `NADCHODZI ${FOE_NAME[type]}`, t: 0 };
 }
@@ -1951,6 +1970,7 @@ function curFoeStatus() {
   const B = battle;
   if (B.cur === 'kalkar') return kalStatus[B.idx];
   if (B.cur === 'wargal') return wargStatus[B.idx];
+  if (B.cur === 'ram') return battle.ram && battle.ram.status;
   return riders[0] && riders[0].dead ? 'dead' : undefined;
 }
 
@@ -1980,6 +2000,9 @@ function updateBattle() {
   } else if (B.cur === 'wargal') {
     if (warg) updateWargal();
     if (!warg) foeDone(wargStatus[B.idx] || 'reached');
+  } else if (B.cur === 'ram') {
+    updateRam();
+    if (!B.ram) foeDone(B.lastRam);
   } else {
     const r = riders[0];
     if (r.leaving) {
@@ -2029,12 +2052,14 @@ function updateLevel7() {
   else if (phase === 'landed' && --timer <= 0) finishShot();
   else if (phase === 'ready' || phase === 'aiming') {
     // Koniec bitwy: wszyscy wrogowie za nami albo nie została żadna broń.
-    if ((!battle.cur && !battle.queue.length) || battleAmmoLeft() === 0) endLevel7();
+    if ((!battle.cur && !battle.queue.length) || battleAmmoLeft() === 0 || (level === 11 && battle.gate <= 0)) {
+      if (level === 11) endLevel11(); else endLevel7();
+    }
   }
 }
 
 function selectWeapon(i) {
-  if (level !== 7 || phase === 'aiming' || !WEAPONS[i]) return;
+  if (!isBattle() || phase === 'aiming' || !WEAPONS[i]) return;
   battle.weapon = WEAPONS[i].id;
 }
 
@@ -2065,6 +2090,7 @@ function battleArrowHit(a, px, py) {
     const x = px + (a.x - px) * i / n, y = py + (a.y - py) * i / n;
     if (y >= GY) return false;
     for (const r of BATTLE_ROCKS) if (inRock(r, x, y)) { land(x, y, 0); popup.text = 'W głaz'; return true; }
+    if (level === 11 && battle.ram && ramArrowHit(battle.ram, x, y, fire)) return true;
     {
       const k = kal;
       if (k && k.mode === 'move' && hitKalkar(k, x, y)) {
@@ -2102,11 +2128,11 @@ function battleArrowHit(a, px, py) {
 
 // Nóż leci prosto do klikniętego miejsca, jak na planszy 2.
 function throwBattleKnife(p) {
-  const dx = p.x - HAND.x, dy = p.y - HAND.y, dist = Math.hypot(dx, dy);
+  const hy = HAND.y - archerLift(), dx = p.x - HAND.x, dy = p.y - hy, dist = Math.hypot(dx, dy);
   if (dist < 20) return;
   battle.ammo.knife--;
   knife = {
-    x: HAND.x, y: HAND.y, vx: dx / dist * KNIFE_SPEED, vy: dy / dist * KNIFE_SPEED,
+    x: HAND.x, y: hy, vx: dx / dist * KNIFE_SPEED, vy: dy / dist * KNIFE_SPEED,
     steps: Math.ceil(dist / KNIFE_SPEED), spin: 0, dir: Math.atan2(dy, dx), stuck: false,
   };
   phase = 'kflight';
@@ -2132,6 +2158,7 @@ function stepBattleKnife() {
   for (let i = 1; i <= n; i++) {
     const x = px + (k.x - px) * i / n, y = py + (k.y - py) * i / n;
     for (const r of BATTLE_ROCKS) if (inRock(r, x, y)) return knifeResult(0, x, y, 'W głaz');
+    if (level === 11 && battle.ram && inRam(battle.ram, x, y)) return knifeResult(0, x, y, 'Nóż nic nie zrobi taranowi');
     {
       if (kal && kal.mode === 'move' && hitKalkar(kal, x, y)) return knifeResult(0, x, y, 'Nóż nie rani mroczniaka');
     }
@@ -2182,6 +2209,8 @@ function drawBattleScene() {
   if (warg && warg.mode !== 'hidden') drawWargal(warg);
   for (const r of BATTLE_ROCKS) drawRock(r);
   drawGrass();
+  // Taran jest wysoki i ciężki, więc widać go przed trawą.
+  if (level === 11 && battle.ram) drawRam(battle.ram);
 }
 
 function drawWeaponBar() {
@@ -2208,11 +2237,11 @@ function drawWeaponBar() {
 function drawOver() {
   ctx.fillStyle = 'rgba(8,7,4,.74)';
   ctx.fillRect(0, 0, W, H);
-  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank, battleRank, rideRank, chaseRank][level - 1](score);
+  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank, battleRank, rideRank, chaseRank, gallopRank, palisadeRank, bossRank][level - 1](score);
   label(`POZIOM ${tier} · KONIEC PLANSZY ${level}`, cx, 118, 'center', DIM, 11, 600, '3px');
   label(`SUMA PUNKTÓW ${total}`, cx, 380, 'center', DIM, 10, 600, '2px');
 
-  const big = String(score), small = ` / ${level === 9 ? CHASERS * KILL_PTS : level === 8 ? LOGS * LOG_PTS : level === 7 ? BATTLE_MAX : level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS * RIDERS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
+  const big = String(score), small = ` / ${level === 12 ? BOSS_MAX : level === 11 ? PALISADE_MAX : level === 10 ? GAL_TARGETS * 10 : level === 9 ? CHASERS * KILL_PTS : level === 8 ? LOGS * LOG_PTS : level === 7 ? BATTLE_MAX : level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS * RIDERS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
   ctx.font = '800 64px Cinzel, Georgia, serif';
   const w1 = ctx.measureText(big).width;
   ctx.font = '600 20px Cinzel, Georgia, serif';
@@ -2271,8 +2300,23 @@ function drawOver() {
     label('KLIKNIJ, ABY UCIEKAĆ PRZED POŚCIGIEM', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
-  if (level === 9 && unlocked && tier < MAX_TIER) {
-    label(`POŚCIG ROZBITY · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
+  if (level === 9 && unlocked) {
+    label('POŚCIG ROZBITY · PLANSZA 10 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY STRZELAĆ W GALOPIE', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 10 && unlocked) {
+    label('TARCZE TRAFIONE W GALOPIE · PLANSZA 11 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY BRONIĆ PALISADY', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 11 && unlocked) {
+    label('BRAMA OCALAŁA · PLANSZA 12 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY STANĄĆ DO POJEDYNKU Z CZARNYM PANEM', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 12 && unlocked && tier < MAX_TIER) {
+    label(`CZARNY PAN POKONANY · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
     label('KLIKNIJ, ABY ZACZĄĆ OD PLANSZY 1 Z CELOWNIKIEM KRÓTSZYM O POŁOWĘ', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
@@ -2593,7 +2637,7 @@ const CHASE_RANGE_X = W / 2;
 const SEAT = 38;
 let mirrored = false, best9 = loadBest(LVL9_BEST_KEY);
 
-function archerLift() { return level === 9 ? SEAT : 0; }
+function archerLift() { return level === 9 ? SEAT : level === 10 ? SEAT + ride.h : level === 11 ? WALL_H : 0; }
 function shoulderPt() { return { x: SHOULDER.x, y: SHOULDER.y - archerLift() }; }
 
 function chaseRank() {
@@ -2789,6 +2833,898 @@ function drawLevel9() {
   if (phase === 'over') drawOver();
 }
 
+/* ── Plansza 10: strzelnica w galopie ───────────── */
+
+// Łucznik jedzie w prawo (koń w miejscu ARCHER_X), a tarcze i kłody przesuwają się razem z ziemią.
+const LVL10_BEST_KEY = 'zwiadowcy-galop-rekord';
+const GAL_TARGETS = 8, GAL_LOGS = 2, GAL_ARROWS = 8, GAL_PASS = 56, GAL_LOG_PEN = 5, GAL_R = 40;
+const JUMP_BTN = { x: 350, y: 398, w: 120, h: 28 };
+let best10 = loadBest(LVL10_BEST_KEY);
+
+function gallopRank(s) {
+  if (s >= GAL_TARGETS * 10) return ['Mistrz siodła', 'Osiem złotych w pełnym galopie. Nikt w Dębowym Grodzie tego nie pamięta.', GOLD];
+  if (s >= GAL_PASS) return ['Łucznik konny', 'Koń pędzi, a strzały i tak trafiają tam, gdzie trzeba.', '#d9dee3'];
+  if (s > 0) return ['Za szybko', 'Tarcze uciekały, zanim zdążyłeś dobrze wycelować.', '#e0a050'];
+  return ['Pudła w galopie', 'Z siodła strzela się zupełnie inaczej. Jeszcze kilka przejazdów.', MISS];
+}
+
+function startLevel10() {
+  level = 10;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  knife = null;
+  shield = null;
+  kal = null;
+  warg = null;
+  riders = [];
+  enemyArrows = [];
+  hurt = 0;
+  score = 0;
+  shots = [];
+  popup = null;
+  newRecord = false;
+  windLevel = 0;
+  wind = 0;
+  // Kolejność przeszkód losowa, ale zawsze zaczyna się od tarczy.
+  const events = shuffle([...Array(GAL_TARGETS - 1).fill('t'), ...Array(GAL_LOGS).fill('l')]);
+  ride = { off: 0, t: 0, h: 0, vy: 0, air: false, stumble: 0, gait: 0, wait: 70, events: ['t', ...events],
+    logs: [], targets: [], tn: 0, tres: [], logsDone: 0 };
+  phase = 'ready';
+}
+
+function inJumpBtn(p) {
+  return p.x >= JUMP_BTN.x && p.x <= JUMP_BTN.x + JUMP_BTN.w && p.y >= JUMP_BTN.y && p.y <= JUMP_BTN.y + JUMP_BTN.h;
+}
+
+function jumpGallop() {
+  if (level !== 10 || phase === 'over' || ride.air) return;
+  // Skok przerywa naciąganie łuku.
+  if (phase === 'aiming') { drag = null; phase = 'ready'; }
+  ride.air = true;
+  ride.vy = JUMP_V;
+}
+
+function gallopArrowHit(a, px, py) {
+  for (const t of ride.targets) {
+    if (t.hit || !(px < t.x && a.x >= t.x)) continue;
+    const yc = py + (t.x - px) / (a.x - px) * (a.y - py), d = Math.abs(yc - t.y);
+    if (d > t.r) continue;
+    const pts = ringPoints(d / t.r);
+    t.hit = true;
+    ride.tres[t.n] = pts;
+    land(t.x, yc, pts);
+    return true;
+  }
+  return false;
+}
+
+function updateLevel10() {
+  const R = ride;
+  R.t++;
+  const speed = RIDE_SPEED * (R.stumble > 0 ? 0.45 : 1);
+  if (R.stumble > 0) R.stumble--;
+  R.off += speed;
+  R.gait += 1.9 * speed / RIDE_SPEED;
+  if (R.air) {
+    R.h += R.vy;
+    R.vy -= JUMP_G;
+    if (R.h <= 0) { R.h = 0; R.vy = 0; R.air = false; }
+  }
+  for (const o of R.targets) o.x -= speed;
+  for (const o of R.logs) o.x -= speed;
+  // Strzała wbita w tarczę albo w ziemię odjeżdża razem z nimi.
+  if (arrow && arrow.stuck) arrow.x -= speed;
+  R.targets = R.targets.filter(o => o.x > -80);
+  R.logs = R.logs.filter(o => o.x > -LOG_W);
+  if (phase === 'over') return;
+
+  if (R.events.length && --R.wait <= 0) {
+    if (R.events.shift() === 't') R.targets.push({ x: W + 50, y: GY - 75 - Math.random() * 85, r: GAL_R, n: R.tn++, hit: false, done: false });
+    else R.logs.push({ x: W + LOG_W, done: false });
+    R.wait = 105 + Math.random() * 70;
+  }
+  for (const o of R.targets) {
+    // Tarcza za plecami łucznika już przepadła.
+    if (!o.done && o.x < ARCHER_X - 20) {
+      o.done = true;
+      if (!o.hit) R.tres[o.n] = 0;
+    }
+  }
+  for (const lg of R.logs) {
+    if (lg.done) continue;
+    const over = lg.x - LOG_W / 2 < ARCHER_X + HOOF_FRONT && lg.x + LOG_W / 2 > ARCHER_X + HOOF_BACK;
+    if (over && R.h < LOG_H - 2) {
+      lg.done = true;
+      R.logsDone++;
+      R.stumble = 50;
+      score -= GAL_LOG_PEN;
+      if (phase === 'aiming') { drag = null; phase = 'ready'; }
+      popup = { x: ARCHER_X + 60, y: GY - 150, pts: -GAL_LOG_PEN, t: 0, text: `Koń zahaczył o kłodę! −${GAL_LOG_PEN}` };
+    } else if (lg.x + LOG_W / 2 < ARCHER_X + HOOF_BACK) { lg.done = true; R.logsDone++; }
+  }
+
+  if (phase === 'flight') stepArrow();
+  else if (phase === 'landed' && --timer <= 0) finishShot();
+  else if (phase === 'ready') {
+    // tres ma dziury, dopóki tarcza nie zostanie trafiona albo nie minie łucznika; filter je pomija.
+    const allPassed = !R.events.length && R.tres.filter(() => true).length === GAL_TARGETS && R.logsDone === GAL_LOGS;
+    if (allPassed || shots.length >= GAL_ARROWS) endLevel10();
+  }
+}
+
+function endLevel10() {
+  drag = null;
+  newRecord = score > best10;
+  if (newRecord) { best10 = score; saveBest(LVL10_BEST_KEY, best10); }
+  unlocked = score >= GAL_PASS;
+  finishBoard();
+}
+
+// Koń patrzy w prawo, a łucznik w siodle celuje do przodu; nogi i dół peleryny zasłania koń.
+function drawGallopArcher(aim) {
+  const R = ride, bob = R.air || calm ? 0 : Math.sin(R.t * 0.34) * 1.5;
+  const sh = Math.max(0.35, 1 - R.h / 120);
+  ctx.fillStyle = 'rgba(0,0,0,.28)';
+  ctx.beginPath(); ctx.ellipse(ARCHER_X, GY + 2, 46 * sh, 4 * sh, 0, 0, Math.PI * 2); ctx.fill();
+  const tilt = R.stumble > 0 ? 0.13 * Math.sin(R.stumble / 50 * Math.PI) : R.air ? -0.08 * Math.sign(R.vy) : 0;
+  ctx.save();
+  ctx.translate(ARCHER_X, GY - R.h);
+  ctx.rotate(tilt);
+  ctx.translate(-ARCHER_X, -GY);
+  ctx.save();
+  ctx.translate(ARCHER_X, 0);
+  ctx.scale(-1, 1);
+  drawHorse({ x: 0, bob, kind: 2, dead: false, pause: R.air ? 1 : 0, t: R.gait });
+  ctx.restore();
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0, 0, W, GY + bob - 68); ctx.clip();
+  ctx.translate(0, -SEAT);
+  drawArcher(aim ? aim.ang : lastAng, aim ? aim.pull : 0, phase === 'ready' || phase === 'aiming');
+  ctx.restore();
+  const hy = GY - SEAT - 30 + bob;
+  ctx.strokeStyle = '#2f2b21';
+  ctx.lineWidth = 5;
+  ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(ARCHER_X - 1, hy); ctx.lineTo(ARCHER_X + 9, hy + 12); ctx.lineTo(ARCHER_X + 5, hy + 26); ctx.stroke();
+  ctx.fillStyle = '#3d2b19';
+  ctx.fillRect(ARCHER_X + 2, hy + 24, 10, 4);
+  ctx.restore();
+}
+
+function drawHud10() {
+  const R = ride;
+  label('WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
+  label(String(score), 20, 60, 'left', score < 0 ? MISS : INK, 30, 800);
+  for (let i = 0; i < GAL_TARGETS; i++) {
+    const x = 20 + i * 24, v = R.tres[i];
+    ctx.fillStyle = 'rgba(240,232,213,.08)';
+    ctx.fillRect(x, 70, 20, 16);
+    if (v !== undefined) label(String(v), x + 10, 82, 'center', v > 0 ? (v >= 10 ? GOLD : INK) : MISS, 10, 600);
+  }
+  label('PLANSZA 10 · STRZELNICA W GALOPIE', 20, 106, 'left', DIM, 9, 600, '2px');
+  const cx = W / 2;
+  label('TARCZE', cx, 28, 'center', DIM, 10, 600, '2px');
+  label(`${R.tres.filter(v => v > 0).length} / ${GAL_TARGETS} · ZALICZENIE OD ${GAL_PASS} PKT`, cx, 54, 'center', INK, 12, 600);
+  label(progressLabel(), cx, 76, 'center', GOLD, 9, 600, '2px');
+  label('STRZAŁY', W - 20, 28, 'right', DIM, 10, 600, '2px');
+  const left = GAL_ARROWS - shots.length - (phase === 'flight' ? 1 : 0);
+  for (let i = 0; i < GAL_ARROWS; i++) {
+    const x = W - 24 - i * 13, on = i < left, off = 'rgba(240,232,213,.15)';
+    ctx.strokeStyle = on ? '#c9a063' : off;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(x, 40); ctx.lineTo(x, 64); ctx.stroke();
+    ctx.fillStyle = on ? '#8db86a' : off;
+    ctx.fillRect(x - 2, 58, 4, 7);
+    ctx.fillStyle = on ? '#d9dde0' : off;
+    ctx.beginPath(); ctx.moveTo(x, 36); ctx.lineTo(x - 3, 42); ctx.lineTo(x + 3, 42); ctx.closePath(); ctx.fill();
+  }
+  label(`REKORD ${best10}`, W - 20, 84, 'right', DIM, 10, 600, '2px');
+  // Przycisk skoku (klawisz W).
+  const b = JUMP_BTN, on = !R.air && phase !== 'over';
+  ctx.fillStyle = on ? 'rgba(10,8,4,.6)' : 'rgba(10,8,4,.35)';
+  ctx.fillRect(b.x, b.y, b.w, b.h);
+  ctx.strokeStyle = on ? 'rgba(240,232,213,.35)' : 'rgba(240,232,213,.12)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(b.x + 0.5, b.y + 0.5, b.w - 1, b.h - 1);
+  label('W · SKOK', b.x + b.w / 2, b.y + 18, 'center', on ? INK : DIM, 10, 700, '1px');
+}
+
+function drawLevel10() {
+  const R = ride;
+  drawRideScenery();
+  for (const t of R.targets) drawTargetBody(t);
+  for (const lg of R.logs) drawLog(lg);
+  if (arrow && arrow.stuck) drawArrow(arrow);
+  const aim = phase === 'aiming' ? aimNow() : null;
+  drawGallopArcher(aim);
+  if (aim && aim.pull > 0.02) { drawPreview(aim.ang, aim.pull); drawPower(aim.pull); }
+  if (arrow && !arrow.stuck) drawArrow(arrow);
+  drawFx();
+  drawHud10();
+  if (phase === 'ready' && !R.air) label('STRZELAJ DO TARCZ · W ALBO PRZYCISK, ABY PRZESKOCZYĆ KŁODĘ', W / 2, H - 50, 'center', 'rgba(240,232,213,.45)', 10, 600, '2px');
+  if (phase === 'over') drawOver();
+}
+
+/* ── Plansza 11: obrona palisady ────────────────── */
+
+// Bitwa z planszy 7, ale łucznik stoi na palisadzie (WALL_H px wyżej), a wrogowie idą do bramy.
+// Mroczniak albo wilczur w bramie zabiera 1 z 3 punktów jej wytrzymałości, taran 2.
+const LVL11_BEST_KEY = 'zwiadowcy-palisada-rekord';
+const WALL_H = 60, PALISADE_L = 36, GATE_L = ARCHER_X + 36, GATE_X = ARCHER_X + 66, GATE_HP = 3;
+const RAM_PTS = 20, RAM_SPEED = 0.9, RAM_LEN = 112;
+const PALISADE_FOES = ['kalkar', 'kalkar', 'wargal', 'wargal', 'wargal', 'rider', 'rider'];
+const PALISADE_AMMO = { sharp: 10, fire: 6, knife: 3 };
+const PALISADE_MAX = 2 * KALKAR_PTS + 3 * WARG_PTS + 2 * KILL_PTS + RAM_PTS;
+const KAL_PATH11 = [W + 40, 720, 430, GATE_X + 30];
+const WARG_PATH11 = [W + 50, 720, 575, 430, GATE_X + 26];
+let best11 = loadBest(LVL11_BEST_KEY);
+
+function isBattle() { return level === 7 || level === 11; }
+
+function palisadeRank() {
+  const B = battle, dead = B.results.filter(s => s === 'dead').length;
+  if (B.gate === GATE_HP && dead === B.total) return ['Niezdobyta palisada', 'Nikt nawet nie dotknął bramy.', GOLD];
+  if (B.gate > 0 && B.results.length === B.total) return ['Brama ocalała', 'Drewno popękało, ale wytrzymało do końca.', '#d9dee3'];
+  if (B.gate > 0) return ['Bez strzał', 'Brama stoi, ale wrogowie wciąż pod murem.', '#e0a050'];
+  return ['Brama padła', 'Wrogowie wdarli się za palisadę.', MISS];
+}
+
+function startLevel11() {
+  level = 11;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  knife = null;
+  shield = null;
+  kal = null;
+  warg = null;
+  riders = [];
+  enemyArrows = [];
+  hurt = 0;
+  score = 0;
+  shots = [];
+  popup = null;
+  newRecord = false;
+  windLevel = Math.floor(Math.random() * 4) * (Math.random() < 0.5 ? -1 : 1);
+  wind = windLevel / 10 * WIND_MAX;
+  // Taran zawsze w połowie walki (jako czwarty z ośmiu).
+  const queue = shuffle(PALISADE_FOES.slice());
+  queue.splice(3, 0, 'ram');
+  battle = {
+    queue, total: queue.length, cur: null, idx: 0, wait: 70,
+    n: { kalkar: 0, wargal: 0, rider: 0, ram: 0 }, log: [], results: [], announce: null,
+    weapon: 'sharp', ammo: { ...PALISADE_AMMO }, gate: GATE_HP, gateFlash: 0, ram: null, lastRam: null,
+  };
+  phase = 'ready';
+}
+
+function endLevel11() {
+  drag = null;
+  const B = battle;
+  B.results = B.log.map(e => e.status);
+  if (B.cur) B.results.push(curFoeStatus() || 'alive');
+  newRecord = score > best11;
+  if (newRecord) { best11 = score; saveBest(LVL11_BEST_KEY, best11); }
+  unlocked = B.gate > 0 && !B.cur && !B.queue.length;
+  finishBoard();
+}
+
+function hitGate(n, text) {
+  const B = battle;
+  B.gate = Math.max(0, B.gate - n);
+  B.gateFlash = 30;
+  popup = { x: 330, y: GY - WALL_H - 60, pts: 0, t: 0, text: `${text} · brama ${B.gate}/${GATE_HP}` };
+}
+
+function spawnRam() {
+  battle.ram = { x: W + 20, mode: 'move', t: 0, status: undefined };
+}
+
+function updateRam() {
+  const B = battle, r = B.ram;
+  if (!r) return;
+  r.t++;
+  if (r.mode === 'move') {
+    r.x -= RAM_SPEED;
+    if (r.x <= GATE_X + 4) {
+      r.mode = 'hit';
+      r.t = 0;
+      r.status = 'reached';
+      if (phase !== 'over') hitGate(2, 'Taran w bramie');
+    }
+  } else if ((r.mode === 'hit' && r.t > 60) || (r.mode === 'burn' && r.t > 110)) {
+    B.lastRam = r.status;
+    B.ram = null;
+  }
+}
+
+function ramBeam(r, x, y) { return x >= r.x && x <= r.x + RAM_LEN && y >= GY - 46 && y <= GY; }
+function ramCrew(r, x, y) { return x > r.x + RAM_LEN - 4 && x <= r.x + RAM_LEN + 40 && y >= GY - 62 && y <= GY; }
+function inRam(r, x, y) { return ramBeam(r, x, y) || ramCrew(r, x, y); }
+
+// Taran zatrzymuje tylko płonąca strzała w belkę; pchających osłaniają tarcze.
+function ramArrowHit(r, x, y, fire) {
+  if (!inRam(r, x, y)) return false;
+  if (r.mode !== 'move') return noHarm(x, y, r.mode === 'burn' ? 'Już płonie' : 'Pudło');
+  const beam = ramBeam(r, x, y);
+  if (!fire || !beam) return noHarm(x, y, beam ? 'Taran jest za mocny · tylko ogień' : 'Osłonili się tarczami');
+  land(x, y, RAM_PTS);
+  popup.text = `Taran płonie! +${RAM_PTS}`;
+  arrow.inKal = true;
+  r.mode = 'burn';
+  r.t = 0;
+  r.status = 'dead';
+  return true;
+}
+
+function drawRam(r) {
+  const x = r.x, step = r.mode === 'move' && !calm ? Math.sin(r.t * 0.12) : 0;
+  ctx.save();
+  if (r.mode === 'hit' && r.t > 30) ctx.globalAlpha = Math.max(0, 1 - (r.t - 30) / 30);
+  if (r.mode === 'burn' && r.t > 70) ctx.globalAlpha = Math.max(0, 1 - (r.t - 70) / 40);
+  ctx.lineCap = 'round';
+  // Pchający: dwaj pochyleni wrogowie z okrągłymi tarczami na plecach.
+  for (const [dx, ph] of [[RAM_LEN + 10, 0], [RAM_LEN + 30, Math.PI]]) {
+    const bx = x + dx, s = Math.sin(r.t * 0.12 + ph) * (r.mode === 'move' && !calm ? 6 : 0);
+    ctx.strokeStyle = '#2b2a2e';
+    ctx.lineWidth = 5;
+    ctx.beginPath(); ctx.moveTo(bx + 4, GY - 26); ctx.lineTo(bx + 4 + s, GY - 1); ctx.moveTo(bx + 4, GY - 26); ctx.lineTo(bx + 4 - s, GY - 1); ctx.stroke();
+    ctx.fillStyle = '#4b3a2a';
+    ctx.beginPath(); ctx.ellipse(bx, GY - 36, 9, 14, -0.7, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#c08a5a';
+    ctx.beginPath(); ctx.arc(bx - 9, GY - 46, 5.5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#3d2814';
+    ctx.beginPath(); ctx.arc(bx + 6, GY - 42, 12, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#8a5a2a';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(bx + 6, GY - 42, 9, 0, Math.PI * 2); ctx.stroke();
+  }
+  // Rama na kołach i belka z okutym czołem.
+  ctx.strokeStyle = '#3a2618';
+  ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(x + 14, GY - 14); ctx.lineTo(x + RAM_LEN - 6, GY - 14); ctx.stroke();
+  for (const wx of [x + 24, x + RAM_LEN - 20]) {
+    ctx.fillStyle = '#2a1c12';
+    ctx.beginPath(); ctx.arc(wx, GY - 11, 11, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#6b4a2a';
+    ctx.lineWidth = 2;
+    const a = r.mode === 'move' ? -r.x / 11 : 0;
+    ctx.beginPath(); ctx.moveTo(wx + Math.cos(a) * 9, GY - 11 + Math.sin(a) * 9); ctx.lineTo(wx - Math.cos(a) * 9, GY - 11 - Math.sin(a) * 9); ctx.stroke();
+  }
+  ctx.fillStyle = r.mode === 'burn' ? '#2b1a10' : '#5a3b22';
+  ctx.fillRect(x + 6, GY - 42, RAM_LEN - 6, 18);
+  ctx.strokeStyle = 'rgba(0,0,0,.35)';
+  ctx.lineWidth = 1;
+  for (const dy of [-37, -31]) { ctx.beginPath(); ctx.moveTo(x + 18, GY + dy); ctx.lineTo(x + RAM_LEN - 6, GY + dy); ctx.stroke(); }
+  ctx.fillStyle = '#5c5f63';
+  ctx.beginPath(); ctx.moveTo(x + 14, GY - 45); ctx.lineTo(x, GY - 33); ctx.lineTo(x + 14, GY - 21); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = '#3a3a3a';
+  for (const bx of [x + 30, x + 70]) ctx.fillRect(bx, GY - 43, 4, 20);
+  ctx.restore();
+  if (r.mode === 'burn' && r.t < 100) {
+    for (let i = 0; i < 4; i++) {
+      const fx = x + 20 + i * 24, fl = calm ? 1 : 0.8 + 0.3 * Math.sin(r.t * 0.4 + i * 1.7);
+      ctx.save(); ctx.translate(fx, GY - 42); ctx.rotate(-Math.PI / 2); drawFlame(0, 0, 1.6 * fl); ctx.restore();
+    }
+  }
+}
+
+// Ostrokół zasłania łucznikowi nogi; brama po prawej pęka z każdym uderzeniem.
+function drawPalisade() {
+  const B = battle, top = GY - WALL_H;
+  const r = rng(29);
+  for (let x = PALISADE_L; x < GATE_L; x += 12) {
+    const h = 22 + r() * 8;
+    ctx.fillStyle = (x / 12) % 2 ? '#5a3b22' : '#4f3420';
+    ctx.beginPath();
+    ctx.moveTo(x, GY + 1); ctx.lineTo(x, top - h + 8); ctx.lineTo(x + 6, top - h); ctx.lineTo(x + 12, top - h + 8); ctx.lineTo(x + 12, GY + 1);
+    ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,.35)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x + 0.5, top - h + 8); ctx.lineTo(x + 0.5, GY); ctx.stroke();
+  }
+  ctx.fillStyle = '#3a2618';
+  ctx.fillRect(PALISADE_L - 2, top + 14, GATE_L - PALISADE_L + 2, 6);
+  ctx.fillRect(PALISADE_L - 2, GY - 34, GATE_L - PALISADE_L + 2, 6);
+  // Brama: dwa słupy i wrota z okuciami.
+  ctx.fillStyle = '#3a2618';
+  ctx.fillRect(GATE_L, top - 14, 7, WALL_H + 15);
+  ctx.fillRect(GATE_X - 7, top - 14, 7, WALL_H + 15);
+  ctx.save();
+  if (B.gate <= 0) { ctx.translate(GATE_X - 7, GY); ctx.rotate(0.5); ctx.translate(-(GATE_X - 7), -GY); }
+  ctx.fillStyle = B.gateFlash > 0 && Math.floor(B.gateFlash / 4) % 2 ? '#8a4a2a' : '#6b4a2a';
+  ctx.fillRect(GATE_L + 7, top - 4, GATE_X - GATE_L - 14, WALL_H + 5);
+  ctx.fillStyle = '#3a3a3a';
+  for (const y of [top + 8, GY - 22]) ctx.fillRect(GATE_L + 7, y, GATE_X - GATE_L - 14, 4);
+  // Pęknięcia: im mniej wytrzymałości, tym więcej.
+  ctx.strokeStyle = '#1a120a';
+  ctx.lineWidth = 1.5;
+  const cracks = [[[GATE_L + 10, top + 16], [GATE_L + 16, top + 28], [GATE_L + 12, top + 40]],
+    [[GATE_X - 10, top + 30], [GATE_X - 16, top + 44], [GATE_X - 11, GY - 6]]];
+  cracks.slice(0, GATE_HP - B.gate).forEach(c => { ctx.beginPath(); c.forEach(([px, py], i) => i ? ctx.lineTo(px, py) : ctx.moveTo(px, py)); ctx.stroke(); });
+  ctx.restore();
+  if (B.gateFlash > 0) B.gateFlash--;
+  // Wytrzymałość bramy nad wrotami.
+  label('BRAMA', (GATE_L + GATE_X) / 2, top - 34, 'center', DIM, 8, 600, '1px');
+  for (let i = 0; i < GATE_HP; i++) {
+    ctx.fillStyle = i < B.gate ? '#8db86a' : 'rgba(224,122,95,.6)';
+    ctx.fillRect((GATE_L + GATE_X) / 2 - 16 + i * 12, top - 28, 8, 8);
+  }
+}
+
+/* ── Plansza 12: Czarny Pan ─────────────────────── */
+
+// Pojedynek: Czarny Pan chowa się za głazami, wychodzi do walki i unosi miecz (cios) albo tarczę (wezwanie).
+// Zbroja odbija strzały; szczelina pod uniesionym ramieniem jest jedynym słabym miejscem.
+const LVL12_BEST_KEY = 'zwiadowcy-czarny-pan-rekord';
+const BOSS_ARROWS = 10, BOSS_HP = 3, BOSS_HIT_PTS = 30, BOSS_DMG = 10, BOSS_CROUCH = 42;
+const BOSS_MAX = BOSS_HP * BOSS_HIT_PTS + WARG_PTS + KILL_PTS + WARG_PTS;
+// Wartości dla faz 1, 2 i 3: z każdą fazą krótsze czekanie i szybszy ruch.
+const BOSS_HIDE = [120, 85, 60], BOSS_GUARD = [50, 35, 24], BOSS_RAISE = [80, 62, 46], BOSS_WALK = [1.4, 1.9, 2.5];
+const BOSS_HELPERS = ['wargal', 'rider', 'wargal'];
+const BOSS_ROCKS = [520, 700].map((x, n) => {
+  const r = rng(61 + n);
+  return { x, b: Array.from({ length: 13 }, () => r() * 0.07) };
+});
+const WARG_PATH12 = [W + 50, 700, 520, ARCHER_X + 40];
+// Hełm pęka po 3 trafieniach; saksa osłania przez SAXE_GUARD klatek, potem SAXE_CD klatek przerwy.
+const BOSS_HELM = 3, SAXE_GUARD = 36, SAXE_CD = 40;
+const SAXE_BTN = { x: W - 150, y: 398, w: 130, h: 28 };
+let boss = null, blades = [], saxe = { t: 0, cd: 0 }, best12 = loadBest(LVL12_BEST_KEY);
+
+function bossRank() {
+  const b = boss;
+  if (b.hp <= 0 && score >= BOSS_HP * BOSS_HIT_PTS) return ['Pogromca Czarnego Pana', 'Trzy celne strzały w szczelinę zbroi. Pieśni o tym będą śpiewać długo.', GOLD];
+  if (b.hp <= 0) return ['Zwycięzca', 'Czarny Pan padł, choć jego cienie zdążyły cię dosięgnąć.', '#d9dee3'];
+  if (b.hp < BOSS_HP) return ['Rana zadana', `Trafiłeś go ${BOSS_HP - b.hp} z ${BOSS_HP} razy, ale strzały się skończyły.`, '#e0a050'];
+  return ['Czarny Pan triumfuje', 'Strzały odbijały się od zbroi. Szukaj szczeliny, gdy unosi miecz albo tarczę.', MISS];
+}
+
+function startLevel12() {
+  level = 12;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  knife = null;
+  shield = null;
+  kal = null;
+  warg = null;
+  wargIndex = 0;
+  wargStatus = [];
+  riders = [];
+  enemyArrows = [];
+  blades = [];
+  hurt = 0;
+  score = 0;
+  shots = [];
+  popup = null;
+  newRecord = false;
+  windLevel = 0;
+  wind = 0;
+  boss = { x: BOSS_ROCKS[1].x + 16, rock: 1, mode: 'hide', t: 0, c: 1, r: 0, s: 0, k: 0, hp: BOSS_HP, phase: 0, summonDue: true, helped: false, fall: 0, helm: BOSS_HELM, helmFall: null };
+  saxe = { t: 0, cd: 0 };
+  phase = 'ready';
+}
+
+const bossHideX = i => BOSS_ROCKS[i].x + 16;
+const bossOutX = i => BOSS_ROCKS[i].x - 72;
+function bossOpen(b) { return (b.mode === 'raise' && b.r > 0.35) || (b.mode === 'summon' && b.s > 0.35); }
+
+// Punkty postaci Czarnego Pana (patrzy w lewo, na łucznika).
+function bossGeo(b) {
+  const x = b.x, y = GY + b.c * BOSS_CROUCH;
+  const lerpP = (p, q, u) => ({ x: p.x + (q.x - p.x) * u, y: p.y + (q.y - p.y) * u });
+  let hand = lerpP({ x: x + 22, y: y - 74 }, { x: x + 6, y: y - 156 }, b.r), ang = -1.75 + (0.4 + 1.75) * b.r;
+  if (b.mode === 'strike') { hand = lerpP({ x: x + 6, y: y - 156 }, { x: x - 34, y: y - 84 }, b.k); ang = 0.4 + (2.7 - 0.4) * b.k; }
+  const sh = lerpP({ x: x - 26, y: y - 92 }, { x: x - 18, y: y - 162 }, b.s);
+  return {
+    y, hip: { x, y: y - 62 }, torso: { x, y: y - 92, rx: 18, ry: 30 }, head: { x: x - 2, y: y - 132, r: 13 },
+    swordSh: { x: x + 10, y: y - 112 }, hand, ang, tip: { x: hand.x + Math.cos(ang) * 58, y: hand.y + Math.sin(ang) * 58 },
+    shieldSh: { x: x - 8, y: y - 112 }, shield: { x: sh.x, y: sh.y, w: 28, h: 54 },
+    weak: b.mode === 'summon' ? { x: x - 10, y: y - 104, r: 9 } : { x: x + 12, y: y - 102, r: 9 },
+  };
+}
+
+function bossZone(b, px, py) {
+  const g = bossGeo(b);
+  if (bossOpen(b) && Math.hypot(px - g.weak.x, py - g.weak.y) <= g.weak.r) return 'weak';
+  const s = g.shield;
+  if (Math.abs(px - s.x) <= s.w / 2 && Math.abs(py - s.y) <= s.h / 2) return 'shield';
+  if (Math.hypot(px - g.head.x, py - g.head.y) <= (b.helm > 0 ? g.head.r : 10)) return b.helm > 0 ? 'helmet' : 'head';
+  if (inEllipse(px, py, g.torso.x, g.torso.y, g.torso.rx, g.torso.ry)) return 'armor';
+  if (px > b.x - 13 && px < b.x + 13 && py > g.hip.y && py <= GY) return 'armor';
+  return null;
+}
+
+function bossArrowHit(a, px, py) {
+  const b = boss, n = Math.max(1, Math.ceil(Math.hypot(a.x - px, a.y - py) / 3));
+  const bossCheck = (x, y) => {
+    if (b.mode === 'dying') return false;
+    const z = bossZone(b, x, y);
+    if (!z) return false;
+    if (z === 'weak' || z === 'head') { hitBoss(x, y, z); return true; }
+    if (z === 'helmet') return hitHelmet(x, y);
+    return noHarm(x, y, z === 'shield' ? 'W tarczę' : 'Zbroja odbiła strzałę');
+  };
+  const out = b.mode !== 'hide';
+  for (let i = 1; i <= n; i++) {
+    const x = px + (a.x - px) * i / n, y = py + (a.y - py) * i / n;
+    if (y >= GY) return false;
+    // Wysunięty przed głaz Czarny Pan zasłania go; schowany jest za nim.
+    if (out && bossCheck(x, y)) return true;
+    for (const r of BOSS_ROCKS) if (inRock(r, x, y)) { land(x, y, 0); popup.text = 'W głaz'; return true; }
+    if (!out && bossCheck(x, y)) return true;
+    const w = warg, zone = w && (w.mode === 'move' || w.mode === 'crouch') ? wargZone(w, x, y) : null;
+    if (zone) { applyWargHit(w, zone, x, y, a); return true; }
+    for (const r of riders) {
+      if (r.dead) continue;
+      const what = classifyHit(r, x, y);
+      if (what) { applyRiderHit(r, what, x, y, a); return true; }
+    }
+  }
+  return false;
+}
+
+function hitBoss(x, y, z) {
+  const b = boss;
+  b.hp--;
+  land(x, y, BOSS_HIT_PTS);
+  arrow.inKal = true;
+  b.t = 0;
+  b.k = 0;
+  if (b.hp <= 0) {
+    b.mode = 'dying';
+    popup.text = `Czarny Pan pada! +${BOSS_HIT_PTS}`;
+    return;
+  }
+  b.mode = 'stagger';
+  b.phase++;
+  b.summonDue = true;
+  popup.text = `${z === 'head' ? 'W głowę!' : 'W szczelinę!'} +${BOSS_HIT_PTS} · faza ${b.phase + 1}`;
+}
+
+function hitHelmet(x, y) {
+  const b = boss;
+  b.helm--;
+  if (b.helm > 0) return noHarm(x, y, `W hełm ${BOSS_HELM - b.helm}/${BOSS_HELM}`);
+  const g = bossGeo(b);
+  b.helmFall = { x: g.head.x, y: g.head.y, vx: 2.2, vy: -4.5, rot: 0 };
+  return noHarm(x, y, 'Hełm spada! Głowa odsłonięta');
+}
+
+function summonHelper(b) {
+  const type = BOSS_HELPERS[b.phase];
+  if (type === 'wargal') { if (!warg) spawnWargal(); }
+  else if (!riders.some(r => !r.dead)) riders.push(makeRider(1, 0));
+  popup = { x: b.x - 20, y: GY - 190, pts: 0, t: 0, text: `Czarny Pan wzywa: ${type === 'wargal' ? 'wilczur' : 'jeździec'}!` };
+}
+
+function updateBoss() {
+  const b = boss, P = Math.min(b.phase, 2);
+  b.t++;
+  // Strącony hełm spada łukiem na ziemię i tam zostaje.
+  const hf = b.helmFall;
+  if (hf && hf.y < GY - 9) {
+    hf.vy += 0.3;
+    hf.x += hf.vx;
+    hf.y = Math.min(GY - 9, hf.y + hf.vy);
+    hf.rot += 0.22;
+  }
+  const walk = to => {
+    const d = to - b.x;
+    if (Math.abs(d) <= BOSS_WALK[P]) { b.x = to; return true; }
+    b.x += Math.sign(d) * BOSS_WALK[P];
+    return false;
+  };
+  if (b.mode === 'dying') { b.fall++; return; }
+  if (b.mode === 'hide') {
+    b.c = Math.min(1, b.c + 0.1);
+    if (b.t > BOSS_HIDE[P]) { b.mode = 'step'; b.t = 0; }
+  } else if (b.mode === 'step') {
+    b.c = Math.max(0, b.c - 0.08);
+    if (walk(bossOutX(b.rock)) && b.c <= 0) { b.mode = b.summonDue ? 'summon' : 'guard'; b.t = 0; b.helped = false; }
+  } else if (b.mode === 'guard') {
+    if (b.t > BOSS_GUARD[P]) { b.mode = 'raise'; b.t = 0; }
+  } else if (b.mode === 'raise') {
+    b.r = Math.min(1, b.r + 1 / BOSS_RAISE[P]);
+    if (b.r >= 1) { b.mode = 'strike'; b.t = 0; b.k = 0; }
+  } else if (b.mode === 'strike') {
+    b.k = Math.min(1, b.k + 0.1);
+    if (b.k >= 1) {
+      const g = bossGeo(b);
+      blades.push({ x: g.tip.x, x0: g.tip.x, y: g.tip.y, sy: g.tip.y, vx: -(6 + 1.5 * P), t: 0 });
+      b.mode = 'back'; b.t = 0; b.r = 0; b.k = 0;
+      b.rock = Math.random() < 0.5 ? 0 : 1;
+    }
+  } else if (b.mode === 'summon') {
+    if (!b.helped) {
+      b.s = Math.min(1, b.s + 1 / 50);
+      if (b.s >= 1) { b.helped = true; b.t = 0; summonHelper(b); }
+    } else if (b.t > 20) {
+      b.s = Math.max(0, b.s - 0.06);
+      if (b.s <= 0) { b.summonDue = false; b.mode = 'guard'; b.t = 0; }
+    }
+  } else if (b.mode === 'stagger') {
+    b.r = Math.max(0, b.r - 0.08);
+    b.s = Math.max(0, b.s - 0.08);
+    if (b.t > 45) { b.mode = 'back'; b.t = 0; b.rock = 1 - b.rock; }
+  } else if (b.mode === 'back') {
+    b.r = 0; b.s = 0;
+    if (walk(bossHideX(b.rock))) { b.mode = 'hide'; b.t = 0; }
+  }
+}
+
+function stepBlades() {
+  for (let i = blades.length - 1; i >= 0; i--) {
+    const s = blades[i];
+    s.t++;
+    s.x += s.vx;
+    // Ostrze leci łukiem w stronę łucznika.
+    const u = Math.min(1, (s.x0 - s.x) / (s.x0 - ARCHER_X));
+    s.y = s.sy + (GY - 62 - s.sy) * u;
+    if (s.x <= ARCHER_X + 14) {
+      blades.splice(i, 1);
+      if (phase === 'over') continue;
+      if (saxe.t > 0) {
+        popup = { x: ARCHER_X + 40, y: GY - 130, pts: 0, t: 0, text: 'Saksa odbiła ostrze!', color: GOLD };
+        pulse = { x: ARCHER_X + 30, y: s.y, t: 0 };
+        continue;
+      }
+      score -= BOSS_DMG;
+      hurt = 30;
+      popup = { x: ARCHER_X + 30, y: GY - 120, pts: -BOSS_DMG, t: 0, text: `Ostrze cienia! −${BOSS_DMG}` };
+    }
+  }
+}
+
+function finishBossShot() {
+  arrow = null;
+  if (boss.mode === 'dying') { phase = 'ready'; return; }
+  if (shots.length >= BOSS_ARROWS) { endLevel12(); return; }
+  phase = 'ready';
+}
+
+function endLevel12() {
+  drag = null;
+  newRecord = score > best12;
+  if (newRecord) { best12 = score; saveBest(LVL12_BEST_KEY, best12); }
+  unlocked = boss.hp <= 0;
+  finishBoard();
+}
+
+function updateLevel12() {
+  if (hurt > 0) hurt--;
+  if (saxe.t > 0) { if (--saxe.t <= 0) saxe.cd = SAXE_CD; } else if (saxe.cd > 0) saxe.cd--;
+  updateBoss();
+  if (warg) updateWargal();
+  riders.forEach(updateRider);
+  stepEnemyArrows();
+  stepBlades();
+  if (phase === 'over') return;
+  if (phase === 'flight') stepArrow();
+  else if (phase === 'landed' && --timer <= 0) finishShot();
+  else if ((phase === 'ready' || phase === 'aiming') && boss.mode === 'dying' && boss.fall > 110) endLevel12();
+}
+
+function drawBoss(b) {
+  const g = bossGeo(b), x = b.x, y = g.y;
+  ctx.save();
+  if (b.mode === 'dying') {
+    const u = Math.min(1, b.fall / 50);
+    if (b.fall > 70) ctx.globalAlpha = Math.max(0, 1 - (b.fall - 70) / 40);
+    ctx.translate(x + 20, GY); ctx.rotate(u * 1.4); ctx.translate(-(x + 20), -GY);
+  } else if (b.mode === 'stagger' && !calm) {
+    ctx.translate(Math.sin(b.t * 1.3) * 3, 0);
+  }
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  // Peleryna za plecami.
+  const fl = calm ? 0 : Math.sin(tick * 0.05) * 4;
+  ctx.fillStyle = '#3a0f12';
+  ctx.beginPath();
+  ctx.moveTo(x - 4, y - 120);
+  ctx.quadraticCurveTo(x + 34 + fl, y - 70, x + 42 + fl, y - 4);
+  ctx.lineTo(x + 6, y - 2);
+  ctx.closePath(); ctx.fill();
+  // Nogi w nagolennikach.
+  ctx.strokeStyle = '#1d1e22';
+  ctx.lineWidth = 9;
+  ctx.beginPath(); ctx.moveTo(x - 4, y - 62); ctx.lineTo(x - 10, y - 3); ctx.moveTo(x + 5, y - 62); ctx.lineTo(x + 10, y - 3); ctx.stroke();
+  ctx.fillStyle = '#111215';
+  ctx.fillRect(x - 18, y - 6, 14, 6); ctx.fillRect(x + 4, y - 6, 14, 6);
+  // Ramię z mieczem (z tyłu) i miecz.
+  ctx.strokeStyle = '#24262b';
+  ctx.lineWidth = 7;
+  ctx.beginPath(); ctx.moveTo(g.swordSh.x, g.swordSh.y); ctx.lineTo(g.hand.x, g.hand.y); ctx.stroke();
+  ctx.strokeStyle = '#c9ccd2';
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(g.hand.x, g.hand.y); ctx.lineTo(g.tip.x, g.tip.y); ctx.stroke();
+  ctx.strokeStyle = '#8a8f96';
+  ctx.lineWidth = 3;
+  const cg = g.ang + Math.PI / 2;
+  ctx.beginPath();
+  ctx.moveTo(g.hand.x + Math.cos(g.ang) * 6 + Math.cos(cg) * 8, g.hand.y + Math.sin(g.ang) * 6 + Math.sin(cg) * 8);
+  ctx.lineTo(g.hand.x + Math.cos(g.ang) * 6 - Math.cos(cg) * 8, g.hand.y + Math.sin(g.ang) * 6 - Math.sin(cg) * 8);
+  ctx.stroke();
+  // Tułów w płytowej zbroi z czerwonym pasem.
+  ctx.fillStyle = '#2b2d33';
+  ctx.beginPath(); ctx.ellipse(g.torso.x, g.torso.y, g.torso.rx, g.torso.ry, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = 'rgba(200,205,215,.18)';
+  ctx.lineWidth = 1;
+  for (let i = -2; i <= 2; i++) { ctx.beginPath(); ctx.moveTo(x - 13, y - 92 + i * 9); ctx.quadraticCurveTo(x, y - 88 + i * 9, x + 13, y - 92 + i * 9); ctx.stroke(); }
+  ctx.fillStyle = '#7a1c1c';
+  ctx.fillRect(x - 18, y - 68, 36, 4);
+  // Szczelina w zbroi świeci, gdy jest odsłonięta.
+  if (bossOpen(b)) {
+    const w = g.weak, pulse = calm ? 1 : 0.75 + 0.25 * Math.sin(tick * 0.3);
+    const gr = ctx.createRadialGradient(w.x, w.y, 1, w.x, w.y, w.r + 6);
+    gr.addColorStop(0, `rgba(255,200,120,${pulse})`);
+    gr.addColorStop(0.5, `rgba(230,70,40,${0.8 * pulse})`);
+    gr.addColorStop(1, 'rgba(230,70,40,0)');
+    ctx.fillStyle = gr;
+    ctx.beginPath(); ctx.arc(w.x, w.y, w.r + 6, 0, Math.PI * 2); ctx.fill();
+  }
+  // Hełm z rogami i czerwonym wizjerem, a po strąceniu blada głowa z płonącymi oczami.
+  const h = g.head;
+  if (b.helm > 0) drawBossHelmet(h.x, h.y, b.mode === 'dying');
+  else {
+    ctx.fillStyle = '#a99582';
+    ctx.beginPath(); ctx.arc(h.x, h.y + 1, 10, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#15161a';
+    ctx.beginPath(); ctx.arc(h.x + 1, h.y - 1, 10.5, Math.PI * 1.05, Math.PI * 1.95); ctx.fill();
+    ctx.fillRect(h.x + 4, h.y - 4, 7, 12);
+    ctx.fillStyle = b.mode === 'dying' ? '#3a1010' : '#ff6a3a';
+    ctx.fillRect(h.x - 9, h.y - 1, 3.5, 2.5);
+    ctx.fillRect(h.x - 3.5, h.y - 1, 3.5, 2.5);
+    ctx.strokeStyle = 'rgba(90,20,20,.8)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(h.x - 7, h.y + 3); ctx.lineTo(h.x - 2, h.y + 8); ctx.stroke();
+  }
+  // Ramię z tarczą (z przodu) i tarcza.
+  const s = g.shield;
+  ctx.strokeStyle = '#24262b';
+  ctx.lineWidth = 7;
+  ctx.beginPath(); ctx.moveTo(g.shieldSh.x, g.shieldSh.y); ctx.lineTo(s.x + 6, s.y); ctx.stroke();
+  ctx.fillStyle = '#3b1416';
+  ctx.beginPath();
+  ctx.moveTo(s.x - s.w / 2, s.y - s.h / 2); ctx.lineTo(s.x + s.w / 2, s.y - s.h / 2);
+  ctx.lineTo(s.x + s.w / 2, s.y + s.h / 6); ctx.lineTo(s.x, s.y + s.h / 2); ctx.lineTo(s.x - s.w / 2, s.y + s.h / 6);
+  ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = '#8a8f96';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.strokeStyle = '#c9a063';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(s.x, s.y - s.h / 2 + 8); ctx.lineTo(s.x, s.y + s.h / 2 - 10); ctx.moveTo(s.x - 8, s.y - 8); ctx.lineTo(s.x + 8, s.y - 8); ctx.stroke();
+  ctx.restore();
+}
+
+function drawBossHelmet(x, y, dark) {
+  ctx.fillStyle = '#1d1e22';
+  ctx.beginPath(); ctx.arc(x, y, 13, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#4a4c52';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(x - 6, y - 10); ctx.quadraticCurveTo(x - 14, y - 24, x - 6, y - 30);
+  ctx.moveTo(x + 6, y - 10); ctx.quadraticCurveTo(x + 14, y - 24, x + 8, y - 30);
+  ctx.stroke();
+  ctx.fillStyle = dark ? '#3a1010' : '#e0503a';
+  ctx.fillRect(x - 12, y - 2, 10, 2.5);
+}
+
+// Łucznik trzyma saksę przed sobą, ostrzem w stronę Czarnego Pana.
+function drawSaxeGuard() {
+  const hx = ARCHER_X + 20, hy = GY - 64, a = -1.15, len = 30;
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = SLEEVE;
+  ctx.lineWidth = 4.5;
+  ctx.beginPath(); ctx.moveTo(ARCHER_X + 2, GY - 66); ctx.lineTo(hx, hy); ctx.stroke();
+  const c = Math.cos(a), s = Math.sin(a), nx = -s, ny = c;
+  ctx.fillStyle = '#d5d8de';
+  ctx.beginPath();
+  ctx.moveTo(hx + c * 5 + nx * 3.5, hy + s * 5 + ny * 3.5);
+  ctx.lineTo(hx + c * len + nx * 1.5, hy + s * len + ny * 1.5);
+  ctx.lineTo(hx + c * (len + 6), hy + s * (len + 6));
+  ctx.lineTo(hx + c * len - nx * 2, hy + s * len - ny * 2);
+  ctx.lineTo(hx + c * 5 - nx * 2.5, hy + s * 5 - ny * 2.5);
+  ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = '#8a8f96';
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(hx + c * 5 + nx * 6, hy + s * 5 + ny * 6); ctx.lineTo(hx + c * 5 - nx * 6, hy + s * 5 - ny * 6); ctx.stroke();
+  ctx.fillStyle = SKIN;
+  ctx.beginPath(); ctx.arc(hx, hy, 2.8, 0, Math.PI * 2); ctx.fill();
+}
+
+function saxeDrawn() { return level === 12 && saxe.t > 0; }
+function inSaxeBtn(p) { return p.x >= SAXE_BTN.x && p.x <= SAXE_BTN.x + SAXE_BTN.w && p.y >= SAXE_BTN.y && p.y <= SAXE_BTN.y + SAXE_BTN.h; }
+
+// Saksa przez chwilę osłania łucznika przed ostrzem cienia; w tym czasie nie da się strzelać.
+function drawSaxeOut() {
+  if (level !== 12 || phase === 'over' || saxe.t > 0 || saxe.cd > 0) return;
+  if (phase === 'aiming') { drag = null; phase = 'ready'; }
+  saxe.t = SAXE_GUARD;
+}
+
+function drawBlades() {
+  for (const s of blades) {
+    ctx.save();
+    ctx.translate(s.x, s.y);
+    ctx.shadowColor = 'rgba(170,60,220,.8)';
+    ctx.shadowBlur = 12;
+    ctx.fillStyle = 'rgba(40,10,50,.92)';
+    ctx.beginPath();
+    ctx.arc(0, 0, 18, Math.PI * 0.55, Math.PI * 1.45);
+    ctx.arc(8, 0, 14, Math.PI * 1.35, Math.PI * 0.65, true);
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+}
+
+function drawHud12() {
+  const b = boss;
+  label('WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
+  label(String(score), 20, 60, 'left', score < 0 ? MISS : INK, 30, 800);
+  label('PLANSZA 12 · CZARNY PAN', 20, 106, 'left', DIM, 9, 600, '2px');
+  const cx = W / 2;
+  label('CZARNY PAN', cx, 28, 'center', '#e0503a', 10, 700, '3px');
+  for (let i = 0; i < BOSS_HP; i++) {
+    ctx.fillStyle = i < b.hp ? '#a3262a' : 'rgba(240,232,213,.12)';
+    ctx.fillRect(cx - 75 + i * 52, 38, 46, 8);
+  }
+  label(b.hp > 0 ? `FAZA ${Math.min(b.phase, 2) + 1} / ${BOSS_HP}` : 'POKONANY', cx, 64, 'center', INK, 11, 600, '2px');
+  label(progressLabel(), cx, 84, 'center', GOLD, 9, 600, '2px');
+  label('STRZAŁY', W - 20, 28, 'right', DIM, 10, 600, '2px');
+  const left = BOSS_ARROWS - shots.length - (phase === 'flight' ? 1 : 0);
+  for (let i = 0; i < BOSS_ARROWS; i++) {
+    const x = W - 24 - i * 13, on = i < left, off = 'rgba(240,232,213,.15)';
+    ctx.strokeStyle = on ? '#c9a063' : off;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(x, 40); ctx.lineTo(x, 64); ctx.stroke();
+    ctx.fillStyle = on ? '#8db86a' : off;
+    ctx.fillRect(x - 2, 58, 4, 7);
+    ctx.fillStyle = on ? '#d9dde0' : off;
+    ctx.beginPath(); ctx.moveTo(x, 36); ctx.lineTo(x - 3, 42); ctx.lineTo(x + 3, 42); ctx.closePath(); ctx.fill();
+  }
+  label(`REKORD ${best12}`, W - 20, 84, 'right', DIM, 10, 600, '2px');
+  label(b.helm > 0 ? `HEŁM ${b.helm}/${BOSS_HELM}` : 'BEZ HEŁMU', cx, 100, 'center', b.helm > 0 ? DIM : '#e0a050', 9, 600, '2px');
+  // Przycisk saksy (klawisz S): jaśniejszy, gdy można jej użyć.
+  const sb = SAXE_BTN, ok = saxe.t <= 0 && saxe.cd <= 0 && phase !== 'over';
+  ctx.fillStyle = saxe.t > 0 ? 'rgba(242,201,76,.25)' : ok ? 'rgba(10,8,4,.6)' : 'rgba(10,8,4,.35)';
+  ctx.fillRect(sb.x, sb.y, sb.w, sb.h);
+  ctx.strokeStyle = saxe.t > 0 ? GOLD : ok ? 'rgba(240,232,213,.35)' : 'rgba(240,232,213,.12)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(sb.x + 0.5, sb.y + 0.5, sb.w - 1, sb.h - 1);
+  label('S · SAKSA', sb.x + sb.w / 2, sb.y + 18, 'center', saxe.t > 0 ? GOLD : ok ? INK : DIM, 10, 700, '1px');
+}
+
+function drawLevel12() {
+  const b = boss;
+  ctx.drawImage(bg, 0, 0, W, H);
+  if (warg && warg.mode !== 'hidden') drawWargal(warg);
+  riders.filter(r => r.delay <= 0).forEach(drawRider);
+  // Schowany za głazem jest rysowany przed nim, wysunięty — na nim.
+  if (b.mode === 'hide') drawBoss(b);
+  for (const r of BOSS_ROCKS) drawRock(r);
+  if (b.mode !== 'hide') drawBoss(b);
+  if (arrow && arrow.stuck && !arrow.inKal) drawArrow(arrow);
+  const aim = phase === 'aiming' ? aimNow() : null;
+  if (b.helmFall) { ctx.save(); ctx.translate(b.helmFall.x, b.helmFall.y); ctx.rotate(b.helmFall.rot); drawBossHelmet(0, 0, true); ctx.restore(); }
+  drawArcher(aim ? aim.ang : lastAng, aim ? aim.pull : 0, saxe.t <= 0 && (phase === 'ready' || phase === 'aiming'));
+  if (saxe.t > 0) drawSaxeGuard();
+  if (aim && aim.pull > 0.02) { drawPreview(aim.ang, aim.pull); drawPower(aim.pull); }
+  if (arrow && !arrow.stuck) drawArrow(arrow);
+  drawEnemyArrows();
+  drawBlades();
+  drawFx();
+  drawHud12();
+  if (phase === 'ready') label('TRAF W ŚWIECĄCĄ SZCZELINĘ · S = SAKSA NA OSTRZE CIENIA', W / 2 - 60, H - 14, 'center', 'rgba(240,232,213,.45)', 10, 600, '2px');
+  if (phase === 'over') drawOver();
+}
+
 /* ── Gracz i tabela wyników ─────────────────────── */
 
 function loadResults() {
@@ -2951,7 +3887,7 @@ function startLevel4() {
 
 // Punkty trasy mroczniaka: na planszy 4 cztery skały, w bitwie prawy głaz, lewy głaz i ucieczka za łucznika.
 function kalPath() {
-  return level === 7 ? KAL_PATH7 : ROCKS.map(r => r.x);
+  return level === 7 ? KAL_PATH7 : level === 11 ? KAL_PATH11 : ROCKS.map(r => r.x);
 }
 
 function spawnKalkar() {
@@ -2976,12 +3912,13 @@ function updateKalkar() {
     if (--k.wait > 0) return;
     if (k.i >= last) {
       kalStatus[kalIndex] = 'escaped';
-      popup = { x: k.x, y: GY - ROCK_RY - 24, pts: 0, t: 0, text: 'Przedarł się' };
+      if (level === 11) hitGate(1, 'Mroczniak w bramie');
+      else popup = { x: k.x, y: GY - ROCK_RY - 24, pts: 0, t: 0, text: 'Przedarł się' };
       nextKalkar();
     } else {
       // Każdy skok jest inny: losowa szybkość i wysokość, a czasem mroczniak przeskakuje jeden głaz.
       // Dłuższy skok trwa dłużej i jest wyższy.
-      const skip = level !== 7 && k.i + 2 <= last && Math.random() < 0.3;
+      const skip = !isBattle() && k.i + 2 <= last && Math.random() < 0.3;
       k.to = k.i + (skip ? 2 : 1);
       const far = Math.abs(path[k.to] - path[k.i]) / 145;
       k.dur = Math.round(k.jf * (0.75 + Math.random() * 0.5) * far ** 0.6);
@@ -3175,8 +4112,8 @@ function release() {
   lastAng = a.ang;
   phase = 'flight';
   // Strzał łucznika, nawet chybiony, zmusza jeźdźca do odliczania od nowa.
-  if (level === 5 || level === 7 || level === 9) resetRiderTimers();
-  if (level === 7) { arrow.fire = battle.weapon === 'fire'; battle.ammo[battle.weapon]--; }
+  if (level === 5 || isBattle() || level === 9 || level === 12) resetRiderTimers();
+  if (isBattle()) { arrow.fire = battle.weapon === 'fire'; battle.ammo[battle.weapon]--; }
 }
 
 function land(x, y, pts) {
@@ -3206,8 +4143,10 @@ function stepArrow() {
   if (a.trail.length > 24) a.trail.splice(0, 2);
   if (level === 4 && fireArrowHit(a)) return;
   if ((level === 5 || level === 9) && riderArrowHit(a, px, py)) return;
+  if (level === 10 && gallopArrowHit(a, px, py)) return;
+  if (level === 12 && bossArrowHit(a, px, py)) return;
   if (level === 6 && wargArrowHit(a, px, py)) return;
-  if (level === 7 && battleArrowHit(a, px, py)) return;
+  if (isBattle() && battleArrowHit(a, px, py)) return;
   if (t && px < t.x && a.x >= t.x) {
     const yc = py + (t.x - px) / (a.x - px) * (a.y - py), d = Math.abs(yc - t.y);
     if (d <= t.r) { t.hit = true; return land(t.x, yc, ringPoints(d / t.r)); }
@@ -3217,12 +4156,14 @@ function stepArrow() {
 }
 
 function finishShot() {
+  if (level === 12) { finishBossShot(); return; }
+  if (level === 10) { arrow = null; phase = 'ready'; return; }
   if (level === 9) {
     if (riders.some(r => !r.dead) && shots.length < CHASE_ARROWS) { arrow = null; phase = 'ready'; return; }
     endLevel9();
     return;
   }
-  if (level === 7) {
+  if (isBattle()) {
     arrow = null;
     knife = null;
     phase = 'ready';
@@ -3272,9 +4213,11 @@ function update() {
   if (level === 4) { updateLevel4(); return; }
   if (level === 5) { updateLevel5(); return; }
   if (level === 6) { updateLevel6(); return; }
-  if (level === 7) { updateLevel7(); return; }
+  if (isBattle()) { updateLevel7(); return; }
   if (level === 8) { updateLevel8(); return; }
   if (level === 9) { updateLevel9(); return; }
+  if (level === 10) { updateLevel10(); return; }
+  if (level === 12) { updateLevel12(); return; }
   if (phase === 'flight') stepArrow();
   else if (phase === 'landed' && --timer <= 0) finishShot();
 }
@@ -3295,6 +4238,8 @@ function draw() {
   if (level === 2) { drawKnifeLevel(); return; }
   if (level === 8) { drawLevel8(); return; }
   if (level === 9) { drawLevel9(); return; }
+  if (level === 10) { drawLevel10(); return; }
+  if (level === 12) { drawLevel12(); return; }
   ctx.drawImage(bg, 0, 0, W, H);
   drawPennant();
   if (target) drawTarget(target);
@@ -3308,19 +4253,24 @@ function draw() {
     if (warg && warg.mode !== 'hidden') drawWargal(warg);
     for (const c of COVERS) drawCover(c);
   }
-  if (level === 7) drawBattleScene();
+  if (isBattle()) drawBattleScene();
   if (arrow && arrow.stuck && !arrow.inKal) drawArrow(arrow);
   const aim = phase === 'aiming' ? aimNow() : null;
-  const knifeOut = level === 7 && battle.weapon === 'knife';
+  const knifeOut = isBattle() && battle.weapon === 'knife';
+  // Na planszy 11 łucznik stoi na palisadzie, więc rysujemy go wyżej, a ostrokół zasłania mu nogi.
+  ctx.save();
+  ctx.translate(0, -archerLift());
   drawArcher(aim ? aim.ang : lastAng, aim ? aim.pull : 0, !knifeOut && (phase === 'ready' || phase === 'aiming' || phase === 'await'));
+  ctx.restore();
+  if (level === 11) drawPalisade();
   if (aim && aim.pull > 0.02) { drawPreview(aim.ang, aim.pull); drawPower(aim.pull); }
   if (arrow && !arrow.stuck) drawArrow(arrow);
-  if (level === 7 && knife) drawKnife(knife);
+  if (isBattle() && knife) drawKnife(knife);
   if (level >= 5) drawEnemyArrows();
   drawFx();
   drawHud();
-  if (level === 7) drawWeaponBar();
-  const hint = level === 7 ? ''
+  if (isBattle()) drawWeaponBar();
+  const hint = isBattle() ? ''
     : level === 6
     ? (phase === 'ready' ? 'GŁOWA ZABIJA OD RAZU · TUŁÓW 2 RAZY · RĘKA I NOGI NIC' : phase === 'noarrows' ? 'BRAK STRZAŁ · WILCZURY NADCHODZĄ' : '')
     : level === 5
@@ -3357,17 +4307,30 @@ canvas.addEventListener('pointerdown', e => {
     else if (level === 6 && unlocked) startLevel7();
     else if (level === 7 && unlocked) startLevel8();
     else if (level === 8 && unlocked) startLevel9();
-    else if (level === 9 && unlocked) { tier++; newGame(); }
+    else if (level === 9 && unlocked) startLevel10();
+    else if (level === 10 && unlocked) startLevel11();
+    else if (level === 11 && unlocked) startLevel12();
+    else if (level === 12 && unlocked) { tier++; newGame(); }
     else newGame();
     return;
   }
   // Na planszy 8 kliknięcie (albo dotknięcie na telefonie) też wybija konia do skoku.
   if (level === 8) { jumpHorse(); return; }
+  if (level === 12) {
+    // Przycisk saksy na dole sceny (dla telefonów); z saksą w dłoni nie da się strzelać.
+    if (inSaxeBtn(toScene(e))) { drawSaxeOut(); return; }
+    if (saxe.t > 0) return;
+  }
+  if (level === 10) {
+    // Przycisk SKOK na dole sceny (dla telefonów); w powietrzu nie da się celować.
+    if (inJumpBtn(toScene(e))) { jumpGallop(); return; }
+    if (ride.air) return;
+  }
   if (level === 2) {
     if (phase === 'kshow') throwKnife(toScene(e));
     return;
   }
-  if (level === 7) {
+  if (isBattle()) {
     const p = toScene(e), wi = weaponAt(p);
     if (wi >= 0) { selectWeapon(wi); return; }
     if (phase !== 'ready') return;
@@ -3401,8 +4364,10 @@ canvas.addEventListener('pointercancel', () => {
 });
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape' && phase === 'aiming') { drag = null; phase = 'ready'; }
-  if (level === 7 && ['1', '2', '3'].includes(e.key)) selectWeapon(Number(e.key) - 1);
+  if (isBattle() && ['1', '2', '3'].includes(e.key)) selectWeapon(Number(e.key) - 1);
   if (started && level === 8 && !e.repeat && (e.key === 'w' || e.key === 'W')) jumpHorse();
+  if (started && level === 10 && !e.repeat && (e.key === 'w' || e.key === 'W')) jumpGallop();
+  if (started && level === 12 && !e.repeat && (e.key === 's' || e.key === 'S')) drawSaxeOut();
 });
 
 /* ── Start ──────────────────────────────────────── */
