@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gra Zwiadowca</title>
-<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Redmont: strzelaj z łuku, rzucaj nożem, pal kalkary płonącymi strzałami, zmierz się z Temudżeinem i powstrzymaj wargale.">
+<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Redmont: strzelaj z łuku, rzucaj nożem, pal kalkary płonącymi strzałami, zmierz się z Temudżeinami, powstrzymaj wargale i wygraj bitwę.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -265,13 +265,14 @@ canvas {
     </div>
   </div>
   <div class="rules">
-    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 6 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
+    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 7 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
     <p><strong>Plansza 1: strzelnica.</strong> Przytrzymaj przycisk myszy w dowolnym miejscu sceny i odciągnij w lewo, jak cięciwę. Im dłuższy naciąg, tym mocniejszy strzał, a odciągnięcie w dół unosi łuk. Puść, aby strzelić. Esc anuluje naciąg. Wiatr znosi strzałę, a proporczyk na środku strzelnicy pokazuje jego kierunek. Do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 2: rzut nożem.</strong> Tarcza pojawia się w losowym miejscu: pierwsza zostaje na 3 sekundy, druga na 2 sekundy, a trzecia tylko na 1,5 sekundy. Kliknij w nią, zanim zniknie. Masz 3 noże, a do zaliczenia potrzeba co najmniej 24 na 30.</p>
     <p><strong>Plansza 3: znikające tarcze.</strong> Wracasz do łuku, ale tarcza pojawia się w losowym miejscu tylko na 3 sekundy i trzeba zdążyć napiąć łuk i strzelić. Masz 5 strzał, a do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 4: kalkary.</strong> Kalkar zbliża się z prawej strony, skacząc między skałami. Każdy skok jest inny: raz szybszy, raz wolniejszy, raz niższy, raz wyższy, a czasem kalkar przeskakuje od razu przez jedną skałę. Za skałą czeka losowo długo, więc trafić go można tylko w skoku. Zaraz po pierwszym kalkarze wychodzi drugi i porusza się szybciej. Masz 3 płonące strzały, a planszę zaliczasz, gdy spalisz oba kalkary. Każdy spalony kalkar to 10 punktów.</p>
     <p><strong>Plansza 5: Temudżeini.</strong> Z prawej strony nadjeżdża dwóch konnych Temudżeinów: czasem razem, czasem jeden po drugim. Jeżdżą losowo do przodu i do tyłu, raz wolno, raz szybko, czasem przystają. Obu zabija się tak samo: trafienie w głowę zabija od razu, a trafienie w łuk, rękę albo tułów trzeba powtórzyć 2 razy. Strzał w konia albo w tarczę pierwszego jeźdźca nic nie daje. Masz 5 strzał. Każdy Temudżein strzela do ciebie co 5 sekund, ale każdy twój strzał, nawet chybiony, zmusza ich do odliczania od nowa. Każde ich trafienie to −10 punktów, a każdy pokonany Temudżein daje 30 punktów. Planszę zaliczasz, gdy pokonasz obu.</p>
     <p><strong>Plansza 6: wargale.</strong> Trzy wargale nadbiegają z prawej strony jeden po drugim i chowają się kolejno za niskim drzewem, głazem i drugim niskim drzewem. Kryjówki są niskie, więc da się strzelać nad nimi, a wargal jest od nich odrobinę wyższy. Kiedy dobiegnie do kryjówki, chowa się za nią cały i wybiega w losowym momencie. Trafienie w głowę zabija wargala od razu, w tułów (od pasa do szyi) trzeba trafić 2 razy, a strzał poniżej pasa nic nie daje. W biegu wargal raz po raz zasłania głowę ręką, a strzał w rękę nic nie daje. Czasem w losowym momencie przystaje i kuca, chowając głowę – wtedy można go trafić tylko w tułów. Drugi wargal jest szybszy od pierwszego, a trzeci biegnie tak samo jak drugi. Masz 8 strzał, a planszę zaliczasz, gdy zabijesz wszystkie trzy wargale. Każdy zabity wargal to 10 punktów, a każdy, który dobiegnie do ciebie, to −50 punktów.</p>
+    <p><strong>Plansza 7: bitwa.</strong> Wrogowie atakują pojedynczo, w losowej kolejności: 2 kalkary, 2 wargale i 2 konnych Temudżeinów. Na polu stoją dwa głazy, a między nimi rośnie wysoka trawa. Wrogowie chowają się za głazami i w trawie. Głazy zatrzymują strzały i noże, a przez trawę można strzelać. Masz trzy bronie i przed strzałem musisz wybrać właściwą przyciskiem na dole sceny albo klawiszem 1, 2 lub 3: ostra strzała (8 sztuk), płonąca strzała (6 sztuk) i nóż do rzucania (3 sztuki). Płonąca strzała zabija tylko kalkara. Ostra strzała zabija wargala i jeźdźca na tych samych zasadach co na planszach 5 i 6. Nóż rzucasz, klikając w miejsce, do którego ma polecieć, i zabija tylko trafieniem w głowę wargala albo jeźdźca. Kalkar i wargal dają po 10 punktów, a jeździec 30. Wargal, który do ciebie dobiegnie, to −50 punktów, a każde trafienie od jeźdźca −10. Jeździec po trzech strzałach odjeżdża. Planszę zaliczasz, gdy pokonasz wszystkich sześciu wrogów.</p>
     <ul class="rings" aria-label="Punktacja tarczy">
       <li style="--c: var(--ring-gold)">Złoto 10</li>
       <li style="--c: var(--ring-red)">Czerwień 8</li>
@@ -304,7 +305,7 @@ const LVL3_BEST_KEY = 'zwiadowcy-znikajace-rekord';
 const LVL3_SHOW = 180, LVL2_TO_3 = 24;
 const LVL4_BEST_KEY = 'zwiadowcy-kalkary-rekord';
 const LVL3_TO_4 = 40, KALKARS = 2, FIRE_ARROWS = 3, JUMP_FRAMES = [120, 80], JUMP_H = 55;
-const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 6;
+const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 7;
 const LVL5_BEST_KEY = 'zwiadowcy-temudzein-rekord';
 const RIDER_ARROWS = 5, RIDERS = 2, ENEMY_EVERY = 300, ENEMY_HIT = 0.7, ENEMY_DMG = 10, KILL_PTS = 30;
 const LVL6_BEST_KEY = 'zwiadowcy-wargale-rekord';
@@ -371,7 +372,7 @@ function startBoard(n) {
   tier = 1;
   total = 0;
   gameOver = false;
-  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6][n - 1]();
+  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6, startLevel7][n - 1]();
 }
 
 /* ── Tło (rysowane raz) ─────────────────────────── */
@@ -540,7 +541,7 @@ function drawTargetBody(t) {
   label(`${Math.round((t.x - SHOULDER.x) / PX_PER_M)} m`, t.x + 4, t.y - t.r - 12, 'center', 'rgba(240,232,213,.6)', 10, 600, '1px');
 }
 
-function drawArrowShape(buried) {
+function drawArrowShape(buried, fire = level === 4) {
   const L = ARROW_LEN;
   ctx.lineCap = 'butt';
   ctx.strokeStyle = '#c9a063';
@@ -556,7 +557,7 @@ function drawArrowShape(buried) {
     ctx.moveTo(-L + 13, 0); ctx.lineTo(-L + 2, 4.5 * s); ctx.lineTo(-L - 1, 4.5 * s); ctx.lineTo(-L + 1, 0);
     ctx.closePath(); ctx.fill();
   }
-  if (level === 4) drawFlame(buried ? -3 : -1, 0, buried ? 0.7 : 1);
+  if (fire) drawFlame(buried ? -3 : -1, 0, buried ? 0.7 : 1);
 }
 
 function drawFlame(x, y, s) {
@@ -634,7 +635,7 @@ function drawArcher(ang, pull, nocked) {
   if (nocked) {
     ctx.save();
     ctx.translate(g.nockX + ARROW_LEN, 0);
-    drawArrowShape(false);
+    drawArrowShape(false, level === 4 || (level === 7 && battle.weapon === 'fire'));
     ctx.restore();
   }
   ctx.fillStyle = SKIN;
@@ -650,7 +651,7 @@ function drawArcher(ang, pull, nocked) {
 function drawArrow(a) {
   const tr = a.trail;
   if (tr.length > 2) {
-    ctx.strokeStyle = level === 4 ? 'rgba(255,150,60,.3)' : 'rgba(240,232,213,.16)';
+    ctx.strokeStyle = level === 4 || a.fire ? 'rgba(255,150,60,.3)' : 'rgba(240,232,213,.16)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(tr[0], tr[1]);
@@ -661,7 +662,7 @@ function drawArrow(a) {
   ctx.save();
   ctx.translate(a.x, a.y);
   ctx.rotate(Math.atan2(a.vy, a.vx));
-  drawArrowShape(a.stuck);
+  drawArrowShape(a.stuck, level === 4 || !!a.fire);
   ctx.restore();
 }
 
@@ -717,12 +718,21 @@ function drawFx() {
 }
 
 function drawHud() {
-  const k4 = level === 4, k5 = level === 5, k6 = level === 6;
-  const n = k4 ? FIRE_ARROWS : k5 ? RIDER_ARROWS : k6 ? WARG_ARROWS : SHOTS;
+  const k4 = level === 4, k5 = level === 5, k6 = level === 6, k7 = level === 7;
+  // W bitwie zapas broni pokazują przyciski na dole sceny, więc tu nie rysujemy strzał.
+  const n = k4 ? FIRE_ARROWS : k5 ? RIDER_ARROWS : k6 ? WARG_ARROWS : k7 ? 0 : SHOTS;
   label(k4 ? 'KALKARY' : 'WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
   label(String(score), 20, 60, 'left', score < 0 ? MISS : INK, 30, 800);
-  for (let i = 0; i < (k4 ? KALKARS : k6 ? WARGALS : n); i++) {
+  for (let i = 0; i < (k4 ? KALKARS : k6 ? WARGALS : k7 ? BATTLE_FOES.length : n); i++) {
     const x = 20 + i * 24;
+    if (k7) {
+      // Pokonani wrogowie na złoto, ci, którzy się przedarli, na czerwono.
+      const e = battle.log[i];
+      ctx.fillStyle = 'rgba(240,232,213,.08)';
+      ctx.fillRect(x, 70, 20, 16);
+      if (e) label(FOE_LETTER[e.type], x + 10, 82, 'center', e.status === 'dead' ? GOLD : MISS, 10, 700);
+      continue;
+    }
     const v = k4 ? (kalStatus[i] ? (kalStatus[i] === 'dead' ? 1 : 0) : undefined)
       : k6 ? (wargStatus[i] ? (wargStatus[i] === 'dead' ? WARG_PTS : -WARG_DMG) : undefined)
       : shots[i];
@@ -745,7 +755,7 @@ function drawHud() {
   label(lvl ? `${lvl} / 10` : 'cisza', cx, 70, 'center', INK, 12, 600);
   label(progressLabel(), cx, 90, 'center', GOLD, 9, 600, '2px');
 
-  label(k4 ? 'PŁONĄCE STRZAŁY' : 'STRZAŁY', W - 20, 28, 'right', DIM, 10, 600, '2px');
+  if (!k7) label(k4 ? 'PŁONĄCE STRZAŁY' : 'STRZAŁY', W - 20, 28, 'right', DIM, 10, 600, '2px');
   const left = n - shots.length - (phase === 'flight' ? 1 : 0);
   for (let i = 0; i < n; i++) {
     const x = W - 24 - i * 13, on = i < left, off = 'rgba(240,232,213,.15)';
@@ -758,8 +768,8 @@ function drawHud() {
     ctx.beginPath(); ctx.moveTo(x, 36); ctx.lineTo(x - 3, 42); ctx.lineTo(x + 3, 42); ctx.closePath(); ctx.fill();
     if (k4 && on) { ctx.save(); ctx.translate(x, 37); ctx.rotate(Math.PI / 2); drawFlame(0, 0, 0.7); ctx.restore(); }
   }
-  label(`REKORD ${k4 ? best4 : k5 ? best5 : k6 ? best6 : level === 3 ? best3 : best}`, W - 20, 84, 'right', DIM, 10, 600, '2px');
-  if (level >= 3) label(['PLANSZA 3 · ZNIKAJĄCE TARCZE', 'PLANSZA 4 · KALKARY', 'PLANSZA 5 · TEMUDŻEINI', 'PLANSZA 6 · WARGALE'][level - 3], 20, 106, 'left', DIM, 9, 600, '2px');
+  label(`REKORD ${k4 ? best4 : k5 ? best5 : k6 ? best6 : k7 ? best7 : level === 3 ? best3 : best}`, W - 20, k7 ? 28 : 84, 'right', DIM, 10, 600, '2px');
+  if (level >= 3) label(['PLANSZA 3 · ZNIKAJĄCE TARCZE', 'PLANSZA 4 · KALKARY', 'PLANSZA 5 · TEMUDŻEINI', 'PLANSZA 6 · WARGALE', 'PLANSZA 7 · BITWA'][level - 3], 20, 106, 'left', DIM, 9, 600, '2px');
 }
 
 function progressLabel() {
@@ -1032,13 +1042,19 @@ function inEllipse(px, py, cx, cy, rx, ry) {
 
 // Co trafiła strzała w punkcie (px, py). Obaj jeźdźcy mają te same zasady:
 // głowa zabija od razu, łuk, ręka i tułów zabijają po 2 trafieniach, koń i tarcza nic nie dają.
-function classifyHit(r, px, py) {
+// passBow: nóż przelatuje obok cienkiego łuku (jeździec trzyma go tuż przed twarzą).
+function classifyHit(r, px, py, passBow = false) {
   const g = riderGeo(r), x = r.x, y = GY + r.bob, b = g.bowHand;
   if (Math.hypot(px - g.head.x, py - g.head.y) <= g.head.r) return 'head';
   if (r.kind === 1 && Math.hypot(px - g.shield.x, py - g.shield.y) <= g.shield.r + 1) return 'shield';
   if (segDist(px, py, g.shoulder, b) <= 4.5 || segDist(px, py, g.shoulder, g.elbow) <= 4.5 ||
       segDist(px, py, g.elbow, g.drawHand) <= 4.5) return 'arm';
-  if (px >= b.x - 12 && px <= b.x + 6 && py >= b.y - 20 && py <= b.y + 20) return 'bow';
+  // Łuk to cienka krzywa (jak na rysunku), żeby nie zasłaniał głowy przed nożem i strzałą.
+  const bend = 7 + 4 * r.pull, bow = [
+    { x: b.x + 5, y: b.y - 19 }, { x: b.x - bend + 4, y: b.y - 8 }, { x: b.x - bend, y: b.y },
+    { x: b.x - bend + 4, y: b.y + 8 }, { x: b.x + 5, y: b.y + 19 },
+  ];
+  if (!passBow) for (let i = 1; i < bow.length; i++) if (segDist(px, py, bow[i - 1], bow[i]) <= 3) return 'bow';
   if (inEllipse(px, py, g.torso.x, g.torso.y, g.torso.rx, g.torso.ry)) return 'body';
   if (inEllipse(px, py, x, y - 52, 42, 19) || segDist(px, py, { x: x - 26, y: y - 60 }, { x: x - 47, y: y - 84 }) <= 9 ||
       Math.hypot(px - (x - 56), py - (y - 80)) <= 10 || (px > x - 36 && px < x + 36 && py > y - 42 && py <= GY)) return 'horse';
@@ -1065,16 +1081,21 @@ function riderArrowHit(a, px, py) {
     for (const r of alive) {
       const what = classifyHit(r, x, y);
       if (!what) continue;
-      const kill = what === 'head' || (what in WOUND_TEXT && ++r.hits >= 2);
-      land(x, y, kill ? KILL_PTS : 0);
-      popup.text = riderHitText(r, what, kill);
-      arrow.inKal = true;
-      if (kill) { r.dead = true; r.fall = 0; r.pull = 0; }
-      r.stuck.push({ dx: x - r.x, dy: y - r.bob, ang: Math.atan2(a.vy, a.vx), horse: what === 'horse' });
+      applyRiderHit(r, what, x, y, a);
       return true;
     }
   }
   return false;
+}
+
+// Skutek trafienia jeźdźca ostrą strzałą (wspólne dla planszy 5 i bitwy).
+function applyRiderHit(r, what, x, y, a) {
+  const kill = what === 'head' || (what in WOUND_TEXT && ++r.hits >= 2);
+  land(x, y, kill ? KILL_PTS : 0);
+  popup.text = riderHitText(r, what, kill);
+  arrow.inKal = true;
+  if (kill) { r.dead = true; r.fall = 0; r.pull = 0; }
+  r.stuck.push({ dx: x - r.x, dy: y - r.bob, ang: Math.atan2(a.vy, a.vx), horse: what === 'horse' });
 }
 
 // Nowy cel jazdy: losowo do przodu albo do tyłu, z losową prędkością, czasem z postojem.
@@ -1161,7 +1182,7 @@ function updateRider(r) {
   }
   r.bob = calm ? 0 : -Math.abs(Math.sin(r.t * 0.09)) * 2.5;
   if (phase === 'over') { r.pull = 0; return; }
-  if (--r.timer <= 0) { enemyShoot(r); r.timer = ENEMY_EVERY; }
+  if (--r.timer <= 0) { enemyShoot(r); r.fired = (r.fired || 0) + 1; r.timer = ENEMY_EVERY; }
   r.pull = Math.max(0, Math.min(1, (45 - r.timer) / 45));
 }
 
@@ -1362,7 +1383,7 @@ function drawRider(r) {
   }
   if (!r.dead || r.fall < 130) { drawRiderBody(r); drawStuckArrows(r, false); }
   ctx.restore();
-  if (!r.dead && phase !== 'over') {
+  if (!r.dead && !r.leaving && phase !== 'over') {
     const g = riderGeo(r), frac = r.timer / ENEMY_EVERY, urgent = r.timer < 90, w = 56, y = g.head.y - 30 - (r.kind - 1) * 18;
     ctx.fillStyle = 'rgba(240,232,213,.15)';
     ctx.fillRect(g.head.x - w / 2, y, w, 4);
@@ -1555,9 +1576,18 @@ function startLevel6() {
   phase = 'ready';
 }
 
+// W bitwie wargal chowa się za prawym głazem, w wysokiej trawie i za lewym głazem.
+function wargPath() {
+  return level === 7 ? WARG_PATH7 : WARG_PATH;
+}
+
+function wargHideXs() {
+  return level === 7 ? WARG_PATH7.slice(1, -1) : COVERS.map(c => c.x);
+}
+
 function spawnWargal() {
   // Drugi wargal biegnie szybciej od pierwszego, trzeci tak samo jak drugi.
-  warg = { i: 0, x: WARG_PATH[0], mode: 'move', t: 0, wait: 0, dist: 0, hits: 0, stuck: [],
+  warg = { i: 0, x: wargPath()[0], mode: 'move', t: 0, wait: 0, dist: 0, hits: 0, stuck: [],
     g: 0, gWait: Math.random() * 150, gHold: 15 + Math.random() * 60, gSpd: 0.08 + Math.random() * 0.17, c: 0, hold: 0, stopIn: 60 + Math.random() * 120, sp: WARG_SPEEDS[Math.min(wargIndex, WARG_SPEEDS.length - 1)] };
 }
 
@@ -1596,11 +1626,11 @@ function updateWargal() {
     else if (w.t <= 20 + w.hold) w.c = 1 - (w.t - 10 - w.hold) / 10;
     else { w.c = 0; w.mode = 'move'; }
   } else if (w.mode === 'move') {
-    const goal = WARG_PATH[w.i + 1];
+    const goal = wargPath()[w.i + 1];
     // W losowym momencie przystaje i kuca na otwartym polu, chowając głowę.
     // Jeśli wylosowana chwila wypadnie przy kryjówce, kuca przy pierwszej okazji dalej.
     if (--w.stopIn <= 0 && phase !== 'noarrows') {
-      if (w.x < W - 40 && w.x - goal > 40 && COVERS.every(c => Math.abs(w.x - c.x) > 65)) {
+      if (w.x < W - 40 && w.x - goal > 40 && wargHideXs().every(cx => Math.abs(w.x - cx) > 65)) {
         w.stopIn = 40 + Math.random() * 160;
         w.mode = 'crouch';
         w.t = 0;
@@ -1612,7 +1642,7 @@ function updateWargal() {
     w.dist += w.sp;
     if (w.x > goal) return;
     w.i++;
-    if (w.i < WARG_PATH.length - 1) {
+    if (w.i < wargPath().length - 1) {
       w.mode = 'hidden';
       w.wait = 30 + Math.floor(Math.random() * 180); // wybiega w losowym momencie: 0,5–3,5 s
       return;
@@ -1644,22 +1674,27 @@ function wargArrowHit(a, px, py) {
     const w = warg;
     const zone = w && (w.mode === 'move' || w.mode === 'crouch') ? wargZone(w, x, y) : null;
     if (zone) {
-      // Strzała w ręce spada; w tułowiu i nogach zostaje wbita i porusza się z wargalem.
-      if (zone !== 'arm') w.stuck.push({ dx: x - w.x, dy: y - GY - w.c * WARG_CROUCH, ang: Math.atan2(a.vy, a.vx) });
-      arrow.inKal = true;
-      const kill = zone === 'head' || (zone === 'body' && ++w.hits >= 2);
-      land(x, y, kill ? WARG_PTS : 0);
-      popup.text = kill ? (zone === 'head' ? `Strzał w głowę! +${WARG_PTS}` : `Wargal powalony! +${WARG_PTS}`)
-        : zone === 'body' ? 'Ranny! Jeszcze raz w tułów' : zone === 'arm' ? 'W rękę · zasłonił głowę' : 'W nogi · bez skutku';
-      if (kill) {
-        w.mode = 'dead';
-        w.t = 0;
-        wargStatus[wargIndex] = 'dead';
-      }
+      applyWargHit(w, zone, x, y, a);
       return true;
     }
   }
   return false;
+}
+
+// Skutek trafienia wargala ostrą strzałą (wspólne dla planszy 6 i bitwy).
+function applyWargHit(w, zone, x, y, a) {
+  // Strzała w ręce spada; w tułowiu i nogach zostaje wbita i porusza się z wargalem.
+  if (zone !== 'arm') w.stuck.push({ dx: x - w.x, dy: y - GY - w.c * WARG_CROUCH, ang: Math.atan2(a.vy, a.vx) });
+  arrow.inKal = true;
+  const kill = zone === 'head' || (zone === 'body' && ++w.hits >= 2);
+  land(x, y, kill ? WARG_PTS : 0);
+  popup.text = kill ? (zone === 'head' ? `Strzał w głowę! +${WARG_PTS}` : `Wargal powalony! +${WARG_PTS}`)
+    : zone === 'body' ? 'Ranny! Jeszcze raz w tułów' : zone === 'arm' ? 'W rękę · zasłonił głowę' : 'W nogi · bez skutku';
+  if (kill) {
+    w.mode = 'dead';
+    w.t = 0;
+    wargStatus[wargIndex] = 'dead';
+  }
 }
 
 function endLevel6() {
@@ -1679,14 +1714,353 @@ function updateLevel6() {
   else if ((phase === 'ready' || phase === 'aiming' || phase === 'noarrows') && !warg && wargIndex >= WARGALS) endLevel6();
 }
 
+/* ── Plansza 7: bitwa ───────────────────────────── */
+
+// Łucznik ma trzy bronie i przed strzałem musi wybrać właściwą (przyciski na dole albo klawisze 1–3).
+// Płonąca strzała zabija tylko kalkara, ostra wargala i jeźdźca (zasady z plansz 5 i 6),
+// a nóż tylko trafieniem w głowę wargala albo jeźdźca.
+const LVL7_BEST_KEY = 'zwiadowcy-bitwa-rekord';
+const WEAPONS = [
+  { id: 'sharp', name: 'OSTRA', ammo: 8 },
+  { id: 'fire', name: 'PŁONĄCA', ammo: 6 },
+  { id: 'knife', name: 'NÓŻ', ammo: 3 },
+];
+const BATTLE_FOES = ['kalkar', 'kalkar', 'wargal', 'wargal', 'rider', 'rider'];
+const FOE_NAME = { kalkar: 'KALKAR', wargal: 'WARGAL', rider: 'TEMUDŻEIN' };
+const FOE_LETTER = { kalkar: 'K', wargal: 'W', rider: 'J' };
+const KALKAR_PTS = 10, RIDER_LEAVE_AFTER = 3, BATTLE_MAX = 2 * KALKAR_PTS + 2 * WARG_PTS + 2 * KILL_PTS;
+const BTN = { x: 175, y: 398, w: 150, h: 28, gap: 10 };
+// Stała sceneria bitwy: dwa głazy, a pomiędzy nimi wysoka trawa (strzały przez nią przelatują).
+const BATTLE_ROCKS = [430, 720].map((x, n) => {
+  const r = rng(71 + n);
+  return { x, b: Array.from({ length: 13 }, () => r() * 0.07) };
+});
+const GRASS = (() => {
+  const r = rng(97), blades = [];
+  for (let x = 478; x <= 672; x += 2.2 + r() * 1.6) {
+    blades.push({ x, h: 40 + r() * 24, lean: (r() - 0.5) * 10, w: 1.4 + r() * 1.4, c: ['#4d5e2a', '#5f6f30', '#6f7a38', '#3f4f24'][Math.floor(r() * 4)], ph: r() * 6 });
+  }
+  return blades;
+})();
+const KAL_PATH7 = [W + 40, 720, 430, -60];
+const WARG_PATH7 = [W + 50, 720, 575, 430, ARCHER_X + 40];
+let battle = null, best7 = loadBest(LVL7_BEST_KEY);
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function battleRank() {
+  const dead = battle.results.filter(s => s === 'dead').length;
+  if (dead === BATTLE_FOES.length) return ['Bohater bitwy', 'Żaden wróg nie przedarł się przez twoje strzały.', GOLD];
+  if (dead >= 4) return ['Weteran', 'Większość wrogów padła, ale nie wszyscy.', '#e0a050'];
+  return ['Rozbity', 'Wrogowie przełamali twoją linię.', MISS];
+}
+
+function startLevel7() {
+  level = 7;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  knife = null;
+  shield = null;
+  kal = null;
+  warg = null;
+  riders = [];
+  enemyArrows = [];
+  hurt = 0;
+  score = 0;
+  shots = [];
+  newRecord = false;
+  windLevel = Math.floor(Math.random() * 4) * (Math.random() < 0.5 ? -1 : 1);
+  wind = windLevel / 10 * WIND_MAX;
+  battle = {
+    queue: shuffle(BATTLE_FOES.slice()), cur: null, idx: 0, wait: 70,
+    n: { kalkar: 0, wargal: 0, rider: 0 }, log: [], results: [], announce: null,
+    weapon: 'sharp', ammo: Object.fromEntries(WEAPONS.map(w => [w.id, w.ammo])),
+  };
+  phase = 'ready';
+}
+
+// Wypuszcza kolejnego wroga z losowej kolejki; drugi osobnik danego rodzaju jest trudniejszy.
+function spawnFoe() {
+  const B = battle, type = B.queue.shift(), n = B.n[type]++;
+  B.cur = type;
+  B.idx = n;
+  if (type === 'kalkar') { kalIndex = n; kalStatus = []; spawnKalkar(); }
+  else if (type === 'wargal') { wargIndex = n; wargStatus = []; spawnWargal(); }
+  else { riders = [makeRider(n + 1, 0)]; riders[0].fired = 0; }
+  B.announce = { text: `NADCHODZI ${FOE_NAME[type]}`, t: 0 };
+}
+
+function curFoeStatus() {
+  const B = battle;
+  if (B.cur === 'kalkar') return kalStatus[B.idx];
+  if (B.cur === 'wargal') return wargStatus[B.idx];
+  return riders[0] && riders[0].dead ? 'dead' : undefined;
+}
+
+function foeDone(status) {
+  battle.log.push({ type: battle.cur, status });
+  battle.cur = null;
+  battle.wait = 60;
+}
+
+function updateBattle() {
+  const B = battle;
+  if (B.announce && ++B.announce.t > 100) B.announce = null;
+  if (phase === 'over') {
+    // Po końcu bitwy tylko dokańczamy animację bieżącego wroga.
+    if (kal) updateKalkar();
+    if (warg) updateWargal();
+    if (riders[0] && !riders[0].leaving) updateRider(riders[0]);
+    return;
+  }
+  if (!B.cur) {
+    if (B.queue.length && --B.wait <= 0) spawnFoe();
+    return;
+  }
+  if (B.cur === 'kalkar') {
+    if (kal) updateKalkar();
+    if (!kal) foeDone(kalStatus[B.idx] || 'escaped');
+  } else if (B.cur === 'wargal') {
+    if (warg) updateWargal();
+    if (!warg) foeDone(wargStatus[B.idx] || 'reached');
+  } else {
+    const r = riders[0];
+    if (r.leaving) {
+      r.x += 2.6;
+      r.t += 2.6;
+      r.pull = 0;
+      r.bob = calm ? 0 : -Math.abs(Math.sin(r.t * 0.09)) * 2.5;
+      if (r.x > W + 100) { riders = []; foeDone('escaped'); }
+      return;
+    }
+    updateRider(r);
+    if (r.dead) {
+      if (r.fall > 130) { riders = []; foeDone('dead'); }
+    } else if (r.fired >= RIDER_LEAVE_AFTER && r.timer < ENEMY_EVERY - 50) {
+      // Po trzech strzałach jeździec zawraca i odjeżdża.
+      r.leaving = true;
+      popup = { x: r.x, y: GY - 140, pts: 0, t: 0, text: 'Temudżein odjeżdża' };
+    }
+  }
+}
+
+function battleAmmoLeft() {
+  return WEAPONS.reduce((s, w) => s + battle.ammo[w.id], 0);
+}
+
+function endLevel7() {
+  drag = null;
+  const B = battle;
+  B.results = B.log.map(e => e.status);
+  if (B.cur) B.results.push(curFoeStatus() || 'alive');
+  newRecord = score > best7;
+  if (newRecord) { best7 = score; saveBest(LVL7_BEST_KEY, best7); }
+  unlocked = B.results.length === BATTLE_FOES.length && B.results.every(s => s === 'dead');
+  finishBoard();
+}
+
+function updateLevel7() {
+  if (hurt > 0) hurt--;
+  updateBattle();
+  stepEnemyArrows();
+  if (phase === 'over') return;
+  if (phase === 'flight') stepArrow();
+  else if (phase === 'kflight') stepBattleKnife();
+  else if (phase === 'landed' && --timer <= 0) finishShot();
+  else if (phase === 'ready' || phase === 'aiming') {
+    // Koniec bitwy: wszyscy wrogowie za nami albo nie została żadna broń.
+    if ((!battle.cur && !battle.queue.length) || battleAmmoLeft() === 0) endLevel7();
+  }
+}
+
+function selectWeapon(i) {
+  if (level !== 7 || phase === 'aiming' || !WEAPONS[i]) return;
+  battle.weapon = WEAPONS[i].id;
+}
+
+function weaponAt(p) {
+  for (let i = 0; i < WEAPONS.length; i++) {
+    const x = BTN.x + i * (BTN.w + BTN.gap);
+    if (p.x >= x && p.x <= x + BTN.w && p.y >= BTN.y && p.y <= BTN.y + BTN.h) return i;
+  }
+  return -1;
+}
+
+function resetRiderTimers() {
+  for (const r of riders) if (!r.dead && !r.leaving) { r.timer = ENEMY_EVERY + (r.kind - 1) * 70; r.pull = 0; }
+}
+
+function noHarm(x, y, text) {
+  land(x, y, 0);
+  popup.text = text;
+  arrow.inKal = true;
+  return true;
+}
+
+// Trafienie strzałą w bitwie: najpierw przeszkody, potem bieżący wróg; skutek zależy od rodzaju strzały.
+function battleArrowHit(a, px, py) {
+  const B = battle, fire = !!a.fire;
+  const n = Math.max(1, Math.ceil(Math.hypot(a.x - px, a.y - py) / 3));
+  for (let i = 1; i <= n; i++) {
+    const x = px + (a.x - px) * i / n, y = py + (a.y - py) * i / n;
+    if (y >= GY) return false;
+    for (const r of BATTLE_ROCKS) if (inRock(r, x, y)) { land(x, y, 0); popup.text = 'W głaz'; return true; }
+    {
+      const k = kal;
+      if (k && k.mode === 'move' && hitKalkar(k, x, y)) {
+        if (!fire) return noHarm(x, y, 'Zwykła strzała go nie rani');
+        land(x, y, KALKAR_PTS);
+        popup.text = `Kalkar płonie! +${KALKAR_PTS}`;
+        arrow.inKal = true;
+        k.mode = 'burn';
+        k.burn = 0;
+        kalStatus[kalIndex] = 'dead';
+        return true;
+      }
+    }
+    {
+      const w = warg, zone = w && (w.mode === 'move' || w.mode === 'crouch') ? wargZone(w, x, y) : null;
+      if (zone) {
+        if (fire) return noHarm(x, y, 'Ogień go nie rani');
+        applyWargHit(w, zone, x, y, a);
+        return true;
+      }
+    }
+    {
+      for (const r of riders) {
+        if (r.dead || r.leaving) continue;
+        const what = classifyHit(r, x, y);
+        if (!what) continue;
+        if (fire && what !== 'horse' && what !== 'shield') return noHarm(x, y, 'Ogień go nie rani');
+        applyRiderHit(r, what, x, y, a);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// Nóż leci prosto do klikniętego miejsca, jak na planszy 2.
+function throwBattleKnife(p) {
+  const dx = p.x - HAND.x, dy = p.y - HAND.y, dist = Math.hypot(dx, dy);
+  if (dist < 20) return;
+  battle.ammo.knife--;
+  knife = {
+    x: HAND.x, y: HAND.y, vx: dx / dist * KNIFE_SPEED, vy: dy / dist * KNIFE_SPEED,
+    steps: Math.ceil(dist / KNIFE_SPEED), spin: 0, dir: Math.atan2(dy, dx), stuck: false,
+  };
+  phase = 'kflight';
+  resetRiderTimers();
+}
+
+function knifeResult(pts, x, y, text) {
+  shots.push(pts);
+  score += pts;
+  popup = { x, y: y - 22, pts, t: 0, text };
+  if (pts) pulse = { x, y, t: 0 };
+  knife = null;
+  phase = 'landed';
+  timer = pts ? 75 : 60;
+}
+
+function stepBattleKnife() {
+  const k = knife, B = battle, px = k.x, py = k.y;
+  k.x += k.vx;
+  k.y += k.vy;
+  k.spin += 0.6;
+  const n = Math.max(1, Math.ceil(KNIFE_SPEED / 3));
+  for (let i = 1; i <= n; i++) {
+    const x = px + (k.x - px) * i / n, y = py + (k.y - py) * i / n;
+    for (const r of BATTLE_ROCKS) if (inRock(r, x, y)) return knifeResult(0, x, y, 'W głaz');
+    {
+      if (kal && kal.mode === 'move' && hitKalkar(kal, x, y)) return knifeResult(0, x, y, 'Nóż nie rani kalkara');
+    }
+    {
+      const w = warg, zone = w && (w.mode === 'move' || w.mode === 'crouch') ? wargZone(w, x, y) : null;
+      if (zone === 'head') {
+        w.mode = 'dead';
+        w.t = 0;
+        wargStatus[wargIndex] = 'dead';
+        return knifeResult(WARG_PTS, x, y, `Nóż w głowę! +${WARG_PTS}`);
+      }
+      if (zone) return knifeResult(0, x, y, zone === 'arm' ? 'Zasłonił głowę' : 'Nóż nic nie zrobił');
+    }
+    {
+      for (const r of riders) {
+        if (r.dead || r.leaving) continue;
+        const what = classifyHit(r, x, y, true);
+        if (what === 'head') {
+          r.dead = true;
+          r.fall = 0;
+          r.pull = 0;
+          return knifeResult(KILL_PTS, x, y, `Nóż w głowę! +${KILL_PTS}`);
+        }
+        if (what) return knifeResult(0, x, y, what === 'horse' ? 'W konia' : what === 'shield' ? 'W tarczę' : 'Nóż nic nie zrobił');
+      }
+    }
+  }
+  if (--k.steps <= 0 || k.y >= GY) knifeResult(0, k.x, Math.min(k.y, GY), 'Pudło');
+}
+
+function drawGrass() {
+  ctx.lineCap = 'round';
+  for (const g of GRASS) {
+    const sway = calm ? 0 : Math.sin(tick * 0.03 + g.ph) * 2.5;
+    ctx.strokeStyle = g.c;
+    ctx.lineWidth = g.w;
+    ctx.beginPath();
+    ctx.moveTo(g.x, GY + 2);
+    ctx.quadraticCurveTo(g.x + g.lean * 0.3, GY - g.h * 0.55, g.x + g.lean + sway, GY - g.h);
+    ctx.stroke();
+  }
+}
+
+// Wróg jest za głazami i w trawie, więc rysujemy go przed nimi.
+function drawBattleScene() {
+  riders.forEach(drawRider);
+  if (kal && kal.mode !== 'hidden') drawKalkar(kal);
+  if (warg && warg.mode !== 'hidden') drawWargal(warg);
+  for (const r of BATTLE_ROCKS) drawRock(r);
+  drawGrass();
+}
+
+function drawWeaponBar() {
+  const B = battle;
+  WEAPONS.forEach((wp, i) => {
+    const x = BTN.x + i * (BTN.w + BTN.gap), sel = B.weapon === wp.id, left = B.ammo[wp.id];
+    ctx.fillStyle = sel ? 'rgba(141,184,106,.28)' : 'rgba(10,8,4,.6)';
+    ctx.fillRect(x, BTN.y, BTN.w, BTN.h);
+    ctx.strokeStyle = sel ? '#8db86a' : 'rgba(240,232,213,.25)';
+    ctx.lineWidth = sel ? 1.5 : 1;
+    ctx.strokeRect(x + 0.5, BTN.y + 0.5, BTN.w - 1, BTN.h - 1);
+    if (wp.id === 'fire') { ctx.save(); ctx.translate(x + 16, BTN.y + 14); drawFlame(0, 0, 0.7); ctx.restore(); }
+    label(`${i + 1} · ${wp.name} · ${left}`, x + BTN.w / 2 + (wp.id === 'fire' ? 6 : 0), BTN.y + 18, 'center',
+      left <= 0 ? MISS : sel ? INK : DIM, 10, 700, '1px');
+  });
+  if (B.announce) {
+    ctx.save();
+    ctx.globalAlpha = B.announce.t < 70 ? 1 : Math.max(0, 1 - (B.announce.t - 70) / 30);
+    label(B.announce.text, W / 2, 160, 'center', GOLD, 16, 700, '3px');
+    ctx.restore();
+  }
+}
+
 function drawOver() {
   ctx.fillStyle = 'rgba(8,7,4,.74)';
   ctx.fillRect(0, 0, W, H);
-  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank][level - 1](score);
+  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank, battleRank][level - 1](score);
   label(`POZIOM ${tier} · KONIEC PLANSZY ${level}`, cx, 118, 'center', DIM, 11, 600, '3px');
   label(`SUMA PUNKTÓW ${total}`, cx, 380, 'center', DIM, 10, 600, '2px');
 
-  const big = String(score), small = ` / ${level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS * RIDERS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
+  const big = String(score), small = ` / ${level === 7 ? BATTLE_MAX : level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS * RIDERS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
   ctx.font = '800 64px Cinzel, Georgia, serif';
   const w1 = ctx.measureText(big).width;
   ctx.font = '600 20px Cinzel, Georgia, serif';
@@ -1730,8 +2104,13 @@ function drawOver() {
     label('KLIKNIJ, ABY STAWIĆ CZOŁA WARGALOM', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
-  if (level === 6 && unlocked && tier < MAX_TIER) {
-    label(`WARGALE POKONANE · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
+  if (level === 6 && unlocked) {
+    label('WARGALE POKONANE · PLANSZA 7 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY RUSZYĆ DO BITWY', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 7 && unlocked && tier < MAX_TIER) {
+    label(`BITWA WYGRANA · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
     label('KLIKNIJ, ABY ZACZĄĆ OD PLANSZY 1 Z CELOWNIKIEM KRÓTSZYM O POŁOWĘ', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
@@ -1900,9 +2279,14 @@ function startLevel4() {
   phase = 'ready';
 }
 
+// Punkty trasy kalkara: na planszy 4 cztery skały, w bitwie prawy głaz, lewy głaz i ucieczka za łucznika.
+function kalPath() {
+  return level === 7 ? KAL_PATH7 : ROCKS.map(r => r.x);
+}
+
 function spawnKalkar() {
   // Drugi kalkar skacze szybciej.
-  kal = { i: 0, mode: 'hidden', wait: 30, x: ROCKS[0].x, lift: 0, t: 0, burn: 0, jf: JUMP_FRAMES[Math.min(kalIndex, JUMP_FRAMES.length - 1)] };
+  kal = { i: 0, mode: 'hidden', wait: 30, x: kalPath()[0], lift: 0, t: 0, burn: 0, jf: JUMP_FRAMES[Math.min(kalIndex, JUMP_FRAMES.length - 1)] };
 }
 
 function nextKalkar() {
@@ -1917,23 +2301,26 @@ function updateKalkar() {
     if (kalIndex < KALKARS && --kalDelay <= 0) spawnKalkar();
     return;
   }
+  const path = kalPath(), last = path.length - 1;
   if (k.mode === 'hidden') {
     if (--k.wait > 0) return;
-    if (k.i >= ROCKS.length - 1) {
+    if (k.i >= last) {
       kalStatus[kalIndex] = 'escaped';
       popup = { x: k.x, y: GY - ROCK_RY - 24, pts: 0, t: 0, text: 'Przedarł się' };
       nextKalkar();
     } else {
       // Każdy skok jest inny: losowa szybkość i wysokość, a czasem kalkar przeskakuje jeden głaz.
-      const skip = k.i + 2 <= ROCKS.length - 1 && Math.random() < 0.3;
+      // Dłuższy skok trwa dłużej i jest wyższy.
+      const skip = level !== 7 && k.i + 2 <= last && Math.random() < 0.3;
       k.to = k.i + (skip ? 2 : 1);
-      k.dur = Math.round(k.jf * (0.75 + Math.random() * 0.5) * (skip ? 1.5 : 1));
-      k.h = JUMP_H * (0.6 + Math.random() * 0.8) * (skip ? 1.2 : 1);
+      const far = Math.abs(path[k.to] - path[k.i]) / 145;
+      k.dur = Math.round(k.jf * (0.75 + Math.random() * 0.5) * far ** 0.6);
+      k.h = JUMP_H * (0.6 + Math.random() * 0.8) * far ** 0.26;
       k.mode = 'move';
       k.t = 0;
     }
   } else if (k.mode === 'move') {
-    const u = ++k.t / k.dur, a = ROCKS[k.i].x, b = ROCKS[k.to].x;
+    const u = ++k.t / k.dur, a = path[k.i], b = path[k.to];
     k.x = a + (b - a) * u;
     k.lift = u > 0.2 && u < 0.8 ? Math.sin(Math.PI * (u - 0.2) / 0.6) * k.h : 0;
     if (k.t >= k.dur) {
@@ -1941,7 +2328,7 @@ function updateKalkar() {
       k.mode = 'hidden';
       k.lift = 0;
       // Za głazem czeka losowo długo: 0,4–2,3 s.
-      k.wait = k.i >= ROCKS.length - 1 ? 30 : 25 + Math.floor(Math.random() * 115);
+      k.wait = k.i >= last ? 30 : 25 + Math.floor(Math.random() * 115);
     }
   } else if (k.mode === 'burn') {
     k.lift = Math.max(0, k.lift - 2.5);
@@ -2118,7 +2505,8 @@ function release() {
   lastAng = a.ang;
   phase = 'flight';
   // Strzał Willa, nawet chybiony, zmusza Temudżeina do odliczania od nowa.
-  if (level === 5) for (const r of riders) if (!r.dead) { r.timer = ENEMY_EVERY + (r.kind - 1) * 70; r.pull = 0; }
+  if (level === 5 || level === 7) resetRiderTimers();
+  if (level === 7) { arrow.fire = battle.weapon === 'fire'; battle.ammo[battle.weapon]--; }
 }
 
 function land(x, y, pts) {
@@ -2149,6 +2537,7 @@ function stepArrow() {
   if (level === 4 && fireArrowHit(a)) return;
   if (level === 5 && riderArrowHit(a, px, py)) return;
   if (level === 6 && wargArrowHit(a, px, py)) return;
+  if (level === 7 && battleArrowHit(a, px, py)) return;
   if (t && px < t.x && a.x >= t.x) {
     const yc = py + (t.x - px) / (a.x - px) * (a.y - py), d = Math.abs(yc - t.y);
     if (d <= t.r) { t.hit = true; return land(t.x, yc, ringPoints(d / t.r)); }
@@ -2158,6 +2547,12 @@ function stepArrow() {
 }
 
 function finishShot() {
+  if (level === 7) {
+    arrow = null;
+    knife = null;
+    phase = 'ready';
+    return;
+  }
   if (level === 6) {
     // Bez strzał gra trwa dalej, aż pozostałe wargale dobiegną.
     arrow = null;
@@ -2202,6 +2597,7 @@ function update() {
   if (level === 4) { updateLevel4(); return; }
   if (level === 5) { updateLevel5(); return; }
   if (level === 6) { updateLevel6(); return; }
+  if (level === 7) { updateLevel7(); return; }
   if (phase === 'flight') stepArrow();
   else if (phase === 'landed' && --timer <= 0) finishShot();
 }
@@ -2233,15 +2629,20 @@ function draw() {
     if (warg && warg.mode !== 'hidden') drawWargal(warg);
     for (const c of COVERS) drawCover(c);
   }
+  if (level === 7) drawBattleScene();
   if (arrow && arrow.stuck && !arrow.inKal) drawArrow(arrow);
   const aim = phase === 'aiming' ? aimNow() : null;
-  drawArcher(aim ? aim.ang : lastAng, aim ? aim.pull : 0, phase === 'ready' || phase === 'aiming' || phase === 'await');
+  const knifeOut = level === 7 && battle.weapon === 'knife';
+  drawArcher(aim ? aim.ang : lastAng, aim ? aim.pull : 0, !knifeOut && (phase === 'ready' || phase === 'aiming' || phase === 'await'));
   if (aim && aim.pull > 0.02) { drawPreview(aim.ang, aim.pull); drawPower(aim.pull); }
   if (arrow && !arrow.stuck) drawArrow(arrow);
+  if (level === 7 && knife) drawKnife(knife);
   if (level >= 5) drawEnemyArrows();
   drawFx();
   drawHud();
-  const hint = level === 6
+  if (level === 7) drawWeaponBar();
+  const hint = level === 7 ? ''
+    : level === 6
     ? (phase === 'ready' ? 'GŁOWA ZABIJA OD RAZU · TUŁÓW 2 RAZY · RĘKA I NOGI NIC' : phase === 'noarrows' ? 'BRAK STRZAŁ · WARGALE NADCHODZĄ' : '')
     : level === 5
     ? (phase === 'ready' ? 'GŁOWA ZABIJA OD RAZU · ŁUK, RĘKA, TUŁÓW 2 RAZY · KOŃ I TARCZA NIC' : '')
@@ -2273,13 +2674,24 @@ canvas.addEventListener('pointerdown', e => {
     else if (level === 3 && unlocked) startLevel4();
     else if (level === 4 && unlocked) startLevel5();
     else if (level === 5 && unlocked) startLevel6();
-    else if (level === 6 && unlocked) { tier++; newGame(); }
+    else if (level === 6 && unlocked) startLevel7();
+    else if (level === 7 && unlocked) { tier++; newGame(); }
     else newGame();
     return;
   }
   if (level === 2) {
     if (phase === 'kshow') throwKnife(toScene(e));
     return;
+  }
+  if (level === 7) {
+    const p = toScene(e), wi = weaponAt(p);
+    if (wi >= 0) { selectWeapon(wi); return; }
+    if (phase !== 'ready') return;
+    if (battle.ammo[battle.weapon] <= 0) {
+      popup = { x: W / 2, y: 200, pts: 0, t: 0, text: 'Brak tej broni · wybierz inną' };
+      return;
+    }
+    if (battle.weapon === 'knife') { throwBattleKnife(p); return; }
   }
   if (phase !== 'ready') return;
   const p = toScene(e);
@@ -2305,6 +2717,7 @@ canvas.addEventListener('pointercancel', () => {
 });
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape' && phase === 'aiming') { drag = null; phase = 'ready'; }
+  if (level === 7 && ['1', '2', '3'].includes(e.key)) selectWeapon(Number(e.key) - 1);
 });
 
 /* ── Start ──────────────────────────────────────── */
