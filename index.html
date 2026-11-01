@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gra Zwiadowca</title>
-<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Dębowym Grodzie: strzelaj z łuku, rzucaj nożem, pal mroczniaki płonącymi strzałami, zmierz się z jeźdźcami, powstrzymaj wilczury, wygraj bitwę i przeskocz kłody w konnej jeździe.">
+<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Dębowym Grodzie: strzelaj z łuku, rzucaj nożem, pal mroczniaki płonącymi strzałami, zmierz się z jeźdźcami, powstrzymaj wilczury, wygraj bitwę, przeskocz kłody w konnej jeździe i rozbij pościg.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -265,7 +265,7 @@ canvas {
     </div>
   </div>
   <div class="rules">
-    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 8 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
+    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 9 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
     <p><strong>Plansza 1: strzelnica.</strong> Przytrzymaj przycisk myszy w dowolnym miejscu sceny i odciągnij w lewo, jak cięciwę. Im dłuższy naciąg, tym mocniejszy strzał, a odciągnięcie w dół unosi łuk. Puść, aby strzelić. Esc anuluje naciąg. Wiatr znosi strzałę, a proporczyk na środku strzelnicy pokazuje jego kierunek. Do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 2: rzut nożem.</strong> Tarcza pojawia się w losowym miejscu: pierwsza zostaje na 3 sekundy, druga na 2 sekundy, a trzecia tylko na 1,5 sekundy. Kliknij w nią, zanim zniknie. Masz 3 noże, a do zaliczenia potrzeba co najmniej 24 na 30.</p>
     <p><strong>Plansza 3: znikające tarcze.</strong> Wracasz do łuku, ale tarcza pojawia się w losowym miejscu tylko na 3 sekundy i trzeba zdążyć napiąć łuk i strzelić. Masz 5 strzał, a do zaliczenia potrzeba co najmniej 40 na 50.</p>
@@ -274,6 +274,7 @@ canvas {
     <p><strong>Plansza 6: wilczury.</strong> Trzy wilczury nadbiegają z prawej strony jeden po drugim i chowają się kolejno za niskim drzewem, głazem i drugim niskim drzewem. Kryjówki są niskie, więc da się strzelać nad nimi, a wilczur jest od nich odrobinę wyższy. Kiedy dobiegnie do kryjówki, chowa się za nią cały i wybiega w losowym momencie. Trafienie w głowę zabija wilczura od razu, w tułów (od pasa do szyi) trzeba trafić 2 razy, a strzał poniżej pasa nic nie daje. W biegu wilczur raz po raz zasłania głowę ręką, a strzał w rękę nic nie daje. Czasem w losowym momencie przystaje i kuca, chowając głowę – wtedy można go trafić tylko w tułów. Drugi wilczur jest szybszy od pierwszego, a trzeci biegnie tak samo jak drugi. Masz 8 strzał, a planszę zaliczasz, gdy zabijesz wszystkie trzy wilczury. Każdy zabity wilczur to 10 punktów, a każdy, który dobiegnie do ciebie, to −50 punktów.</p>
     <p><strong>Plansza 7: bitwa.</strong> Wrogowie atakują pojedynczo, w losowej kolejności: 2 mroczniaki, 2 wilczury i 2 jeźdźców. Na polu stoją dwa głazy, a między nimi rośnie wysoka trawa. Wrogowie chowają się za głazami i w trawie. Głazy zatrzymują strzały i noże, a przez trawę można strzelać. Masz trzy bronie i przed strzałem musisz wybrać właściwą przyciskiem na dole sceny albo klawiszem 1, 2 lub 3: ostra strzała (8 sztuk), płonąca strzała (6 sztuk) i nóż do rzucania (3 sztuki). Płonąca strzała zabija tylko mroczniaka. Ostra strzała zabija wilczura i jeźdźca na tych samych zasadach co na planszach 5 i 6. Nóż rzucasz, klikając w miejsce, do którego ma polecieć, i zabija tylko trafieniem w głowę wilczura albo jeźdźca. Mroczniak i wilczur dają po 10 punktów, a jeździec 30. Wilczur, który do ciebie dobiegnie, to −50 punktów, a każde trafienie od jeźdźca −10. Jeździec po trzech strzałach odjeżdża. Planszę zaliczasz, gdy pokonasz wszystkich sześciu wrogów.</p>
     <p><strong>Plansza 8: konna jazda.</strong> Łucznik galopuje konno przez las. Na drodze pojawia się kolejno 15 kłód, w losowych odstępach. Naciśnij klawisz W (albo kliknij lub dotknij sceny), aby koń przeskoczył kłodę. Po każdej przeskoczonej kłodzie koń przyspiesza o 10%, więc kolejne skoki są coraz trudniejsze. Skok za wcześnie albo za późno kończy się zahaczeniem o kłodę i koń na chwilę zwalnia. Każda przeskoczona kłoda to 10 punktów, a planszę zaliczasz, gdy przeskoczysz co najmniej 12 kłód.</p>
+    <p><strong>Plansza 9: pościg.</strong> Łucznik ucieka konno po prawej stronie sceny, a z lewej goni go 5 jeźdźców stepowych, najwyżej dwóch naraz. Strzelasz do tyłu z siodła: przytrzymaj przycisk myszy i odciągnij w prawo, jak cięciwę, potem puść. Masz 12 strzał. Jeźdźcy zachowują się jak na planszy 5: podjeżdżają bliżej i odjeżdżają dalej, chowają głowy za głową konia i strzelają co 5 sekund, a każdy twój strzał zmusza ich do odliczania od nowa. Ich łuki mają mniejszy zasięg: trafić cię mogą dopiero wtedy, gdy przekroczą połowę sceny (zaznaczoną na ziemi), a z dalszej odległości ich strzały spadają za wcześnie. Głowa zabija od razu, ręka i tułów po 2 trafieniach. Koń trafiony 3 razy pada, a jeździec zostaje w tyle i też liczy się jako pokonany. Każdy pokonany jeździec to 30 punktów, każde ich trafienie to −10 punktów. Planszę zaliczasz, gdy pokonasz wszystkich pięciu.</p>
     <ul class="rings" aria-label="Punktacja tarczy">
       <li style="--c: var(--ring-gold)">Złoto 10</li>
       <li style="--c: var(--ring-red)">Czerwień 8</li>
@@ -306,7 +307,7 @@ const LVL3_BEST_KEY = 'zwiadowcy-znikajace-rekord';
 const LVL3_SHOW = 180, LVL2_TO_3 = 24;
 const LVL4_BEST_KEY = 'zwiadowcy-kalkary-rekord';
 const LVL3_TO_4 = 40, KALKARS = 2, FIRE_ARROWS = 3, JUMP_FRAMES = [120, 80], JUMP_H = 55;
-const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 8;
+const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 9;
 const LVL5_BEST_KEY = 'zwiadowcy-temudzein-rekord';
 const RIDER_ARROWS = 5, RIDERS = 2, ENEMY_EVERY = 300, ENEMY_HIT = 0.7, ENEMY_DMG = 10, KILL_PTS = 30;
 const LVL6_BEST_KEY = 'zwiadowcy-wargale-rekord';
@@ -373,7 +374,7 @@ function startBoard(n) {
   tier = 1;
   total = 0;
   gameOver = false;
-  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6, startLevel7, startLevel8][n - 1]();
+  [newGame, startKnives, startLevel3, startLevel4, startLevel5, startLevel6, startLevel7, startLevel8, startLevel9][n - 1]();
 }
 
 /* ── Tło (rysowane raz) ─────────────────────────── */
@@ -478,10 +479,20 @@ function paintSky(c, r) {
 
 function label(text, x, y, align, color, size = 10, weight = 600, track = '0px') {
   ctx.font = `${weight} ${size}px Cinzel, Georgia, serif`;
-  ctx.textAlign = align;
   ctx.fillStyle = color;
   if ('letterSpacing' in ctx) ctx.letterSpacing = track;
-  ctx.fillText(text, x, y);
+  if (mirrored) {
+    // Plansza 9 jest rysowana w lustrzanym odbiciu, ale napisy muszą zostać czytelne.
+    ctx.save();
+    ctx.translate(x, 0);
+    ctx.scale(-1, 1);
+    ctx.textAlign = align === 'left' ? 'right' : align === 'right' ? 'left' : align;
+    ctx.fillText(text, 0, y);
+    ctx.restore();
+  } else {
+    ctx.textAlign = align;
+    ctx.fillText(text, x, y);
+  }
   if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
 }
 
@@ -673,7 +684,8 @@ function drawArrow(a) {
 
 function drawPreview(ang, pull) {
   const reach = bowGeom(pull).nockX + ARROW_LEN;
-  let x = SHOULDER.x + Math.cos(ang) * reach, y = SHOULDER.y + Math.sin(ang) * reach;
+  const sh = shoulderPt();
+  let x = sh.x + Math.cos(ang) * reach, y = sh.y + Math.sin(ang) * reach;
   const vx = Math.cos(ang) * pull * MAX_SPEED;
   let vy = Math.sin(ang) * pull * MAX_SPEED;
   // Każdy kolejny poziom skraca celownik o połowę.
@@ -1147,6 +1159,15 @@ function horseHit(r) {
   r.ducks = 0;
   r.pause = 0;
   popup.text = 'Koń pada! Jeździec walczy pieszo';
+  if (level !== 9) return;
+  // W pościgu pieszy jeździec nie nadąży, więc zostaje w tyle i liczy się jako pokonany.
+  r.dead = true;
+  r.fall = 0;
+  r.pull = 0;
+  score += KILL_PTS;
+  shots[shots.length - 1] = KILL_PTS;
+  popup.pts = KILL_PTS;
+  popup.text = `Koń pada! Jeździec zostaje w tyle +${KILL_PTS}`;
 }
 
 // Nowy cel jazdy: losowo do przodu albo do tyłu, z losową prędkością, czasem z postojem.
@@ -1193,9 +1214,12 @@ function startLevel5() {
 
 function enemyShoot(r) {
   const g = riderGeo(r), sx = g.bowHand.x - 8, sy = g.bowHand.y;
-  const hit = Math.random() < ENEMY_HIT;
-  const tx = hit ? ARCHER_X + 2 : ARCHER_X + (Math.random() < 0.5 ? -1 : 1) * (45 + Math.random() * 50);
-  const ty = hit ? GY - 56 : GY + 2;
+  // Na planszy 9 łuki pościgu sięgają łucznika dopiero z bliższej połowy sceny; z dalszej strzała spada za wcześnie.
+  const inRange = level !== 9 || r.x < CHASE_RANGE_X;
+  const hit = inRange && Math.random() < ENEMY_HIT;
+  const tx = !inRange ? CHASE_RANGE_X - 60 - Math.random() * 140
+    : hit ? ARCHER_X + 2 : ARCHER_X + (Math.random() < 0.5 ? -1 : 1) * (45 + Math.random() * 50);
+  const ty = hit ? GY - 56 - archerLift() : GY + 2;
   const T = Math.round(Math.max(45, Math.hypot(tx - sx, ty - sy) / 11));
   // Prędkość dobrana tak, żeby po T klatkach (z grawitacją) strzała była dokładnie w celu.
   enemyArrows.push({
@@ -1276,7 +1300,7 @@ function updateLevel5() {
 }
 
 function drawHorse(r) {
-  const x = r.x, y = GY + r.bob, moving = !r.dead && !calm && r.pause <= 0;
+  const x = r.x, y = GY + r.bob, moving = !calm && (level === 9 ? !r.foot : !r.dead && r.pause <= 0);
   const coat = r.kind === 1 ? '#5a3a24' : '#3d2c22';
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
@@ -1527,7 +1551,7 @@ function drawEnemyArrows() {
   }
   if (hurt > 0) {
     ctx.fillStyle = `rgba(224,80,60,${hurt / 30 * 0.45})`;
-    ctx.beginPath(); ctx.ellipse(ARCHER_X, GY - 50, 26, 52, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(ARCHER_X, GY - 50 - archerLift(), 26, 52, 0, 0, Math.PI * 2); ctx.fill();
   }
 }
 
@@ -2184,11 +2208,11 @@ function drawWeaponBar() {
 function drawOver() {
   ctx.fillStyle = 'rgba(8,7,4,.74)';
   ctx.fillRect(0, 0, W, H);
-  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank, battleRank, rideRank][level - 1](score);
+  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank, wargalRank, battleRank, rideRank, chaseRank][level - 1](score);
   label(`POZIOM ${tier} · KONIEC PLANSZY ${level}`, cx, 118, 'center', DIM, 11, 600, '3px');
   label(`SUMA PUNKTÓW ${total}`, cx, 380, 'center', DIM, 10, 600, '2px');
 
-  const big = String(score), small = ` / ${level === 8 ? LOGS * LOG_PTS : level === 7 ? BATTLE_MAX : level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS * RIDERS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
+  const big = String(score), small = ` / ${level === 9 ? CHASERS * KILL_PTS : level === 8 ? LOGS * LOG_PTS : level === 7 ? BATTLE_MAX : level === 6 ? WARGALS * WARG_PTS : level === 5 ? KILL_PTS * RIDERS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
   ctx.font = '800 64px Cinzel, Georgia, serif';
   const w1 = ctx.measureText(big).width;
   ctx.font = '600 20px Cinzel, Georgia, serif';
@@ -2242,8 +2266,13 @@ function drawOver() {
     label('KLIKNIJ, ABY RUSZYĆ KONNO', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
-  if (level === 8 && unlocked && tier < MAX_TIER) {
-    label(`KŁODY ZA TOBĄ · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
+  if (level === 8 && unlocked) {
+    label('KŁODY ZA TOBĄ · PLANSZA 9 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY UCIEKAĆ PRZED POŚCIGIEM', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 9 && unlocked && tier < MAX_TIER) {
+    label(`POŚCIG ROZBITY · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
     label('KLIKNIJ, ABY ZACZĄĆ OD PLANSZY 1 Z CELOWNIKIEM KRÓTSZYM O POŁOWĘ', cx, 340, 'center', INK, 11, 600, '2px');
     return;
   }
@@ -2524,6 +2553,215 @@ function drawLevel8() {
   drawFx();
   drawHud8();
   if (phase === 'ride') label('NACIŚNIJ W, ABY PRZESKOCZYĆ KŁODĘ', W / 2, H - 14, 'center', 'rgba(240,232,213,.45)', 10, 600, '2px');
+  if (phase === 'over') drawOver();
+}
+
+/* ── Plansza 9: pościg ──────────────────────────── */
+
+// Plansza 9 to plansza 5 w lustrzanym odbiciu: w logice gry łucznik stoi po lewej (ARCHER_X),
+// a jeźdźcy nadjeżdżają z prawej. Na ekranie świat jest odbity, więc łucznik ucieka konno
+// po prawej stronie, strzela do tyłu, a pościg wyjeżdża z lewej.
+const LVL9_BEST_KEY = 'zwiadowcy-poscig-rekord';
+const CHASE_ARROWS = 12, CHASERS = 5, MAX_CHASING = 2;
+// Łuki pościgu sięgają łucznika dopiero z bliższej połowy sceny.
+const CHASE_RANGE_X = W / 2;
+// Łucznik siedzi w siodle, więc jest o SEAT px wyżej niż na strzelnicy.
+const SEAT = 38;
+let mirrored = false, best9 = loadBest(LVL9_BEST_KEY);
+
+function archerLift() { return level === 9 ? SEAT : 0; }
+function shoulderPt() { return { x: SHOULDER.x, y: SHOULDER.y - archerLift() }; }
+
+function chaseRank() {
+  const dead = riders.filter(r => r.dead).length;
+  if (dead === CHASERS && score >= CHASERS * KILL_PTS) return ['Nieuchwytny', 'Cały pościg został w stepie, a ty bez draśnięcia.', GOLD];
+  if (dead === CHASERS) return ['Ranny, ale wolny', 'Pościg rozbity, choć kilka strzał cię dosięgło.', '#e0a050'];
+  if (dead > 0) return ['Ucieczka w ostatniej chwili', `Pokonałeś ${dead} z ${CHASERS} jeźdźców, ale reszta wciąż jest na twoim tropie.`, '#e0a050'];
+  return ['Dopadnięty', 'Jeźdźcy nie odpuścili. Strzały się skończyły, a oni wciąż jadą.', MISS];
+}
+
+// Jak w planszy 5, ale jeźdźcy w pościgu mogą podjechać bliżej (do 250 px od lewej krawędzi świata).
+function pickChaseGoal(r) {
+  for (let k = 0; k < 12; k++) {
+    r.goal = 250 + Math.random() * 480;
+    if (riders.every(o => o === r || o.dead || o.delay > 0 || (Math.abs(r.goal - o.goal) > 130 && Math.abs(r.goal - o.x) > 60))) break;
+  }
+  r.sp = 0.4 + Math.random() * 1.8;
+  r.pause = Math.random() < 0.4 ? 20 + Math.floor(Math.random() * 80) : 0;
+}
+
+function startLevel9() {
+  level = 9;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  knife = null;
+  shield = null;
+  kal = null;
+  warg = null;
+  score = 0;
+  shots = [];
+  popup = null;
+  newRecord = false;
+  windLevel = 0;
+  wind = 0;
+  enemyArrows = [];
+  hurt = 0;
+  ride = { off: 0, t: 0, logs: [] };
+  // Najwyżej dwóch naraz: kolejni czekają (delay = Infinity), aż ktoś odpadnie.
+  riders = [
+    makeRider(1, 0),
+    makeRider(2, Math.random() < 0.35 ? 0 : 60 + Math.floor(Math.random() * 360)),
+    makeRider(1, Infinity),
+    makeRider(2, Infinity),
+    makeRider(1, Infinity),
+  ];
+  pickChaseGoal(riders[1]);
+  riders[1].sp = 2.2;
+  riders[1].pause = 0;
+  phase = 'ready';
+}
+
+function updateChaser(r) {
+  if (r.delay > 0) { if (r.delay !== Infinity) r.delay--; return; }
+  r.t += 2;
+  if (r.dead) {
+    // Pokonani zostają w tyle: koń bez jeźdźca zwalnia, padły koń zostaje na ziemi.
+    r.fall++;
+    r.x += RIDE_SPEED * (r.foot ? 1 : 0.45);
+    if (r.foot) { r.hfall++; r.hx += RIDE_SPEED; }
+    return;
+  }
+  if (r.pause > 0) r.pause--;
+  else {
+    const dx = r.goal - r.x;
+    if (Math.abs(dx) <= r.sp) { r.x = r.goal; pickChaseGoal(r); }
+    else r.x += Math.sign(dx) * r.sp;
+  }
+  r.bob = calm ? 0 : -Math.abs(Math.sin(r.t * 0.09)) * 2.5;
+  updateDuck(r);
+  if (phase === 'over') { r.pull = 0; return; }
+  if (--r.timer <= 0) { enemyShoot(r); r.timer = ENEMY_EVERY; }
+  r.pull = Math.max(0, Math.min(1, (45 - r.timer) / 45));
+}
+
+function updateLevel9() {
+  ride.t++;
+  ride.off += RIDE_SPEED;
+  if (hurt > 0) hurt--;
+  // Gdy jeden z dwóch jeźdźców odpadnie, po chwili dołącza następny.
+  const chasing = riders.filter(r => r.delay !== Infinity && !r.dead).length;
+  const next = riders.find(r => r.delay === Infinity);
+  if (chasing < MAX_CHASING && next) next.delay = 60 + Math.floor(Math.random() * 120);
+  riders.forEach(updateChaser);
+  stepEnemyArrows();
+  // Strzały wbite w ziemię zostają w tyle razem z ziemią.
+  for (const e of enemyArrows) if (e.stuck && !e.hit) e.x += RIDE_SPEED;
+  if (arrow && arrow.stuck && !arrow.inKal) arrow.x += RIDE_SPEED;
+  if (phase === 'over') return;
+  if (phase === 'flight') stepArrow();
+  else if (phase === 'landed' && --timer <= 0) finishShot();
+}
+
+function endLevel9() {
+  newRecord = score > best9;
+  if (newRecord) { best9 = score; saveBest(LVL9_BEST_KEY, best9); }
+  unlocked = riders.every(r => r.dead);
+  finishBoard();
+}
+
+function drawMountedArcher(aim) {
+  const R = ride, bob = calm ? 0 : Math.sin(R.t * 0.34) * 1.5;
+  ctx.fillStyle = 'rgba(0,0,0,.28)';
+  ctx.beginPath(); ctx.ellipse(ARCHER_X, GY + 2, 46, 4, 0, 0, Math.PI * 2); ctx.fill();
+  // Łucznik obrócony w siodle; koń rysowany na nim zasłania nogi i dół peleryny.
+  ctx.save();
+  ctx.translate(0, -SEAT);
+  drawArcher(aim ? aim.ang : lastAng, aim ? aim.pull : 0, phase === 'ready' || phase === 'aiming');
+  ctx.restore();
+  drawHorse({ x: ARCHER_X, bob, kind: 2, dead: false, pause: 0, t: R.t * 1.9, foot: false });
+  // Noga w strzemieniu.
+  const hy = GY - SEAT - 30 + bob;
+  ctx.strokeStyle = '#2f2b21';
+  ctx.lineWidth = 5;
+  ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(ARCHER_X + 1, hy); ctx.lineTo(ARCHER_X - 9, hy + 12); ctx.lineTo(ARCHER_X - 5, hy + 26); ctx.stroke();
+  ctx.fillStyle = '#3d2b19';
+  ctx.fillRect(ARCHER_X - 12, hy + 24, 10, 4);
+}
+
+function drawRangeMark() {
+  ctx.save();
+  ctx.strokeStyle = 'rgba(224,122,95,.4)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 5]);
+  ctx.beginPath(); ctx.moveTo(CHASE_RANGE_X, GY + 4); ctx.lineTo(CHASE_RANGE_X, GY + 32); ctx.stroke();
+  ctx.restore();
+  label('ZASIĘG ŁUKÓW POŚCIGU', CHASE_RANGE_X, GY + 46, 'center', 'rgba(224,122,95,.6)', 9, 600, '2px');
+}
+
+function drawHud9() {
+  label('WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
+  label(String(score), 20, 60, 'left', score < 0 ? MISS : INK, 30, 800);
+  for (let i = 0; i < CHASERS; i++) {
+    const x = 20 + i * 24;
+    ctx.fillStyle = 'rgba(240,232,213,.08)';
+    ctx.fillRect(x, 70, 20, 16);
+    if (riders[i].dead) label(String(KILL_PTS), x + 10, 82, 'center', GOLD, 10, 600);
+  }
+  label('PLANSZA 9 · POŚCIG', 20, 106, 'left', DIM, 9, 600, '2px');
+  const cx = W / 2, dead = riders.filter(r => r.dead).length;
+  label('POŚCIG', cx, 28, 'center', DIM, 10, 600, '2px');
+  label(`${dead} / ${CHASERS} POKONANYCH`, cx, 54, 'center', INK, 12, 600);
+  label(progressLabel(), cx, 76, 'center', GOLD, 9, 600, '2px');
+  label('STRZAŁY', W - 20, 28, 'right', DIM, 10, 600, '2px');
+  const left = CHASE_ARROWS - shots.length - (phase === 'flight' ? 1 : 0);
+  for (let i = 0; i < CHASE_ARROWS; i++) {
+    const x = W - 24 - i * 13, on = i < left, off = 'rgba(240,232,213,.15)';
+    ctx.strokeStyle = on ? '#c9a063' : off;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(x, 40); ctx.lineTo(x, 64); ctx.stroke();
+    ctx.fillStyle = on ? '#8db86a' : off;
+    ctx.fillRect(x - 2, 58, 4, 7);
+    ctx.fillStyle = on ? '#d9dde0' : off;
+    ctx.beginPath(); ctx.moveTo(x, 36); ctx.lineTo(x - 3, 42); ctx.lineTo(x + 3, 42); ctx.closePath(); ctx.fill();
+  }
+  label(`REKORD ${best9}`, W - 20, 84, 'right', DIM, 10, 600, '2px');
+}
+
+function drawLevel9() {
+  drawRideScenery();
+  const aim = phase === 'aiming' ? aimNow() : null;
+  mirrored = true;
+  ctx.save();
+  ctx.translate(W, 0);
+  ctx.scale(-1, 1);
+  drawRangeMark();
+  // Dalszego jeźdźca rysujemy pierwszego, żeby bliższy go zasłaniał.
+  riders.filter(r => r.delay <= 0).sort((p, q) => q.x - p.x).forEach(drawRider);
+  if (arrow && arrow.stuck && !arrow.inKal) drawArrow(arrow);
+  drawMountedArcher(aim);
+  if (aim && aim.pull > 0.02) { drawPreview(aim.ang, aim.pull); drawPower(aim.pull); }
+  if (arrow && !arrow.stuck) drawArrow(arrow);
+  drawEnemyArrows();
+  // W odbiciu rysujemy tylko błysk trafienia; napis z punktami niżej, już bez odbicia.
+  const p = popup;
+  popup = null;
+  drawFx();
+  popup = p;
+  ctx.restore();
+  mirrored = false;
+  if (popup) {
+    const q = pulse, px = popup.x;
+    pulse = null;
+    popup.x = W - px;
+    drawFx();
+    popup.x = px;
+    pulse = q;
+  }
+  drawHud9();
+  if (phase === 'ready') label('ODCIĄGNIJ W PRAWO I PUŚĆ, ABY STRZELIĆ DO TYŁU', W / 2, H - 14, 'center', 'rgba(240,232,213,.45)', 10, 600, '2px');
   if (phase === 'over') drawOver();
 }
 
@@ -2901,10 +3139,10 @@ function release() {
   const a = aimNow();
   drag = null;
   if (!a || a.pull < 0.1) { phase = 'ready'; return; }
-  const reach = bowGeom(a.pull).nockX + ARROW_LEN, speed = a.pull * MAX_SPEED;
+  const reach = bowGeom(a.pull).nockX + ARROW_LEN, speed = a.pull * MAX_SPEED, sh = shoulderPt();
   arrow = {
-    x: SHOULDER.x + Math.cos(a.ang) * reach,
-    y: SHOULDER.y + Math.sin(a.ang) * reach,
+    x: sh.x + Math.cos(a.ang) * reach,
+    y: sh.y + Math.sin(a.ang) * reach,
     vx: Math.cos(a.ang) * speed,
     vy: Math.sin(a.ang) * speed,
     trail: [],
@@ -2913,7 +3151,7 @@ function release() {
   lastAng = a.ang;
   phase = 'flight';
   // Strzał łucznika, nawet chybiony, zmusza jeźdźca do odliczania od nowa.
-  if (level === 5 || level === 7) resetRiderTimers();
+  if (level === 5 || level === 7 || level === 9) resetRiderTimers();
   if (level === 7) { arrow.fire = battle.weapon === 'fire'; battle.ammo[battle.weapon]--; }
 }
 
@@ -2943,7 +3181,7 @@ function stepArrow() {
   a.trail.push(px, py);
   if (a.trail.length > 24) a.trail.splice(0, 2);
   if (level === 4 && fireArrowHit(a)) return;
-  if (level === 5 && riderArrowHit(a, px, py)) return;
+  if ((level === 5 || level === 9) && riderArrowHit(a, px, py)) return;
   if (level === 6 && wargArrowHit(a, px, py)) return;
   if (level === 7 && battleArrowHit(a, px, py)) return;
   if (t && px < t.x && a.x >= t.x) {
@@ -2955,6 +3193,11 @@ function stepArrow() {
 }
 
 function finishShot() {
+  if (level === 9) {
+    if (riders.some(r => !r.dead) && shots.length < CHASE_ARROWS) { arrow = null; phase = 'ready'; return; }
+    endLevel9();
+    return;
+  }
   if (level === 7) {
     arrow = null;
     knife = null;
@@ -3007,6 +3250,7 @@ function update() {
   if (level === 6) { updateLevel6(); return; }
   if (level === 7) { updateLevel7(); return; }
   if (level === 8) { updateLevel8(); return; }
+  if (level === 9) { updateLevel9(); return; }
   if (phase === 'flight') stepArrow();
   else if (phase === 'landed' && --timer <= 0) finishShot();
 }
@@ -3026,6 +3270,7 @@ function drawKnifeLevel() {
 function draw() {
   if (level === 2) { drawKnifeLevel(); return; }
   if (level === 8) { drawLevel8(); return; }
+  if (level === 9) { drawLevel9(); return; }
   ctx.drawImage(bg, 0, 0, W, H);
   drawPennant();
   if (target) drawTarget(target);
@@ -3068,8 +3313,9 @@ function draw() {
 /* ── Sterowanie ─────────────────────────────────── */
 
 function toScene(e) {
-  const r = canvas.getBoundingClientRect();
-  return { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height };
+  const r = canvas.getBoundingClientRect(), x = (e.clientX - r.left) * W / r.width;
+  // Na planszy 9 świat jest odbity w poziomie, więc odbijamy też pozycję myszy.
+  return { x: level === 9 ? W - x : x, y: (e.clientY - r.top) * H / r.height };
 }
 
 canvas.addEventListener('pointerdown', e => {
@@ -3086,7 +3332,8 @@ canvas.addEventListener('pointerdown', e => {
     else if (level === 5 && unlocked) startLevel6();
     else if (level === 6 && unlocked) startLevel7();
     else if (level === 7 && unlocked) startLevel8();
-    else if (level === 8 && unlocked) { tier++; newGame(); }
+    else if (level === 8 && unlocked) startLevel9();
+    else if (level === 9 && unlocked) { tier++; newGame(); }
     else newGame();
     return;
   }
