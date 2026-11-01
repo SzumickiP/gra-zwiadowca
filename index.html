@@ -269,7 +269,7 @@ canvas {
     <p><strong>Plansza 1: strzelnica.</strong> Przytrzymaj przycisk myszy w dowolnym miejscu sceny i odciągnij w lewo, jak cięciwę. Im dłuższy naciąg, tym mocniejszy strzał, a odciągnięcie w dół unosi łuk. Puść, aby strzelić. Esc anuluje naciąg. Wiatr znosi strzałę, a proporczyk na środku strzelnicy pokazuje jego kierunek. Do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 2: rzut nożem.</strong> Tarcza pojawia się w losowym miejscu: pierwsza zostaje na 3 sekundy, druga na 2 sekundy, a trzecia tylko na 1,5 sekundy. Kliknij w nią, zanim zniknie. Masz 3 noże, a do zaliczenia potrzeba co najmniej 24 na 30.</p>
     <p><strong>Plansza 3: znikające tarcze.</strong> Wracasz do łuku, ale tarcza pojawia się w losowym miejscu tylko na 3 sekundy i trzeba zdążyć napiąć łuk i strzelić. Masz 5 strzał, a do zaliczenia potrzeba co najmniej 40 na 50.</p>
-    <p><strong>Plansza 4: kalkary.</strong> Kalkar zbliża się z prawej strony w trzech skokach między skałami. Za każdym razem widać go tylko przez 2 sekundy, potem chowa się za skałą, więc trafić go można tylko w skoku. Zaraz po pierwszym kalkarze wychodzi drugi i porusza się szybciej. Masz 3 płonące strzały, a planszę zaliczasz, gdy spalisz oba kalkary. Każdy spalony kalkar to 10 punktów.</p>
+    <p><strong>Plansza 4: kalkary.</strong> Kalkar zbliża się z prawej strony, skacząc między skałami. Każdy skok jest inny: raz szybszy, raz wolniejszy, raz niższy, raz wyższy, a czasem kalkar przeskakuje od razu przez jedną skałę. Za skałą czeka losowo długo, więc trafić go można tylko w skoku. Zaraz po pierwszym kalkarze wychodzi drugi i porusza się szybciej. Masz 3 płonące strzały, a planszę zaliczasz, gdy spalisz oba kalkary. Każdy spalony kalkar to 10 punktów.</p>
     <p><strong>Plansza 5: Temudżein.</strong> Z prawej strony nadjeżdża konny Temudżein. Mała okrągła tarcza osłania mu tułów, a koń jest opancerzony, więc trafienie w tarczę, zbroję albo konia go nie zatrzyma. Trzeba trafić w głowę albo w odsłonięte ramię. Masz 2 strzały. Temudżein strzela do ciebie co 5 sekund, ale każdy twój strzał, nawet chybiony, zmusza go do odliczania od nowa. Każde jego trafienie to −10 punktów, a pokonany Temudżein daje 30 punktów i otwiera drogę dalej.</p>
     <p><strong>Plansza 6: wargale.</strong> Trzy wargale nadbiegają z prawej strony jeden po drugim i chowają się kolejno za niskim drzewem, głazem i drugim niskim drzewem. Kryjówki są niskie, więc da się strzelać nad nimi, a wargal jest od nich odrobinę wyższy. Kiedy dobiegnie do kryjówki, chowa się za nią cały i wybiega w losowym momencie. Trafienie w głowę zabija wargala od razu, w tułów (od pasa do szyi) trzeba trafić 2 razy, a strzał poniżej pasa nic nie daje. W biegu wargal raz po raz zasłania głowę ręką, a strzał w rękę nic nie daje. Czasem w losowym momencie przystaje i kuca, chowając głowę – wtedy można go trafić tylko w tułów. Każdy kolejny wargal jest szybszy. Masz 8 strzał, a planszę zaliczasz, gdy zabijesz wszystkie trzy wargale. Każdy zabity wargal to 10 punktów, a każdy, który dobiegnie do ciebie, to −50 punktów.</p>
     <ul class="rings" aria-label="Punktacja tarczy">
@@ -1495,7 +1495,7 @@ function startLevel6() {
 function spawnWargal() {
   // Każdy kolejny wargal biegnie szybciej.
   warg = { i: 0, x: WARG_PATH[0], mode: 'move', t: 0, wait: 0, dist: 0, hits: 0, stuck: [],
-    g: 0, gWait: 30 + Math.random() * 60, gHold: 25, c: 0, hold: 0, stopIn: 60 + Math.random() * 120, sp: WARG_SPEEDS[Math.min(wargIndex, WARG_SPEEDS.length - 1)] };
+    g: 0, gWait: Math.random() * 150, gHold: 15 + Math.random() * 60, gSpd: 0.08 + Math.random() * 0.17, c: 0, hold: 0, stopIn: 60 + Math.random() * 120, sp: WARG_SPEEDS[Math.min(wargIndex, WARG_SPEEDS.length - 1)] };
 }
 
 function nextWargal() {
@@ -1512,9 +1512,14 @@ function updateWargal() {
   }
   if (w.mode === 'move' || w.mode === 'crouch') {
     // Raz po raz unosi rękę i zasłania nią głowę.
-    if (w.gWait > 0) { w.gWait--; w.g = Math.max(0, w.g - 0.12); }
-    else if (w.gHold > 0) { w.gHold--; w.g = Math.min(1, w.g + 0.12); }
-    else { w.gWait = 40 + Math.random() * 80; w.gHold = 25 + Math.random() * 25; }
+    // Losowo: przerwa 0,3–3,3 s, ręka w górze 0,25–1,25 s, a tempo unoszenia też jest różne.
+    if (w.gWait > 0) { w.gWait--; w.g = Math.max(0, w.g - w.gSpd); }
+    else if (w.gHold > 0) { w.gHold--; w.g = Math.min(1, w.g + w.gSpd); }
+    else {
+      w.gWait = 20 + Math.random() * 180;
+      w.gHold = 15 + Math.random() * 60;
+      w.gSpd = 0.08 + Math.random() * 0.17;
+    }
   }
   if (w.mode === 'hidden') {
     // Gdy skończą się strzały, wargale już nie czekają długo za drzewami.
@@ -1856,18 +1861,24 @@ function updateKalkar() {
       popup = { x: k.x, y: GY - ROCK_RY - 24, pts: 0, t: 0, text: 'Przedarł się' };
       nextKalkar();
     } else {
+      // Każdy skok jest inny: losowa szybkość i wysokość, a czasem kalkar przeskakuje jeden głaz.
+      const skip = k.i + 2 <= ROCKS.length - 1 && Math.random() < 0.3;
+      k.to = k.i + (skip ? 2 : 1);
+      k.dur = Math.round(k.jf * (0.75 + Math.random() * 0.5) * (skip ? 1.5 : 1));
+      k.h = JUMP_H * (0.6 + Math.random() * 0.8) * (skip ? 1.2 : 1);
       k.mode = 'move';
       k.t = 0;
     }
   } else if (k.mode === 'move') {
-    const u = ++k.t / k.jf, a = ROCKS[k.i].x, b = ROCKS[k.i + 1].x;
+    const u = ++k.t / k.dur, a = ROCKS[k.i].x, b = ROCKS[k.to].x;
     k.x = a + (b - a) * u;
-    k.lift = u > 0.2 && u < 0.8 ? Math.sin(Math.PI * (u - 0.2) / 0.6) * JUMP_H : 0;
-    if (k.t >= k.jf) {
-      k.i++;
+    k.lift = u > 0.2 && u < 0.8 ? Math.sin(Math.PI * (u - 0.2) / 0.6) * k.h : 0;
+    if (k.t >= k.dur) {
+      k.i = k.to;
       k.mode = 'hidden';
       k.lift = 0;
-      k.wait = k.i >= ROCKS.length - 1 ? 30 : 45 + Math.floor(Math.random() * 45);
+      // Za głazem czeka losowo długo: 0,4–2,3 s.
+      k.wait = k.i >= ROCKS.length - 1 ? 30 : 25 + Math.floor(Math.random() * 115);
     }
   } else if (k.mode === 'burn') {
     k.lift = Math.max(0, k.lift - 2.5);
