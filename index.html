@@ -1,0 +1,1893 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gra Zwiadowca</title>
+<meta name="description" content="Gra Zwiadowca – sprawdź swoje oko na strzelnicy w Redmont: strzelaj z łuku, rzucaj nożem, pal kalkary płonącymi strzałami i zmierz się z Temudżeinem.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Layout: pasek nawigacji, scena strzelnicy o stałych proporcjach, pod nią zasady i punktacja */
+:root {
+  --bg:         #100d08;
+  --nav-bg:     #0d0b06;
+  --fg:         #f0e8d5;
+  --fg-muted:   #9c8c6e;
+  --accent:     #8db86a;
+  --rule:       #3a3020;
+  --ring-gold:  #e9b928;
+  --ring-red:   #cf2f2a;
+  --ring-blue:  #2b78bd;
+  --ring-black: #1d1d1b;
+  --ring-white: #efe9da;
+  --display:    'Cinzel', Georgia, serif;
+  --body:       'EB Garamond', Georgia, serif;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.topnav {
+  background: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 14px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.topnav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: .85;
+}
+.topnav a:hover, .topnav a:focus-visible { opacity: 1; }
+.topnav a:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+.topnav-title {
+  color: rgba(240,232,213,.38);
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding-block: 24px 32px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.frame, .rules {
+  width: min(100%, 1100px, max(340px, calc((100vh - 220px) * 1.8636)));
+  max-width: 100%;
+}
+.frame {
+  aspect-ratio: 820 / 440;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55);
+}
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.rules {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 32px;
+}
+.rules p {
+  margin: 0;
+  max-width: 62ch;
+  min-width: 0;
+  color: var(--fg-muted);
+  font-style: italic;
+}
+.rules p strong { color: var(--fg); font-style: normal; font-weight: 500; }
+.rings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+.rings li { display: inline-flex; align-items: center; gap: 7px; }
+.rings li::before {
+  content: '';
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+}
+
+/* Zakładki podstron gry: Gra / Wyniki */
+.subtabs {
+  display: flex; gap: 24px;
+  width: min(100%, 1100px, max(340px, calc((100vh - 220px) * 1.8636)));
+  max-width: 100%;
+  border-bottom: 1px solid var(--rule);
+}
+.subtabs a {
+  color: var(--fg-muted); text-decoration: none; font-family: var(--display);
+  font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  padding: 6px 0 8px; margin-bottom: -1px; border-bottom: 2px solid transparent;
+}
+.subtabs a:hover { color: var(--fg); }
+.subtabs a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Nakładki na scenie: imię gracza i tabela wyników */
+.frame { position: relative; }
+.overlay {
+  position: absolute; inset: 0; display: flex; overflow: auto;
+  padding: 16px; background: rgba(8,7,4,.84);
+}
+.overlay[hidden] { display: none; }
+.panel { margin: auto; width: min(100%, 560px); text-align: center; }
+.panel h2 {
+  margin: 0 0 4px; font-family: var(--display); font-weight: 600;
+  font-size: clamp(16px, 2.6vw, 24px); letter-spacing: .12em; text-transform: uppercase;
+}
+.panel p { margin: 0 0 12px; color: var(--fg-muted); font-style: italic; font-size: clamp(14px, 1.8vw, 18px); }
+.name-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.name-row input {
+  flex: 1 1 180px; max-width: 280px; min-width: 0;
+  background: #1e1810; color: var(--fg); border: 1px solid var(--rule); border-radius: 3px;
+  font: inherit; padding: 6px 10px;
+}
+.name-row input:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+.btn {
+  background: var(--accent); color: #14140b; border: 0; border-radius: 3px; cursor: pointer;
+  font-family: var(--display); font-size: 11px; font-weight: 800; letter-spacing: .18em;
+  text-transform: uppercase; padding: 9px 14px; text-decoration: none; display: inline-block;
+}
+.btn.ghost { background: none; color: var(--accent); border: 1px solid rgba(141,184,106,.5); }
+.btn:focus-visible { outline: 1px solid var(--fg); outline-offset: 3px; }
+.panel .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+.scores { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: clamp(13px, 1.6vw, 16px); }
+.scores th {
+  font-family: var(--display); font-size: 10px; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--fg-muted); text-align: left; padding: 4px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.scores td { padding: 4px 8px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.05); }
+.scores .num { text-align: right; }
+.scores tr.me td { color: var(--ring-gold); }
+
+@media (max-width: 640px) {
+  .topnav { flex-wrap: wrap; }
+  .topnav-title { display: none; }
+}
+
+.site-footer {
+  padding: 14px max(16px, env(safe-area-inset-right, 0px)) 18px max(16px, env(safe-area-inset-left, 0px));
+  border-top: 1px solid rgba(255,255,255,.06);
+  color: var(--fg-muted); font-size: 14px; font-style: italic; text-align: center;
+}
+.site-footer p { margin: 0; max-width: 70ch; margin-inline: auto; }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html">Gra Zwiadowca</a>
+  <span class="topnav-title">Strzelnica w Redmont</span>
+</nav>
+
+<main class="stage">
+  <nav class="subtabs" aria-label="Podstrony gry">
+    <a href="index.html" aria-current="page">Gra</a>
+    <a href="wyniki.html">Wyniki</a>
+  </nav>
+  <div class="frame">
+    <canvas id="scena" role="img" aria-label="Strzelnica: łucznik w kapturze po lewej, tarcza po prawej. Przytrzymaj przycisk myszy, odciągnij w lewo i puść, aby strzelić."></canvas>
+    <div class="overlay" id="name-overlay">
+      <form class="panel" id="name-form">
+        <h2>Strzelnica w Redmont</h2>
+        <p>Podaj imię, pod którym trafisz do tabeli wyników.</p>
+        <div class="name-row">
+          <input id="name-input" name="gracz" maxlength="16" autocomplete="nickname" placeholder="Imię gracza" aria-label="Imię gracza" required>
+          <button class="btn" type="submit">Zacznij grę</button>
+        </div>
+      </form>
+    </div>
+    <div class="overlay" id="table-overlay" hidden>
+      <div class="panel">
+        <h2 id="table-title">Koniec gry</h2>
+        <p id="table-sub"></p>
+        <table class="scores">
+          <thead><tr><th class="num">#</th><th>Gracz</th><th>Postęp</th><th class="num">Punkty</th></tr></thead>
+          <tbody id="table-body"></tbody>
+        </table>
+        <div class="actions">
+          <button class="btn" type="button" id="again-btn">Zagraj ponownie</button>
+          <a class="btn ghost" href="wyniki.html">Wszystkie wyniki</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rules">
+    <p><strong>Jak grać.</strong> Przed grą podaj swoje imię. Gra ma 4 poziomy, a każdy poziom to te same 5 plansz. Na każdym kolejnym poziomie celownik łuku jest o połowę krótszy. Niezaliczona plansza kończy grę, a po ukończeniu 4. poziomu gra się kończy. Wynik trafia do tabeli w zakładce Wyniki.</p>
+    <p><strong>Plansza 1: strzelnica.</strong> Przytrzymaj przycisk myszy w dowolnym miejscu sceny i odciągnij w lewo, jak cięciwę. Im dłuższy naciąg, tym mocniejszy strzał, a odciągnięcie w dół unosi łuk. Puść, aby strzelić. Esc anuluje naciąg. Wiatr znosi strzałę, a proporczyk na środku strzelnicy pokazuje jego kierunek. Do zaliczenia potrzeba co najmniej 40 na 50.</p>
+    <p><strong>Plansza 2: rzut nożem.</strong> Tarcza pojawia się w losowym miejscu: pierwsza zostaje na 3 sekundy, druga na 2 sekundy, a trzecia tylko na 1,5 sekundy. Kliknij w nią, zanim zniknie. Masz 3 noże, a do zaliczenia potrzeba co najmniej 24 na 30.</p>
+    <p><strong>Plansza 3: znikające tarcze.</strong> Wracasz do łuku, ale tarcza pojawia się w losowym miejscu tylko na 3 sekundy i trzeba zdążyć napiąć łuk i strzelić. Masz 5 strzał, a do zaliczenia potrzeba co najmniej 40 na 50.</p>
+    <p><strong>Plansza 4: kalkary.</strong> Kalkar zbliża się z prawej strony w trzech skokach między skałami. Za każdym razem widać go tylko przez 2 sekundy, potem chowa się za skałą, więc trafić go można tylko w skoku. Zaraz po pierwszym kalkarze wychodzi drugi i porusza się szybciej. Masz 3 płonące strzały, a planszę zaliczasz, gdy spalisz oba kalkary. Każdy spalony kalkar to 10 punktów.</p>
+    <p><strong>Plansza 5: Temudżein.</strong> Z prawej strony nadjeżdża konny Temudżein. Mała okrągła tarcza osłania mu tułów, a koń jest opancerzony, więc trafienie w tarczę, zbroję albo konia go nie zatrzyma. Trzeba trafić w głowę albo w odsłonięte ramię. Masz 2 strzały. Temudżein strzela do ciebie co 5 sekund, ale każdy twój strzał, nawet chybiony, zmusza go do odliczania od nowa. Każde jego trafienie to −10 punktów, a pokonany Temudżein daje 30 punktów i otwiera drogę dalej.</p>
+    <ul class="rings" aria-label="Punktacja tarczy">
+      <li style="--c: var(--ring-gold)">Złoto 10</li>
+      <li style="--c: var(--ring-red)">Czerwień 8</li>
+      <li style="--c: var(--ring-blue)">Błękit 6</li>
+      <li style="--c: var(--ring-black)">Czerń 4</li>
+      <li style="--c: var(--ring-white)">Biel 2</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>Fanowska gra niekomercyjna inspirowana serią „Zwiadowcy” Johna Flanagana. Nie jest związana z autorem ani wydawcą; postacie i nazwy należą do ich właścicieli.</p>
+</footer>
+
+<script>
+(() => {
+const canvas = document.getElementById('scena');
+const ctx = canvas.getContext('2d');
+
+const W = 820, H = 440, GY = 362;
+const STEP = 1000 / 60;
+const GRAV = 0.26, MAX_SPEED = 19, MAX_DRAG = 150, WIND_MAX = 0.12;
+const SHOTS = 5, ARROW_LEN = 46, ARM = 24, DRAW = 30;
+const ARCHER_X = 112, SHOULDER = { x: ARCHER_X + 3, y: GY - 62 };
+const PX_PER_M = 10;
+const BEST_KEY = 'zwiadowcy-strzelnica-rekord';
+const KNIFE_BEST_KEY = 'zwiadowcy-noze-rekord';
+const KNIVES = 3, SHOW_FRAMES = [180, 120, 90], KNIFE_SPEED = 22, SHIELD_R = 34;
+const LVL3_BEST_KEY = 'zwiadowcy-znikajace-rekord';
+const LVL3_SHOW = 180, LVL2_TO_3 = 24;
+const LVL4_BEST_KEY = 'zwiadowcy-kalkary-rekord';
+const LVL3_TO_4 = 40, KALKARS = 2, FIRE_ARROWS = 3, JUMP_FRAMES = [120, 80], JUMP_H = 55;
+const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 5;
+const LVL5_BEST_KEY = 'zwiadowcy-temudzein-rekord';
+const RIDER_ARROWS = 2, ENEMY_EVERY = 300, ENEMY_HIT = 0.7, ENEMY_DMG = 10, KILL_PTS = 30;
+const RESULTS_KEY = 'zwiadowcy-wyniki', NAME_KEY = 'zwiadowcy-gracz';
+const ROCK_RX = 52, ROCK_RY = 84;
+const ROCKS = [770, 625, 480, 340].map((x, n) => {
+  const r = rng(31 + n);
+  return { x, b: Array.from({ length: 13 }, () => r() * 0.07) };
+});
+const HAND = { x: SHOULDER.x + ARM, y: SHOULDER.y };
+const RINGS = [
+  { f: 1.0, pts: 2,  fill: '#efe9da', edge: '#b7ae9c' },
+  { f: 0.8, pts: 4,  fill: '#1d1d1b', edge: '#45433d' },
+  { f: 0.6, pts: 6,  fill: '#2b78bd', edge: '#1d5a91' },
+  { f: 0.4, pts: 8,  fill: '#cf2f2a', edge: '#a2231f' },
+  { f: 0.2, pts: 10, fill: '#e9b928', edge: '#b98e15' },
+];
+const INK = '#f0e8d5', DIM = 'rgba(240,232,213,.5)', GOLD = '#f2c94c', MISS = '#e07a5f';
+const SKIN = '#d2a47c', SLEEVE = '#4e5a42';
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const dpr = Math.min(window.devicePixelRatio || 1, 2);
+canvas.width = W * dpr;
+canvas.height = H * dpr;
+ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+const bg = document.createElement('canvas');
+bg.width = W * dpr;
+bg.height = H * dpr;
+
+let phase = 'ready', score = 0, shots = [], wind = 0, windLevel = 0;
+let target = null, arrow = null, drag = null, lastAng = -0.12;
+let timer = 0, popup = null, pulse = null, tick = 0;
+let best = loadBest(BEST_KEY), bestK = loadBest(KNIFE_BEST_KEY), best3 = loadBest(LVL3_BEST_KEY), newRecord = false;
+let level = 1, unlocked = false, shield = null, knife = null;
+let tier = 1;
+let playerName = '', total = 0, gameOver = false, started = false, lastEntry = null;
+let rider = null, enemyArrows = [], hurt = 0, best5 = loadBest(LVL5_BEST_KEY);
+let kal = null, kalIndex = 0, kalDelay = 0, kalStatus = [], best4 = loadBest(LVL4_BEST_KEY);
+
+function loadBest(key) { try { return Number(localStorage.getItem(key)) || 0; } catch { return 0; } }
+function saveBest(key, v) { try { localStorage.setItem(key, String(v)); } catch {} }
+
+/* ── Tło (rysowane raz) ─────────────────────────── */
+
+function rng(seed) {
+  return () => {
+    seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function fir(c, x, base, h, w) {
+  const tiers = 4;
+  c.beginPath();
+  c.moveTo(x, base - h);
+  for (let i = 1; i <= tiers; i++) {
+    const y = base - h + h * i / tiers, hw = w * i / tiers / 2;
+    c.lineTo(x + hw, y);
+    if (i < tiers) c.lineTo(x + hw * 0.45, y);
+  }
+  for (let i = tiers; i >= 1; i--) {
+    const y = base - h + h * i / tiers, hw = w * i / tiers / 2;
+    if (i < tiers) c.lineTo(x - hw * 0.45, y);
+    c.lineTo(x - hw, y);
+  }
+  c.closePath();
+  c.fill();
+}
+
+function paintBackground() {
+  const c = bg.getContext('2d');
+  c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const r = rng(7);
+
+  const sky = c.createLinearGradient(0, 0, 0, GY);
+  sky.addColorStop(0, '#121a26');
+  sky.addColorStop(0.5, '#2a2e3b');
+  sky.addColorStop(0.82, '#6b4a33');
+  sky.addColorStop(1, '#b97d40');
+  c.fillStyle = sky;
+  c.fillRect(0, 0, W, GY);
+
+  const glow = c.createRadialGradient(360, GY, 10, 360, GY, 420);
+  glow.addColorStop(0, 'rgba(240,170,90,.35)');
+  glow.addColorStop(1, 'rgba(240,170,90,0)');
+  c.fillStyle = glow;
+  c.fillRect(0, 0, W, GY);
+
+  for (let i = 0; i < 46; i++) {
+    const x = r() * W, y = r() * GY * 0.45, s = r() < 0.15 ? 1.6 : 1;
+    c.fillStyle = `rgba(255,250,235,${0.2 + 0.5 * (1 - y / (GY * 0.45))})`;
+    c.fillRect(x, y, s, s);
+  }
+
+  const mx = 680, my = 74;
+  const halo = c.createRadialGradient(mx, my, 4, mx, my, 70);
+  halo.addColorStop(0, 'rgba(250,240,215,.28)');
+  halo.addColorStop(1, 'rgba(250,240,215,0)');
+  c.fillStyle = halo;
+  c.fillRect(mx - 70, my - 70, 140, 140);
+  c.fillStyle = '#f3ead2';
+  c.beginPath(); c.arc(mx, my, 15, 0, Math.PI * 2); c.fill();
+
+  c.fillStyle = '#26302f';
+  for (let x = -10; x < W + 20; x += 16 + r() * 14) fir(c, x, GY - 4, 60 + r() * 70, 26 + r() * 18);
+  c.fillStyle = '#151b17';
+  for (let x = -20; x < W + 30; x += 34 + r() * 40) {
+    if (x > 180 && x < 520) continue;
+    fir(c, x, GY + 2, 110 + r() * 80, 40 + r() * 24);
+  }
+
+  const ground = c.createLinearGradient(0, GY, 0, H);
+  ground.addColorStop(0, '#34351f');
+  ground.addColorStop(1, '#14140b');
+  c.fillStyle = ground;
+  c.fillRect(0, GY, W, H - GY);
+  c.fillStyle = '#56652f';
+  c.fillRect(0, GY, W, 2);
+  for (let x = 0; x < W; x += 2 + r() * 4) {
+    const h = 2 + r() * 6;
+    c.fillStyle = r() < 0.5 ? '#5d6d33' : '#45522a';
+    c.fillRect(x, GY - h + 1, 1.2, h);
+  }
+
+  c.font = '600 9px Cinzel, Georgia, serif';
+  c.textAlign = 'center';
+  c.fillStyle = 'rgba(240,232,213,.38)';
+  for (let m = 10; SHOULDER.x + m * PX_PER_M < W - 20; m += 10) {
+    const x = SHOULDER.x + m * PX_PER_M;
+    c.fillRect(x - 1, GY + 3, 2, 7);
+    c.fillText(m + ' m', x, GY + 22);
+  }
+}
+
+/* ── Elementy sceny ─────────────────────────────── */
+
+function label(text, x, y, align, color, size = 10, weight = 600, track = '0px') {
+  ctx.font = `${weight} ${size}px Cinzel, Georgia, serif`;
+  ctx.textAlign = align;
+  ctx.fillStyle = color;
+  if ('letterSpacing' in ctx) ctx.letterSpacing = track;
+  ctx.fillText(text, x, y);
+  if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+}
+
+function drawPennant() {
+  const px = 430, top = GY - 78;
+  ctx.strokeStyle = '#5b4026';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(px, GY + 1); ctx.lineTo(px, top - 2); ctx.stroke();
+  const s = wind / WIND_MAX, dir = s < 0 ? -1 : 1;
+  const flutter = calm ? 0 : Math.sin(tick * 0.18) * 0.07 * (0.4 + Math.abs(s));
+  const phi = Math.min(1.25, (1 - Math.abs(s)) * 1.3) + flutter;
+  ctx.fillStyle = '#b5432e';
+  ctx.beginPath();
+  ctx.moveTo(px, top);
+  ctx.lineTo(px + dir * 30 * Math.cos(phi), top + 4 + 30 * Math.sin(phi));
+  ctx.lineTo(px, top + 10);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawTarget(t) {
+  ctx.save();
+  if (t.total && !calm) ctx.globalAlpha = Math.min(1, (t.total - t.left) / 10);
+  drawTargetBody(t);
+  ctx.restore();
+  if (t.total && !t.hit && phase !== 'over') {
+    const frac = t.left / t.total, urgent = t.left < t.total / 3, w = 60, y = t.y - t.r - 34;
+    ctx.fillStyle = 'rgba(240,232,213,.15)';
+    ctx.fillRect(t.x + 4 - w / 2, y, w, 4);
+    ctx.fillStyle = urgent ? MISS : '#8db86a';
+    ctx.fillRect(t.x + 4 - w / 2, y, w * frac, 4);
+    label((t.left / 60).toFixed(1).replace('.', ',') + ' s', t.x + 4, y - 6, 'center', urgent ? MISS : 'rgba(240,232,213,.7)', 10, 600, '1px');
+  }
+}
+
+function drawTargetBody(t) {
+  const rx = t.r * 0.3;
+  const yb = (t.y + t.r + GY) / 2, f = (yb - t.y) / (GY - t.y);
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = '#6b4a2a';
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(t.x + 4, t.y); ctx.lineTo(t.x - 16, GY + 1);
+  ctx.moveTo(t.x + 8, t.y); ctx.lineTo(t.x + 30, GY + 1);
+  ctx.stroke();
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(t.x + 4 - 20 * f, yb); ctx.lineTo(t.x + 8 + 22 * f, yb); ctx.stroke();
+
+  ctx.fillStyle = '#8d6e34';
+  ctx.beginPath(); ctx.ellipse(t.x + 8, t.y, rx, t.r, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillRect(t.x, t.y - t.r, 8, t.r * 2);
+
+  for (const ring of RINGS) {
+    ctx.beginPath();
+    ctx.ellipse(t.x, t.y, rx * ring.f, t.r * ring.f, 0, 0, Math.PI * 2);
+    ctx.fillStyle = ring.fill;
+    ctx.fill();
+    ctx.strokeStyle = ring.edge;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+  label(`${Math.round((t.x - SHOULDER.x) / PX_PER_M)} m`, t.x + 4, t.y - t.r - 12, 'center', 'rgba(240,232,213,.6)', 10, 600, '1px');
+}
+
+function drawArrowShape(buried) {
+  const L = ARROW_LEN;
+  ctx.lineCap = 'butt';
+  ctx.strokeStyle = '#c9a063';
+  ctx.lineWidth = 1.8;
+  ctx.beginPath(); ctx.moveTo(-L, 0); ctx.lineTo(buried ? 0 : -6, 0); ctx.stroke();
+  if (!buried) {
+    ctx.fillStyle = '#d9dde0';
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(-8, -3); ctx.lineTo(-6.5, 0); ctx.lineTo(-8, 3); ctx.closePath(); ctx.fill();
+  }
+  ctx.fillStyle = '#8db86a';
+  for (const s of [-1, 1]) {
+    ctx.beginPath();
+    ctx.moveTo(-L + 13, 0); ctx.lineTo(-L + 2, 4.5 * s); ctx.lineTo(-L - 1, 4.5 * s); ctx.lineTo(-L + 1, 0);
+    ctx.closePath(); ctx.fill();
+  }
+  if (level === 4) drawFlame(buried ? -3 : -1, 0, buried ? 0.7 : 1);
+}
+
+function drawFlame(x, y, s) {
+  const f = calm ? 0 : Math.sin(tick * 0.9 + x * 3) * 0.2 + Math.sin(tick * 1.7) * 0.1;
+  ctx.save();
+  ctx.shadowColor = 'rgba(255,140,40,.9)';
+  ctx.shadowBlur = 10 * s;
+  ctx.fillStyle = 'rgba(255,120,30,.9)';
+  ctx.beginPath(); ctx.ellipse(x - 6 * s, y, 9 * s * (1 + f), 3.6 * s, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = 'rgba(255,225,130,.95)';
+  ctx.beginPath(); ctx.ellipse(x - 4 * s, y, 4.5 * s, 1.8 * s, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+
+function bowGeom(pull) {
+  const R = 28 - pull * 6, th = 0.95 + pull * 0.25, cx = ARM - R;
+  const tipX = cx + R * Math.cos(th), tipY = R * Math.sin(th);
+  return { R, th, cx, tipX, tipY, nockX: tipX - pull * DRAW };
+}
+
+function drawArcher(ang, pull, nocked) {
+  ctx.save();
+  ctx.translate(ARCHER_X, GY);
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  ctx.save();
+  ctx.translate(-8, -60);
+  ctx.rotate(-0.38);
+  ctx.fillStyle = '#5c3b1f';
+  ctx.fillRect(-4, -14, 8, 28);
+  ctx.fillStyle = '#8db86a';
+  for (const dx of [-2.5, 0, 2.5]) ctx.fillRect(dx - 1, -21, 2, 7);
+  ctx.restore();
+
+  ctx.strokeStyle = '#2f2b21';
+  ctx.lineWidth = 5;
+  ctx.beginPath(); ctx.moveTo(-2, -30); ctx.lineTo(-8, -2); ctx.moveTo(3, -30); ctx.lineTo(9, -2); ctx.stroke();
+  ctx.fillStyle = '#3d2b19';
+  ctx.fillRect(-12, -4, 9, 4);
+  ctx.fillRect(6, -4, 9, 4);
+
+  ctx.fillStyle = '#566349';
+  ctx.beginPath();
+  ctx.moveTo(-2, -73); ctx.quadraticCurveTo(-19, -44, -18, -20);
+  ctx.lineTo(13, -22); ctx.quadraticCurveTo(12, -50, 8, -72);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle = 'rgba(0,0,0,.2)';
+  ctx.beginPath();
+  ctx.moveTo(-2, -73); ctx.quadraticCurveTo(-19, -44, -18, -20);
+  ctx.lineTo(-9, -21); ctx.quadraticCurveTo(-11, -46, -2, -73);
+  ctx.closePath(); ctx.fill();
+
+  ctx.fillStyle = '#4a5640';
+  ctx.beginPath(); ctx.arc(2, -81, 9.5, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-5, -88); ctx.lineTo(-15, -79); ctx.lineTo(-6, -74); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = SKIN;
+  ctx.beginPath(); ctx.arc(6.5, -79.5, 5.5, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = 'rgba(0,0,0,.25)';
+  ctx.beginPath(); ctx.arc(6.5, -79.5, 5.5, Math.PI * 1.05, Math.PI * 1.75); ctx.lineTo(6.5, -79.5); ctx.closePath(); ctx.fill();
+
+  ctx.translate(3, -62);
+  ctx.rotate(ang);
+  const g = bowGeom(pull);
+  ctx.strokeStyle = SLEEVE;
+  ctx.lineWidth = 4.5;
+  ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(ARM - 3, 0); ctx.stroke();
+  ctx.strokeStyle = '#7a4a20';
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(g.cx, 0, g.R, -g.th, g.th); ctx.stroke();
+  ctx.strokeStyle = 'rgba(240,232,213,.85)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(g.tipX, -g.tipY); ctx.lineTo(g.nockX, 0); ctx.lineTo(g.tipX, g.tipY); ctx.stroke();
+  if (nocked) {
+    ctx.save();
+    ctx.translate(g.nockX + ARROW_LEN, 0);
+    drawArrowShape(false);
+    ctx.restore();
+  }
+  ctx.fillStyle = SKIN;
+  ctx.beginPath(); ctx.arc(ARM, 0, 2.8, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = SLEEVE;
+  ctx.lineWidth = 4.5;
+  ctx.beginPath(); ctx.moveTo(0, 1); ctx.lineTo(Math.min(g.nockX, 2) - 8 * pull, 3 - 5 * pull); ctx.lineTo(g.nockX - 1, 0.5); ctx.stroke();
+  ctx.fillStyle = SKIN;
+  ctx.beginPath(); ctx.arc(g.nockX, 0.5, 2.6, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+
+function drawArrow(a) {
+  const tr = a.trail;
+  if (tr.length > 2) {
+    ctx.strokeStyle = level === 4 ? 'rgba(255,150,60,.3)' : 'rgba(240,232,213,.16)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(tr[0], tr[1]);
+    for (let i = 2; i < tr.length; i += 2) ctx.lineTo(tr[i], tr[i + 1]);
+    ctx.lineTo(a.x, a.y);
+    ctx.stroke();
+  }
+  ctx.save();
+  ctx.translate(a.x, a.y);
+  ctx.rotate(Math.atan2(a.vy, a.vx));
+  drawArrowShape(a.stuck);
+  ctx.restore();
+}
+
+function drawPreview(ang, pull) {
+  const reach = bowGeom(pull).nockX + ARROW_LEN;
+  let x = SHOULDER.x + Math.cos(ang) * reach, y = SHOULDER.y + Math.sin(ang) * reach;
+  const vx = Math.cos(ang) * pull * MAX_SPEED;
+  let vy = Math.sin(ang) * pull * MAX_SPEED;
+  // Każdy kolejny poziom skraca celownik o połowę.
+  const steps = Math.round(PREVIEW_STEPS / 2 ** (tier - 1));
+  for (let i = 1; i <= steps; i++) {
+    vy += GRAV; x += vx; y += vy;
+    if (y > GY) break;
+    if (i % 2 === 0) {
+      ctx.fillStyle = `rgba(190,226,150,${0.95 - i * 0.026})`;
+      ctx.beginPath(); ctx.arc(x, y, 2.4, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+}
+
+function drawPower(pull) {
+  const x = ARCHER_X - 34, y = GY + 26, w = 68;
+  label('NACIĄG', ARCHER_X, GY + 19, 'center', DIM, 9, 600, '2px');
+  ctx.fillStyle = 'rgba(240,232,213,.12)';
+  ctx.fillRect(x, y, w, 4);
+  ctx.fillStyle = pull > 0.92 ? '#e0a050' : '#8db86a';
+  ctx.fillRect(x, y, w * pull, 4);
+}
+
+function drawFx() {
+  if (pulse) {
+    const p = pulse.t / 30;
+    ctx.strokeStyle = `rgba(255,226,140,${1 - p})`;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.ellipse(pulse.x, pulse.y, 4 + p * 10, 6 + p * 26, 0, 0, Math.PI * 2); ctx.stroke();
+  }
+  if (popup) {
+    const hit = popup.pts > 0;
+    const text = popup.text || (hit ? '+' + popup.pts : 'Pudło');
+    const x = Math.max(50, Math.min(W - 50, popup.x)), y = popup.y - popup.t / 75 * 24;
+    ctx.save();
+    ctx.globalAlpha = popup.t < 50 ? 1 : Math.max(0, 1 - (popup.t - 50) / 25);
+    ctx.font = `800 ${hit ? 26 : 20}px Cinzel, Georgia, serif`;
+    ctx.textAlign = 'center';
+    ctx.lineWidth = 4;
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = 'rgba(10,8,4,.85)';
+    ctx.fillStyle = hit ? (popup.pts === 10 ? GOLD : INK) : MISS;
+    ctx.strokeText(text, x, y);
+    ctx.fillText(text, x, y);
+    ctx.restore();
+  }
+}
+
+function drawHud() {
+  const k4 = level === 4, k5 = level === 5, n = k4 ? FIRE_ARROWS : k5 ? RIDER_ARROWS : SHOTS;
+  label(k4 ? 'KALKARY' : 'WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
+  label(String(score), 20, 60, 'left', score < 0 ? MISS : INK, 30, 800);
+  for (let i = 0; i < (k4 ? KALKARS : n); i++) {
+    const x = 20 + i * 24;
+    const v = k4 ? (kalStatus[i] ? (kalStatus[i] === 'dead' ? 1 : 0) : undefined) : shots[i];
+    ctx.fillStyle = 'rgba(240,232,213,.08)';
+    ctx.fillRect(x, 70, 20, 16);
+    if (v !== undefined) label(String(v), x + 10, 82, 'center', v ? (v >= 10 || k4 ? GOLD : INK) : MISS, 10, 600);
+  }
+
+  const cx = W / 2, lvl = Math.abs(windLevel);
+  label('WIATR', cx, 28, 'center', DIM, 10, 600, '2px');
+  if (lvl) {
+    const len = 14 + lvl * 5, d = windLevel > 0 ? 1 : -1, y = 46;
+    ctx.strokeStyle = ctx.fillStyle = lvl >= 7 ? '#e0a050' : INK;
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx - d * len / 2, y); ctx.lineTo(cx + d * (len / 2 - 6), y); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx + d * len / 2, y); ctx.lineTo(cx + d * (len / 2 - 8), y - 4.5); ctx.lineTo(cx + d * (len / 2 - 8), y + 4.5);
+    ctx.closePath(); ctx.fill();
+  }
+  label(lvl ? `${lvl} / 10` : 'cisza', cx, 70, 'center', INK, 12, 600);
+  label(progressLabel(), cx, 90, 'center', GOLD, 9, 600, '2px');
+
+  label(k4 ? 'PŁONĄCE STRZAŁY' : 'STRZAŁY', W - 20, 28, 'right', DIM, 10, 600, '2px');
+  const left = n - shots.length - (phase === 'flight' ? 1 : 0);
+  for (let i = 0; i < n; i++) {
+    const x = W - 24 - i * 13, on = i < left, off = 'rgba(240,232,213,.15)';
+    ctx.strokeStyle = on ? '#c9a063' : off;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(x, 40); ctx.lineTo(x, 64); ctx.stroke();
+    ctx.fillStyle = on ? '#8db86a' : off;
+    ctx.fillRect(x - 2, 58, 4, 7);
+    ctx.fillStyle = on ? '#d9dde0' : off;
+    ctx.beginPath(); ctx.moveTo(x, 36); ctx.lineTo(x - 3, 42); ctx.lineTo(x + 3, 42); ctx.closePath(); ctx.fill();
+    if (k4 && on) { ctx.save(); ctx.translate(x, 37); ctx.rotate(Math.PI / 2); drawFlame(0, 0, 0.7); ctx.restore(); }
+  }
+  label(`REKORD ${k4 ? best4 : k5 ? best5 : level === 3 ? best3 : best}`, W - 20, 84, 'right', DIM, 10, 600, '2px');
+  if (level >= 3) label(['PLANSZA 3 · ZNIKAJĄCE TARCZE', 'PLANSZA 4 · KALKARY', 'PLANSZA 5 · TEMUDŻEIN'][level - 3], 20, 106, 'left', DIM, 9, 600, '2px');
+}
+
+function progressLabel() {
+  return `${playerName ? playerName.toUpperCase() + ' · ' : ''}POZIOM ${tier} · PLANSZA ${level}`;
+}
+
+/* ── Poziom 2: noże ─────────────────────────────── */
+
+function drawShield(s) {
+  const age = s.total - s.left;
+  const grow = calm ? 1 : Math.min(1, age / 8);
+  const r = s.r * grow;
+  ctx.save();
+  if (s.gone) ctx.globalAlpha = Math.max(0, s.fade / 20);
+  ctx.fillStyle = 'rgba(0,0,0,.35)';
+  ctx.beginPath(); ctx.arc(s.x + 4, s.y + 5, r + 6, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#6b4a2a';
+  ctx.beginPath(); ctx.arc(s.x, s.y, r + 6, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#3d2814';
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+  for (const ring of RINGS) {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, r * ring.f, 0, Math.PI * 2);
+    ctx.fillStyle = ring.fill;
+    ctx.fill();
+    ctx.strokeStyle = ring.edge;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+  if (!s.gone && !s.hit) {
+    const frac = s.left / s.total, urgent = s.left < s.total / 3;
+    ctx.strokeStyle = 'rgba(240,232,213,.15)';
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(s.x, s.y, r + 12, 0, Math.PI * 2); ctx.stroke();
+    ctx.strokeStyle = urgent ? MISS : '#8db86a';
+    ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.arc(s.x, s.y, r + 12, -Math.PI / 2, -Math.PI / 2 + frac * Math.PI * 2); ctx.stroke();
+    label((s.left / 60).toFixed(1).replace('.', ',') + ' s', s.x, s.y - r - 22, 'center', urgent ? MISS : 'rgba(240,232,213,.7)', 10, 600, '1px');
+  }
+  ctx.restore();
+}
+
+function drawKnifeShape(stuck) {
+  ctx.fillStyle = '#d9dde0';
+  ctx.beginPath();
+  if (stuck) { ctx.moveTo(0, -2.5); ctx.lineTo(-4, -2.5); ctx.lineTo(-4, 2.5); ctx.lineTo(0, 2.5); }
+  else { ctx.moveTo(14, 0); ctx.lineTo(-2, -3); ctx.lineTo(-2, 3); }
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle = '#8a7a5a';
+  ctx.fillRect(-6, -4.5, 2.5, 9);
+  ctx.fillStyle = '#5c3b1f';
+  ctx.fillRect(-18, -2.5, 12, 5);
+  ctx.fillStyle = '#3d2814';
+  ctx.fillRect(-19.5, -3, 2, 6);
+}
+
+function drawKnife(k) {
+  ctx.save();
+  ctx.translate(k.x, k.y);
+  ctx.rotate(k.stuck ? k.dir : k.spin);
+  drawKnifeShape(k.stuck);
+  ctx.restore();
+}
+
+function drawHudKnives() {
+  label('WYNIK', 20, 28, 'left', DIM, 10, 600, '2px');
+  label(String(score), 20, 60, 'left', INK, 30, 800);
+  for (let i = 0; i < KNIVES; i++) {
+    const x = 20 + i * 24, v = shots[i];
+    ctx.fillStyle = 'rgba(240,232,213,.08)';
+    ctx.fillRect(x, 70, 20, 16);
+    if (v !== undefined) label(String(v), x + 10, 82, 'center', v ? (v === 10 ? GOLD : INK) : MISS, 10, 600);
+  }
+
+  label('PLANSZA 2', W / 2, 28, 'center', DIM, 10, 600, '2px');
+  label('Rzut nożem', W / 2, 52, 'center', INK, 14, 600, '1px');
+  label(progressLabel(), W / 2, 72, 'center', GOLD, 9, 600, '2px');
+
+  label('NOŻE', W - 20, 28, 'right', DIM, 10, 600, '2px');
+  const left = KNIVES - shots.length - (phase === 'kflight' ? 1 : 0);
+  for (let i = 0; i < KNIVES; i++) {
+    ctx.save();
+    ctx.translate(W - 26 - i * 16, 50);
+    ctx.rotate(-Math.PI / 2);
+    ctx.globalAlpha = i < left ? 1 : 0.18;
+    drawKnifeShape(false);
+    ctx.restore();
+  }
+  label(`REKORD ${bestK}`, W - 20, 84, 'right', DIM, 10, 600, '2px');
+}
+
+function knifeRank(s) {
+  if (s >= 26) return ['Mistrz saksy', 'Rzucasz jak Halt w najlepszych latach.', GOLD];
+  if (s >= 16) return ['Pewna ręka', 'Tarcza ledwie zdążyła się pokazać.', '#d9dee3'];
+  if (s >= 6) return ['Uczeń noża', 'Jeszcze kilka wieczorów ćwiczeń z saksą.', '#8db86a'];
+  return ['Nowicjusz', 'Tarcza była szybsza od ciebie.', '#9c8c6e'];
+}
+
+function rank(s) {
+  if (s >= 44) return ['Srebrny liść dębu', 'Strzelasz jak pełnoprawny Zwiadowca.', '#d9dee3'];
+  if (s >= 30) return ['Brązowy liść dębu', 'Halt przyjąłby cię na ucznia.', '#d08c4a'];
+  if (s >= 16) return ['Kandydat do Korpusu', 'Jeszcze kilka sezonów ćwiczeń w Redmont.', '#8db86a'];
+  return ['Nowicjusz', 'Halt kazałby ci strzelać do zmroku.', '#9c8c6e'];
+}
+
+function lvl3Rank(s) {
+  if (s >= 40) return ['Cień Zwiadowcy', 'Tarcza nie zdążyła mrugnąć, a już miała strzałę.', GOLD];
+  if (s >= 28) return ['Bystre oko', 'Halt pokiwałby głową z uznaniem.', '#d9dee3'];
+  if (s >= 14) return ['Czujny uczeń', 'Szybciej napinaj łuk, tarcza nie poczeka.', '#8db86a'];
+  return ['Nowicjusz', 'Tarcze znikały szybciej, niż sięgałeś po strzałę.', '#9c8c6e'];
+}
+
+function kalkarRank(s) {
+  if (s >= 2) return ['Pogromca kalkarów', 'Oba kalkary spłonęły. Morgarath stracił swoich łowców.', GOLD];
+  if (s >= 1) return ['Płonąca strzała', 'Jeden kalkar spłonął, drugi zniknął w ciemności.', '#e0a050'];
+  return ['Ścigany', 'Kalkary przedarły się przez skały. Uciekaj!', MISS];
+}
+
+/* ── Poziom 4: kalkary ──────────────────────────── */
+
+function drawRock(r) {
+  const g = ctx.createLinearGradient(0, GY - ROCK_RY, 0, GY);
+  g.addColorStop(0, '#5d605c');
+  g.addColorStop(1, '#232523');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  for (let i = 0; i <= 12; i++) {
+    const a = Math.PI + i / 12 * Math.PI, k = 1 + r.b[i];
+    const px = r.x + Math.cos(a) * ROCK_RX * k, py = GY + 2 + Math.sin(a) * ROCK_RY * k;
+    if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(0,0,0,.4)';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.moveTo(r.x - 12, GY - 64); ctx.lineTo(r.x - 3, GY - 42); ctx.lineTo(r.x - 9, GY - 20);
+  ctx.moveTo(r.x + 18, GY - 50); ctx.lineTo(r.x + 26, GY - 30);
+  ctx.stroke();
+  ctx.fillStyle = '#3e4a2a';
+  ctx.beginPath(); ctx.ellipse(r.x, GY, ROCK_RX * 0.95, 7, 0, Math.PI, Math.PI * 2); ctx.fill();
+}
+
+function inRock(r, x, y) {
+  if (y > GY) return false;
+  const dx = (x - r.x) / ROCK_RX, dy = (GY - y) / ROCK_RY;
+  return dx * dx + dy * dy <= 1;
+}
+
+function hitKalkar(k, x, y) {
+  const by = GY - k.lift;
+  const dx = (x - (k.x - 6)) / 18, dy = (y - (by - 42)) / 40;
+  if (dx * dx + dy * dy <= 1) return true;
+  return Math.hypot(x - (k.x - 15), y - (by - 66)) <= 11;
+}
+
+function flameTongue(x, y, h, w) {
+  ctx.fillStyle = 'rgba(255,110,30,.85)';
+  ctx.beginPath();
+  ctx.moveTo(x - w, y);
+  ctx.quadraticCurveTo(x - w * 0.7, y - h * 0.55, x, y - h);
+  ctx.quadraticCurveTo(x + w * 0.7, y - h * 0.55, x + w, y);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle = 'rgba(255,220,120,.9)';
+  ctx.beginPath();
+  ctx.moveTo(x - w * 0.45, y);
+  ctx.quadraticCurveTo(x - w * 0.3, y - h * 0.35, x, y - h * 0.55);
+  ctx.quadraticCurveTo(x + w * 0.3, y - h * 0.35, x + w * 0.45, y);
+  ctx.closePath(); ctx.fill();
+}
+
+function shaggy(cx, cy, rx, ry, rot, n) {
+  ctx.beginPath();
+  for (let i = 0; i < n; i++) {
+    const a = i / n * Math.PI * 2, s = i % 2 ? 1 : 1.18;
+    const px = Math.cos(a) * rx * s, py = Math.sin(a) * ry * s;
+    const X = cx + px * Math.cos(rot) - py * Math.sin(rot), Y = cy + px * Math.sin(rot) + py * Math.cos(rot);
+    if (i) ctx.lineTo(X, Y); else ctx.moveTo(X, Y);
+  }
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawKalkar(k) {
+  const burning = k.mode === 'burn', b = burning ? k.burn : 0;
+  const run = k.mode === 'move' && k.lift === 0 && !calm ? Math.sin(k.t * 0.5) : 0;
+  const tuck = k.lift > 0 ? 1 : 0;
+  const fur = burning ? '#1a120c' : '#2b2117', fur2 = burning ? '#110b07' : '#1e1710';
+  ctx.save();
+  ctx.translate(k.x, GY - k.lift);
+  if (burning) {
+    ctx.globalAlpha = b > 75 ? Math.max(0, 1 - (b - 75) / 25) : 1;
+    ctx.rotate(Math.min(1, b / 45) * 1.35);
+  }
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = fur2;
+  ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.moveTo(-2, -54); ctx.lineTo(-18 + run * 8 - tuck * 10, -20 - tuck * 18); ctx.stroke();
+  ctx.strokeStyle = fur;
+  ctx.lineWidth = 7;
+  ctx.beginPath();
+  ctx.moveTo(-4, -30); ctx.lineTo(-10 - run * 6 + tuck * 4, -tuck * 10);
+  ctx.moveTo(6, -30); ctx.lineTo(10 + run * 6 - tuck * 2, -tuck * 8);
+  ctx.stroke();
+  ctx.fillStyle = fur;
+  shaggy(0, -44, 17, 24, -0.35, 18);
+  shaggy(-15, -66, 9, 9, 0, 12);
+  ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.moveTo(-8, -54); ctx.lineTo(-24 - run * 8 - tuck * 8, -22 - tuck * 22); ctx.stroke();
+  const hx = -24 - run * 8 - tuck * 8, hy = -22 - tuck * 22;
+  ctx.strokeStyle = '#c9c0a8';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  for (const d of [-3, 0, 3]) { ctx.moveTo(hx - 2, hy + d); ctx.lineTo(hx - 8, hy + d + 3); }
+  ctx.stroke();
+  if (!burning || b < 40) {
+    ctx.shadowColor = '#ff4a1a';
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = '#ff6a2a';
+    ctx.beginPath(); ctx.arc(-20, -68, 1.8, 0, Math.PI * 2); ctx.arc(-14, -69, 1.8, 0, Math.PI * 2); ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  if (burning) {
+    const grow = Math.min(1, b / 12);
+    for (let j = 0; j < 6; j++) {
+      const h = (calm ? 18 : 18 + Math.sin(tick * 0.7 + j * 1.7) * 6) * grow;
+      flameTongue(-16 + j * 6, -22 - (j % 3) * 14, h, 6);
+    }
+  }
+  ctx.restore();
+}
+
+/* ── Plansza 5: Temudżein ───────────────────────── */
+
+function riderRank(s) {
+  if (rider && rider.dead && s >= KILL_PTS) return ['Pogromca Temudżeinów', 'Jeden celny strzał i jeździec spadł z konia, a ty bez draśnięcia.', GOLD];
+  if (rider && rider.dead) return ['Ranny zwycięzca', 'Temudżein leży w trawie, ale jego strzały cię dosięgły.', '#e0a050'];
+  return ['Bez strzał', 'Temudżein zawrócił konia i zniknął w stepie.', MISS];
+}
+
+// Punkty postaci liczone od pozycji konia; jeździec patrzy w lewo, na Willa.
+function riderGeo(r) {
+  const x = r.x, y = GY + r.bob, p = r.pull;
+  return {
+    hip: { x: x + 2, y: y - 68 },
+    head: { x: x - 3, y: y - 108, r: 8 },
+    shoulder: { x: x - 1, y: y - 95 },
+    bowHand: { x: x - 27, y: y - 96 },
+    elbow: { x: x + 9, y: y - 90 },
+    drawHand: { x: x - 24 + 20 * p, y: y - 96 },
+    shield: { x: x - 10, y: y - 77, r: 12 },
+    torso: { x: x, y: y - 82, rx: 9, ry: 15 },
+  };
+}
+
+function segDist(px, py, a, b) {
+  const dx = b.x - a.x, dy = b.y - a.y, l2 = dx * dx + dy * dy;
+  const t = l2 ? Math.max(0, Math.min(1, ((px - a.x) * dx + (py - a.y) * dy) / l2)) : 0;
+  return Math.hypot(px - a.x - t * dx, py - a.y - t * dy);
+}
+
+function inEllipse(px, py, cx, cy, rx, ry) {
+  const dx = (px - cx) / rx, dy = (py - cy) / ry;
+  return dx * dx + dy * dy <= 1;
+}
+
+// Co trafiła strzała w punkcie (px, py). Zabija tylko głowa i odsłonięte ramiona.
+function classifyHit(r, px, py) {
+  const g = riderGeo(r), x = r.x, y = GY + r.bob;
+  if (Math.hypot(px - g.head.x, py - g.head.y) <= g.head.r) return 'head';
+  if (segDist(px, py, g.shoulder, g.bowHand) <= 4.5 || segDist(px, py, g.shoulder, g.elbow) <= 4.5 ||
+      segDist(px, py, g.elbow, g.drawHand) <= 4.5) return 'arm';
+  if (Math.hypot(px - g.shield.x, py - g.shield.y) <= g.shield.r + 1) return 'shield';
+  if (inEllipse(px, py, g.torso.x, g.torso.y, g.torso.rx, g.torso.ry)) return 'armor';
+  if (inEllipse(px, py, x, y - 52, 42, 19) || segDist(px, py, { x: x - 26, y: y - 60 }, { x: x - 47, y: y - 84 }) <= 9 ||
+      Math.hypot(px - (x - 56), py - (y - 80)) <= 10 || (px > x - 36 && px < x + 36 && py > y - 42 && py <= GY)) return 'horse';
+  return null;
+}
+
+const HIT_TEXT = {
+  head: 'Strzał w głowę!', arm: 'Trafiony w ramię!',
+  shield: 'W tarczę', armor: 'W zbroję', horse: 'W pancerz konia',
+};
+
+function riderArrowHit(a, px, py) {
+  const r = rider;
+  if (!r || r.dead) return false;
+  // Sprawdzamy co 3 px, żeby szybka strzała nie przeskoczyła cienkiego ramienia.
+  const n = Math.max(1, Math.ceil(Math.hypot(a.x - px, a.y - py) / 3));
+  for (let i = 1; i <= n; i++) {
+    const x = px + (a.x - px) * i / n, y = py + (a.y - py) * i / n, what = classifyHit(r, x, y);
+    if (!what) continue;
+    const kill = what === 'head' || what === 'arm';
+    land(x, y, kill ? KILL_PTS : 0);
+    popup.text = kill ? `${HIT_TEXT[what]} +${KILL_PTS}` : HIT_TEXT[what];
+    arrow.inKal = true;
+    if (kill) { r.dead = true; r.fall = 0; r.pull = 0; }
+    r.stuck.push({ dx: x - r.x, dy: y - r.bob, ang: Math.atan2(a.vy, a.vx), horse: what === 'horse' });
+    return true;
+  }
+  return false;
+}
+
+function startLevel5() {
+  level = 5;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  kal = null;
+  score = 0;
+  shots = [];
+  newRecord = false;
+  windLevel = Math.floor(Math.random() * 4) * (Math.random() < 0.5 ? -1 : 1);
+  wind = windLevel / 10 * WIND_MAX;
+  enemyArrows = [];
+  hurt = 0;
+  rider = { x: W + 90, goal: 640, t: 0, bob: 0, timer: ENEMY_EVERY, pull: 0, dead: false, fall: 0, stuck: [] };
+  phase = 'ready';
+}
+
+function enemyShoot() {
+  const g = riderGeo(rider), sx = g.bowHand.x - 8, sy = g.bowHand.y;
+  const hit = Math.random() < ENEMY_HIT;
+  const tx = hit ? ARCHER_X + 2 : ARCHER_X + (Math.random() < 0.5 ? -1 : 1) * (45 + Math.random() * 50);
+  const ty = hit ? GY - 56 : GY + 2;
+  const T = Math.round(Math.max(45, Math.hypot(tx - sx, ty - sy) / 11));
+  // Prędkość dobrana tak, żeby po T klatkach (z grawitacją) strzała była dokładnie w celu.
+  enemyArrows.push({
+    x: sx, y: sy, vx: (tx - sx) / T, vy: (ty - sy - GRAV * T * (T + 1) / 2) / T,
+    t: 0, T, hit, stuck: false, life: 90, trail: [],
+  });
+}
+
+function stepEnemyArrows() {
+  for (let i = enemyArrows.length - 1; i >= 0; i--) {
+    const e = enemyArrows[i];
+    if (e.stuck) { if (--e.life <= 0) enemyArrows.splice(i, 1); continue; }
+    e.trail.push(e.x, e.y);
+    if (e.trail.length > 24) e.trail.splice(0, 2);
+    e.vy += GRAV; e.x += e.vx; e.y += e.vy; e.t++;
+    if (e.hit && e.t >= e.T) {
+      e.stuck = true;
+      e.trail.length = 0;
+      if (phase !== 'over') {
+        score -= ENEMY_DMG;
+        hurt = 30;
+        popup = { x: ARCHER_X + 20, y: GY - 120, pts: -ENEMY_DMG, t: 0, text: `Trafiony! −${ENEMY_DMG}` };
+      }
+    } else if (e.y >= GY) { e.y = GY + 2; e.stuck = true; e.trail.length = 0; }
+    else if (e.x < -60) enemyArrows.splice(i, 1);
+  }
+}
+
+function updateRider() {
+  const r = rider;
+  if (r.dead) { r.fall++; return; }
+  const sp = r.x > 680 ? 2.2 : 0.6, dx = r.goal - r.x;
+  if (Math.abs(dx) <= sp) { r.x = r.goal; r.goal = 540 + Math.random() * 170; }
+  else r.x += Math.sign(dx) * sp;
+  r.t += sp;
+  r.bob = calm ? 0 : -Math.abs(Math.sin(r.t * 0.09)) * 2.5;
+  if (phase === 'over') { r.pull = 0; return; }
+  if (--r.timer <= 0) { enemyShoot(); r.timer = ENEMY_EVERY; }
+  r.pull = Math.max(0, Math.min(1, (45 - r.timer) / 45));
+}
+
+function updateLevel5() {
+  if (hurt > 0) hurt--;
+  updateRider();
+  stepEnemyArrows();
+  if (phase === 'flight') stepArrow();
+  else if (phase === 'landed' && --timer <= 0) finishShot();
+}
+
+function drawHorse(r) {
+  const x = r.x, y = GY + r.bob, moving = !r.dead && !calm;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  // Nogi przednie i tylne, w kłusie na przemian.
+  const legs = [[-25, 0], [-15, Math.PI], [21, Math.PI], [30, 0]];
+  legs.forEach(([lx, ph], i) => {
+    const sw = moving ? Math.sin(r.t * 0.09 + ph) * 0.38 : 0;
+    const top = { x: x + lx, y: y - 42 }, knee = { x: x + lx + Math.sin(sw) * 12, y: y - 22 };
+    const foot = { x: knee.x + Math.sin(sw * (i < 2 ? 1.6 : 0.6)) * 10, y: GY - 2 };
+    ctx.strokeStyle = i === 1 || i === 2 ? '#3a2618' : '#4f3420';
+    ctx.lineWidth = 5.5;
+    ctx.beginPath(); ctx.moveTo(top.x, top.y); ctx.lineTo(knee.x, knee.y); ctx.lineTo(foot.x, foot.y); ctx.stroke();
+    ctx.fillStyle = '#151210';
+    ctx.fillRect(foot.x - 3.5, foot.y - 2, 7, 4);
+  });
+  // Ogon.
+  ctx.strokeStyle = '#1e1610';
+  ctx.lineWidth = 5;
+  ctx.beginPath(); ctx.moveTo(x + 36, y - 62);
+  ctx.quadraticCurveTo(x + 52 + (moving ? Math.sin(r.t * 0.05) * 3 : 0), y - 50, x + 48, y - 30); ctx.stroke();
+  // Tułów, szyja i głowa.
+  ctx.fillStyle = '#5a3a24';
+  ctx.beginPath(); ctx.ellipse(x, y - 54, 38, 16, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#5a3a24';
+  ctx.lineWidth = 17;
+  ctx.beginPath(); ctx.moveTo(x - 24, y - 58); ctx.lineTo(x - 45, y - 82); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(x - 56, y - 79, 12.5, 6.5, 0.55, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#2a1c12';
+  ctx.beginPath(); ctx.moveTo(x - 46, y - 89); ctx.lineTo(x - 43, y - 98); ctx.lineTo(x - 40, y - 88); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = '#111';
+  ctx.beginPath(); ctx.arc(x - 60, y - 81, 1.4, 0, Math.PI * 2); ctx.fill();
+  // Opancerzenie: nagłowie, płyty na szyi i kropierz z łusek na tułowiu.
+  ctx.fillStyle = '#8a9096';
+  ctx.beginPath(); ctx.moveTo(x - 47, y - 88); ctx.lineTo(x - 66, y - 78); ctx.lineTo(x - 63, y - 73); ctx.lineTo(x - 48, y - 80); ctx.closePath(); ctx.fill();
+  for (let i = 0; i < 4; i++) {
+    const t = i / 3, cx = x - 26 - 18 * t, cy = y - 61 - 21 * t;
+    ctx.fillStyle = i % 2 ? '#7d848a' : '#949ba1';
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(-0.85);
+    ctx.fillRect(-5, -9, 10, 18);
+    ctx.restore();
+  }
+  ctx.fillStyle = '#7a2c1f';
+  ctx.beginPath();
+  ctx.moveTo(x - 38, y - 66); ctx.quadraticCurveTo(x, y - 74, x + 38, y - 64);
+  ctx.lineTo(x + 40, y - 38);
+  for (let i = 0; i <= 8; i++) ctx.lineTo(x + 40 - i * 10, y - (i % 2 ? 33 : 38));
+  ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = 'rgba(0,0,0,.35)';
+  ctx.lineWidth = 1;
+  for (let row = 0; row < 4; row++) {
+    const ry = y - 62 + row * 7;
+    ctx.beginPath(); ctx.moveTo(x - 38, ry); ctx.lineTo(x + 39, ry); ctx.stroke();
+    for (let k = 0, cx = x - 36 + (row % 2) * 3; cx < x + 38; cx += 6, k++) {
+      ctx.fillStyle = (k + row) % 2 ? 'rgba(201,160,99,.28)' : 'rgba(0,0,0,.12)';
+      ctx.fillRect(cx, ry + 1, 4, 5);
+    }
+  }
+}
+
+function drawRiderBody(r) {
+  const g = riderGeo(r);
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  // Noga w strzemieniu.
+  ctx.strokeStyle = '#2b2a2e';
+  ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.moveTo(g.hip.x, g.hip.y); ctx.lineTo(g.hip.x - 10, g.hip.y + 12); ctx.lineTo(g.hip.x - 6, g.hip.y + 26); ctx.stroke();
+  ctx.fillStyle = '#1a1714';
+  ctx.fillRect(g.hip.x - 12, g.hip.y + 24, 10, 4);
+  // Tułów w zbroi łuskowej i pas.
+  ctx.fillStyle = '#2f4a6a';
+  ctx.beginPath(); ctx.ellipse(g.torso.x, g.torso.y, g.torso.rx, g.torso.ry, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = 'rgba(200,210,220,.25)';
+  ctx.lineWidth = 1;
+  for (let i = -2; i <= 2; i++) {
+    ctx.beginPath(); ctx.moveTo(g.torso.x - 8, g.torso.y + i * 5); ctx.lineTo(g.torso.x + 8, g.torso.y + i * 5); ctx.stroke();
+  }
+  ctx.fillStyle = '#6b4a2a';
+  ctx.fillRect(g.torso.x - 9, g.torso.y + 8, 18, 3);
+  // Głowa: twarz, hełm z futrzanym otokiem i szpicem, osłona karku.
+  const h = g.head;
+  ctx.fillStyle = '#c08a5a';
+  ctx.beginPath(); ctx.arc(h.x, h.y, 6.5, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#1b1612';
+  ctx.fillRect(h.x - 5, h.y - 1, 2.2, 1.6);
+  ctx.fillStyle = '#8a9096';
+  ctx.beginPath(); ctx.moveTo(h.x - 7, h.y - 3); ctx.quadraticCurveTo(h.x, h.y - 16, h.x + 7, h.y - 3); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = '#8a9096';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(h.x, h.y - 12); ctx.lineTo(h.x + 1, h.y - 19); ctx.stroke();
+  ctx.fillStyle = '#6b5236';
+  ctx.fillRect(h.x - 8, h.y - 5, 16, 3.5);
+  ctx.fillStyle = '#3b3530';
+  ctx.beginPath(); ctx.moveTo(h.x + 2, h.y - 2); ctx.lineTo(h.x + 8, h.y - 2); ctx.lineTo(h.x + 7, h.y + 8); ctx.lineTo(h.x + 2, h.y + 6); ctx.closePath(); ctx.fill();
+  // Ramię naciągające cięciwę.
+  ctx.strokeStyle = '#27405c';
+  ctx.lineWidth = 5;
+  ctx.beginPath(); ctx.moveTo(g.shoulder.x, g.shoulder.y); ctx.lineTo(g.elbow.x, g.elbow.y); ctx.lineTo(g.drawHand.x, g.drawHand.y); ctx.stroke();
+  // Mała okrągła tarcza przed tułowiem.
+  const s = g.shield;
+  ctx.fillStyle = '#3d2814';
+  ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#8a5a2a';
+  ctx.beginPath(); ctx.arc(s.x, s.y, s.r - 2, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#c9a063';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(s.x, s.y, s.r - 5, 0, Math.PI * 2); ctx.stroke();
+  ctx.fillStyle = '#b8b8b0';
+  ctx.beginPath(); ctx.arc(s.x, s.y, 3, 0, Math.PI * 2); ctx.fill();
+  // Ramię z łukiem, wysunięte w stronę Willa.
+  ctx.strokeStyle = '#2f4a6a';
+  ctx.lineWidth = 5;
+  ctx.beginPath(); ctx.moveTo(g.shoulder.x, g.shoulder.y); ctx.lineTo(g.bowHand.x, g.bowHand.y); ctx.stroke();
+  // Łuk refleksyjny, cięciwa i nałożona strzała.
+  const b = g.bowHand, bend = 7 + 4 * r.pull;
+  ctx.strokeStyle = '#4a2c14';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(b.x + 5, b.y - 19); ctx.quadraticCurveTo(b.x - 2, b.y - 16, b.x - bend + 4, b.y - 8);
+  ctx.quadraticCurveTo(b.x - bend, b.y, b.x - bend + 4, b.y + 8);
+  ctx.quadraticCurveTo(b.x - 2, b.y + 16, b.x + 5, b.y + 19);
+  ctx.stroke();
+  ctx.strokeStyle = 'rgba(240,232,213,.75)';
+  ctx.lineWidth = 0.9;
+  ctx.beginPath(); ctx.moveTo(b.x + 5, b.y - 19); ctx.lineTo(g.drawHand.x, g.drawHand.y); ctx.lineTo(b.x + 5, b.y + 19); ctx.stroke();
+  if (!r.dead && phase !== 'over') {
+    ctx.save();
+    ctx.translate(g.drawHand.x - ARROW_LEN, g.drawHand.y);
+    ctx.rotate(Math.PI);
+    drawArrowShape(false);
+    ctx.restore();
+  }
+  ctx.fillStyle = '#c08a5a';
+  ctx.beginPath(); ctx.arc(b.x, b.y, 2.8, 0, Math.PI * 2); ctx.arc(g.drawHand.x, g.drawHand.y, 2.6, 0, Math.PI * 2); ctx.fill();
+}
+
+function drawStuckArrows(r, onHorse) {
+  for (const s of r.stuck) {
+    if (s.horse !== onHorse) continue;
+    ctx.save();
+    ctx.translate(r.x + s.dx, s.dy + r.bob);
+    ctx.rotate(s.ang);
+    drawArrowShape(true);
+    ctx.restore();
+  }
+}
+
+function drawRider(r) {
+  drawHorse(r);
+  drawStuckArrows(r, true);
+  ctx.save();
+  if (r.dead) {
+    // Jeździec spada z konia do tyłu i znika.
+    const u = Math.min(1, r.fall / 40), g = riderGeo(r);
+    if (r.fall > 90) ctx.globalAlpha = Math.max(0, 1 - (r.fall - 90) / 40);
+    ctx.translate(g.hip.x + u * 24, g.hip.y + u * u * 50);
+    ctx.rotate(u * 1.45);
+    ctx.translate(-g.hip.x, -g.hip.y);
+  }
+  if (!r.dead || r.fall < 130) { drawRiderBody(r); drawStuckArrows(r, false); }
+  ctx.restore();
+  if (!r.dead && phase !== 'over') {
+    const g = riderGeo(r), frac = r.timer / ENEMY_EVERY, urgent = r.timer < 90, w = 56, y = g.head.y - 30;
+    ctx.fillStyle = 'rgba(240,232,213,.15)';
+    ctx.fillRect(g.head.x - w / 2, y, w, 4);
+    ctx.fillStyle = urgent ? MISS : '#e0a050';
+    ctx.fillRect(g.head.x - w / 2, y, w * frac, 4);
+    label(`STRZAŁ ZA ${(r.timer / 60).toFixed(1).replace('.', ',')} S`, g.head.x, y - 6, 'center', urgent ? MISS : 'rgba(240,232,213,.7)', 9, 600, '1px');
+  }
+}
+
+function drawEnemyArrows() {
+  for (const e of enemyArrows) {
+    ctx.save();
+    if (e.stuck) ctx.globalAlpha = Math.min(1, e.life / 30);
+    drawArrow(e);
+    ctx.restore();
+  }
+  if (hurt > 0) {
+    ctx.fillStyle = `rgba(224,80,60,${hurt / 30 * 0.45})`;
+    ctx.beginPath(); ctx.ellipse(ARCHER_X, GY - 50, 26, 52, 0, 0, Math.PI * 2); ctx.fill();
+  }
+}
+
+function drawOver() {
+  ctx.fillStyle = 'rgba(8,7,4,.74)';
+  ctx.fillRect(0, 0, W, H);
+  const cx = W / 2, [title, sub, color] = [rank, knifeRank, lvl3Rank, kalkarRank, riderRank][level - 1](score);
+  label(`POZIOM ${tier} · KONIEC PLANSZY ${level}`, cx, 118, 'center', DIM, 11, 600, '3px');
+  label(`SUMA PUNKTÓW ${total}`, cx, 380, 'center', DIM, 10, 600, '2px');
+
+  const big = String(score), small = ` / ${level === 5 ? KILL_PTS : level === 4 ? KALKARS : (level === 2 ? KNIVES : SHOTS) * 10}`;
+  ctx.font = '800 64px Cinzel, Georgia, serif';
+  const w1 = ctx.measureText(big).width;
+  ctx.font = '600 20px Cinzel, Georgia, serif';
+  const w2 = ctx.measureText(small).width;
+  const x0 = cx - (w1 + w2) / 2;
+  label(big, x0, 192, 'left', INK, 64, 800);
+  label(small, x0 + w1, 192, 'left', DIM, 20, 600);
+
+  label(title.toUpperCase(), cx, 236, 'center', color, 18, 600, '2px');
+  ctx.font = 'italic 18px "EB Garamond", Georgia, serif';
+  ctx.fillStyle = 'rgba(240,232,213,.75)';
+  ctx.textAlign = 'center';
+  ctx.fillText(sub, cx, 264);
+  if (level === 1 && unlocked) {
+    label('ŚWIETNA SERIA · PLANSZA 2 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY RZUCAĆ NOŻAMI', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 2 && unlocked) {
+    label('PEWNA RĘKA · PLANSZA 3 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY STRZELAĆ DO ZNIKAJĄCYCH TARCZ', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 3 && unlocked) {
+    label('BYSTRE OKO · PLANSZA 4 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY STAWIĆ CZOŁA KALKAROM', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 4 && unlocked) {
+    label('KALKARY POKONANE · PLANSZA 5 ODBLOKOWANA', cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY ZMIERZYĆ SIĘ Z TEMUDŻEINEM', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (level === 5 && unlocked && tier < MAX_TIER) {
+    label(`TEMUDŻEIN POKONANY · POZIOM ${tier + 1} ODBLOKOWANY`, cx, 302, 'center', GOLD, 12, 600, '3px');
+    label('KLIKNIJ, ABY ZACZĄĆ OD PLANSZY 1 Z CELOWNIKIEM KRÓTSZYM O POŁOWĘ', cx, 340, 'center', INK, 11, 600, '2px');
+    return;
+  }
+  if (unlocked) label(`WSZYSTKIE ${MAX_TIER} POZIOMY UKOŃCZONE · KONIEC GRY`, cx, 302, 'center', GOLD, 12, 600, '3px');
+  else label(newRecord ? 'NOWY REKORD PLANSZY · KONIEC GRY' : 'PLANSZA NIEZALICZONA · KONIEC GRY', cx, 302, 'center', newRecord ? GOLD : MISS, 12, 600, '3px');
+  label('KLIKNIJ, ABY ZOBACZYĆ TABELĘ GRACZY', cx, 340, 'center', INK, 11, 600, '2px');
+}
+
+/* ── Gracz i tabela wyników ─────────────────────── */
+
+function loadResults() {
+  try { const r = JSON.parse(localStorage.getItem(RESULTS_KEY)); return Array.isArray(r) ? r : []; } catch { return []; }
+}
+
+function sortResults(list) {
+  return list.slice().sort((a, b) => b.boards - a.boards || b.points - a.points || a.date.localeCompare(b.date));
+}
+
+// Wywoływane, gdy plansza się kończy: dolicza punkty i sprawdza, czy to koniec gry.
+function finishBoard() {
+  phase = 'over';
+  total += level === 4 ? score * 10 : score;
+  const won = unlocked && level === BOARDS && tier === MAX_TIER;
+  gameOver = !unlocked || won;
+  if (!gameOver) return;
+  lastEntry = {
+    name: playerName, tier, board: level, won,
+    boards: (tier - 1) * BOARDS + level - (unlocked ? 0 : 1),
+    points: total, date: new Date().toISOString(),
+  };
+  const list = loadResults();
+  list.push(lastEntry);
+  try { localStorage.setItem(RESULTS_KEY, JSON.stringify(list)); } catch {}
+}
+
+function progressText(e) {
+  return e.won ? 'Ukończona gra' : `Poziom ${e.tier} · plansza ${e.board}`;
+}
+
+const nameOverlay = document.getElementById('name-overlay');
+const tableOverlay = document.getElementById('table-overlay');
+const nameInput = document.getElementById('name-input');
+
+function showTable() {
+  const list = sortResults(loadResults());
+  const body = document.getElementById('table-body');
+  body.textContent = '';
+  const pos = list.indexOf(list.find(e => e.date === lastEntry.date && e.name === lastEntry.name));
+  const rows = list.slice(0, 10);
+  if (pos >= 10) rows.push(list[pos]);
+  for (const e of rows) {
+    const tr = document.createElement('tr');
+    if (e === list[pos]) tr.className = 'me';
+    for (const [v, num] of [[list.indexOf(e) + 1, true], [e.name, false], [progressText(e), false], [e.points, true]]) {
+      const td = document.createElement('td');
+      td.textContent = v;
+      if (num) td.className = 'num';
+      tr.appendChild(td);
+    }
+    body.appendChild(tr);
+  }
+  document.getElementById('table-title').textContent = lastEntry.won ? 'Gra ukończona!' : 'Koniec gry';
+  document.getElementById('table-sub').textContent =
+    `${lastEntry.name}: ${progressText(lastEntry).toLowerCase()}, ${lastEntry.points} pkt, miejsce ${pos + 1} z ${list.length}.`;
+  tableOverlay.hidden = false;
+}
+
+function askName() {
+  started = false;
+  tableOverlay.hidden = true;
+  nameOverlay.hidden = false;
+  try { nameInput.value = localStorage.getItem(NAME_KEY) || ''; } catch {}
+  nameInput.focus();
+}
+
+document.getElementById('name-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = nameInput.value.trim().slice(0, 16);
+  if (!name) return;
+  try { localStorage.setItem(NAME_KEY, name); } catch {}
+  playerName = name;
+  tier = 1;
+  total = 0;
+  gameOver = false;
+  lastEntry = null;
+  nameOverlay.hidden = true;
+  started = true;
+  newGame();
+});
+document.getElementById('again-btn').addEventListener('click', askName);
+
+/* ── Logika ─────────────────────────────────────── */
+
+function ringPoints(rel) {
+  for (let i = RINGS.length - 1; i >= 0; i--) if (rel <= RINGS[i].f) return RINGS[i].pts;
+  return 0;
+}
+
+function pickWind() {
+  const lvl = shots.length === 0 ? Math.floor(Math.random() * 3) : Math.floor(Math.random() * 11);
+  windLevel = lvl * (Math.random() < 0.5 ? -1 : 1);
+  wind = windLevel / 10 * WIND_MAX;
+}
+
+function nextTarget() {
+  target = { x: 560 + Math.random() * 170, y: GY - 58 - Math.random() * 95, r: 46 };
+  pickWind();
+  arrow = null;
+  phase = 'ready';
+}
+
+/* ── Poziom 3: znikające tarcze ─────────────────── */
+
+function startLevel3() {
+  level = 3;
+  unlocked = false;
+  shield = null;
+  knife = null;
+  score = 0;
+  shots = [];
+  newRecord = false;
+  hideTarget();
+}
+
+function hideTarget() {
+  target = null;
+  arrow = null;
+  pickWind();
+  phase = 'await';
+  timer = 35 + Math.floor(Math.random() * 45);
+}
+
+function showTarget() {
+  target = {
+    x: 360 + Math.random() * 380, y: GY - 58 - Math.random() * 130, r: 46,
+    left: LVL3_SHOW, total: LVL3_SHOW,
+  };
+  phase = 'ready';
+}
+
+function targetTimeUp() {
+  drag = null;
+  shots.push(0);
+  popup = { x: target.x, y: target.y - target.r - 20, pts: 0, t: 0, text: 'Za późno' };
+  target = null;
+  phase = 'landed';
+  timer = 60;
+}
+
+function startLevel4() {
+  level = 4;
+  unlocked = false;
+  target = null;
+  arrow = null;
+  drag = null;
+  score = 0;
+  shots = [];
+  newRecord = false;
+  windLevel = Math.floor(Math.random() * 4) * (Math.random() < 0.5 ? -1 : 1);
+  wind = windLevel / 10 * WIND_MAX;
+  kal = null;
+  kalIndex = 0;
+  kalDelay = 50;
+  kalStatus = [];
+  phase = 'ready';
+}
+
+function spawnKalkar() {
+  // Drugi kalkar skacze szybciej.
+  kal = { i: 0, mode: 'hidden', wait: 30, x: ROCKS[0].x, lift: 0, t: 0, burn: 0, jf: JUMP_FRAMES[Math.min(kalIndex, JUMP_FRAMES.length - 1)] };
+}
+
+function nextKalkar() {
+  kal = null;
+  kalIndex++;
+  kalDelay = 40;
+}
+
+function updateKalkar() {
+  const k = kal;
+  if (!k) {
+    if (kalIndex < KALKARS && --kalDelay <= 0) spawnKalkar();
+    return;
+  }
+  if (k.mode === 'hidden') {
+    if (--k.wait > 0) return;
+    if (k.i >= ROCKS.length - 1) {
+      kalStatus[kalIndex] = 'escaped';
+      popup = { x: k.x, y: GY - ROCK_RY - 24, pts: 0, t: 0, text: 'Przedarł się' };
+      nextKalkar();
+    } else {
+      k.mode = 'move';
+      k.t = 0;
+    }
+  } else if (k.mode === 'move') {
+    const u = ++k.t / k.jf, a = ROCKS[k.i].x, b = ROCKS[k.i + 1].x;
+    k.x = a + (b - a) * u;
+    k.lift = u > 0.2 && u < 0.8 ? Math.sin(Math.PI * (u - 0.2) / 0.6) * JUMP_H : 0;
+    if (k.t >= k.jf) {
+      k.i++;
+      k.mode = 'hidden';
+      k.lift = 0;
+      k.wait = k.i >= ROCKS.length - 1 ? 30 : 45 + Math.floor(Math.random() * 45);
+    }
+  } else if (k.mode === 'burn') {
+    k.lift = Math.max(0, k.lift - 2.5);
+    if (++k.burn > 100) nextKalkar();
+  }
+}
+
+function fireArrowHit(a) {
+  for (const r of ROCKS) {
+    if (inRock(r, a.x, a.y)) { land(a.x, a.y, 0); popup.text = 'W skałę'; return true; }
+  }
+  const k = kal;
+  if (k && k.mode === 'move' && hitKalkar(k, a.x, a.y)) {
+    land(a.x, a.y, 1);
+    popup.text = 'Kalkar płonie!';
+    arrow.inKal = true;
+    k.mode = 'burn';
+    k.burn = 0;
+    kalStatus[kalIndex] = 'dead';
+    return true;
+  }
+  return false;
+}
+
+function endLevel4() {
+  drag = null;
+  for (let i = 0; i < KALKARS; i++) if (!kalStatus[i]) kalStatus[i] = 'escaped';
+  if (kal && kal.mode !== 'burn') kal = null;
+  kalIndex = KALKARS;
+  newRecord = score > best4;
+  if (newRecord) { best4 = score; saveBest(LVL4_BEST_KEY, best4); }
+  unlocked = score >= KALKARS;
+  finishBoard();
+}
+
+function updateLevel4() {
+  updateKalkar();
+  if (phase === 'over') return;
+  if (phase === 'flight') stepArrow();
+  else if (phase === 'landed' && --timer <= 0) finishShot();
+  else if ((phase === 'ready' || phase === 'aiming') && !kal && kalIndex >= KALKARS) endLevel4();
+}
+
+function updateLevel3() {
+  if (phase === 'await' && --timer <= 0) showTarget();
+  else if ((phase === 'ready' || phase === 'aiming') && --target.left <= 0) targetTimeUp();
+  else if (phase === 'flight') {
+    // Czas biegnie też w locie; po upływie tarcza znika, a strzała leci dalej.
+    if (target && --target.left <= 0) target = null;
+    stepArrow();
+  }
+  else if (phase === 'landed') {
+    // Tylko trafienie zatrzymuje znikanie tarczy.
+    if (target && !target.hit && --target.left <= 0) target = null;
+    if (--timer <= 0) finishShot();
+  }
+}
+
+function newGame() {
+  level = 1;
+  unlocked = false;
+  shield = null;
+  knife = null;
+  score = 0;
+  shots = [];
+  newRecord = false;
+  nextTarget();
+}
+
+function startKnives() {
+  level = 2;
+  unlocked = false;
+  arrow = null;
+  score = 0;
+  shots = [];
+  newRecord = false;
+  waitForShield();
+}
+
+function waitForShield() {
+  shield = null;
+  knife = null;
+  phase = 'kwait';
+  timer = 35 + Math.floor(Math.random() * 45);
+}
+
+function spawnShield() {
+  shield = {
+    x: 300 + Math.random() * (W - 60 - 300),
+    y: 125 + Math.random() * (GY - 60 - 125),
+    r: SHIELD_R, left: SHOW_FRAMES[shots.length], total: SHOW_FRAMES[shots.length], gone: false, fade: 20, hit: false,
+  };
+  phase = 'kshow';
+}
+
+function throwKnife(p) {
+  const dx = p.x - HAND.x, dy = p.y - HAND.y, dist = Math.hypot(dx, dy);
+  if (dist < 20) return;
+  knife = {
+    x: HAND.x, y: HAND.y, tx: p.x, ty: p.y,
+    vx: dx / dist * KNIFE_SPEED, vy: dy / dist * KNIFE_SPEED,
+    steps: Math.ceil(dist / KNIFE_SPEED), spin: 0, dir: Math.atan2(dy, dx), stuck: false,
+  };
+  phase = 'kflight';
+}
+
+function scoreKnife(pts, x, y, text) {
+  shots.push(pts);
+  score += pts;
+  popup = { x, y, pts, t: 0, text };
+  if (pts) pulse = { x, y, t: 0 };
+  timer = pts ? 75 : 60;
+}
+
+function stepKnife() {
+  const k = knife;
+  k.x += k.vx;
+  k.y += k.vy;
+  k.spin += 0.6;
+  if (--k.steps > 0) return;
+  k.x = k.tx;
+  k.y = k.ty;
+  const d = Math.hypot(k.x - shield.x, k.y - shield.y) / shield.r;
+  const pts = d <= 1 ? ringPoints(d) : 0;
+  if (pts) { k.stuck = true; shield.hit = true; }
+  else { knife = null; shield.gone = true; }
+  scoreKnife(pts, k.tx, k.ty - 22);
+  phase = 'klanded';
+}
+
+function finishKnife() {
+  if (shots.length < KNIVES) { waitForShield(); return; }
+  newRecord = score > bestK;
+  if (newRecord) { bestK = score; saveBest(KNIFE_BEST_KEY, bestK); }
+  unlocked = score >= LVL2_TO_3;
+  finishBoard();
+}
+
+function updateKnives() {
+  if (shield && shield.gone && shield.fade > 0) shield.fade--;
+  if (phase === 'kwait' && --timer <= 0) spawnShield();
+  else if (phase === 'kshow' && --shield.left <= 0) {
+    shield.gone = true;
+    scoreKnife(0, shield.x, shield.y - 20, 'Za późno');
+    phase = 'klanded';
+  }
+  else if (phase === 'kflight') stepKnife();
+  else if (phase === 'klanded' && --timer <= 0) finishKnife();
+}
+
+function aimNow() {
+  if (!drag) return null;
+  const dx = drag.x0 - drag.x, dy = drag.y0 - drag.y, len = Math.hypot(dx, dy);
+  if (len < 3) return { ang: lastAng, pull: 0 };
+  return {
+    ang: Math.max(-1.35, Math.min(0.6, Math.atan2(dy, dx))),
+    pull: Math.min(len, MAX_DRAG) / MAX_DRAG,
+  };
+}
+
+function release() {
+  const a = aimNow();
+  drag = null;
+  if (!a || a.pull < 0.1) { phase = 'ready'; return; }
+  const reach = bowGeom(a.pull).nockX + ARROW_LEN, speed = a.pull * MAX_SPEED;
+  arrow = {
+    x: SHOULDER.x + Math.cos(a.ang) * reach,
+    y: SHOULDER.y + Math.sin(a.ang) * reach,
+    vx: Math.cos(a.ang) * speed,
+    vy: Math.sin(a.ang) * speed,
+    trail: [],
+    stuck: false,
+  };
+  lastAng = a.ang;
+  phase = 'flight';
+  // Strzał Willa, nawet chybiony, zmusza Temudżeina do odliczania od nowa.
+  if (level === 5 && rider && !rider.dead) { rider.timer = ENEMY_EVERY; rider.pull = 0; }
+}
+
+function land(x, y, pts) {
+  if (x === null) {
+    arrow = null;
+  } else {
+    arrow.x = x;
+    arrow.y = y;
+    arrow.stuck = true;
+    arrow.trail.length = 0;
+  }
+  shots.push(pts);
+  score += pts;
+  popup = x === null ? { x: W / 2, y: H / 2 - 30, pts, t: 0 } : { x, y: y - 22, pts, t: 0 };
+  if (pts) pulse = { x, y, t: 0 };
+  phase = 'landed';
+  timer = pts ? 80 : 65;
+}
+
+function stepArrow() {
+  const a = arrow, px = a.x, py = a.y, t = target;
+  a.vx += wind;
+  a.vy += GRAV;
+  a.x += a.vx;
+  a.y += a.vy;
+  a.trail.push(px, py);
+  if (a.trail.length > 24) a.trail.splice(0, 2);
+  if (level === 4 && fireArrowHit(a)) return;
+  if (level === 5 && riderArrowHit(a, px, py)) return;
+  if (t && px < t.x && a.x >= t.x) {
+    const yc = py + (t.x - px) / (a.x - px) * (a.y - py), d = Math.abs(yc - t.y);
+    if (d <= t.r) { t.hit = true; return land(t.x, yc, ringPoints(d / t.r)); }
+  }
+  if (a.y >= GY) return land(px + (GY - py) / (a.y - py) * (a.x - px), GY + 2, 0);
+  if (a.x > W + 60 || a.x < -60) land(null, null, 0);
+}
+
+function finishShot() {
+  if (level === 5) {
+    if (!rider.dead && shots.length < RIDER_ARROWS) { arrow = null; phase = 'ready'; return; }
+    newRecord = score > best5;
+    if (newRecord) { best5 = score; saveBest(LVL5_BEST_KEY, best5); }
+    unlocked = rider.dead;
+    finishBoard();
+    return;
+  }
+  if (level === 4) {
+    arrow = null;
+    if (shots.length < FIRE_ARROWS && (kal || kalIndex < KALKARS)) phase = 'ready';
+    else endLevel4();
+    return;
+  }
+  if (level === 3) {
+    if (shots.length < SHOTS) { hideTarget(); return; }
+    newRecord = score > best3;
+    if (newRecord) { best3 = score; saveBest(LVL3_BEST_KEY, best3); }
+    unlocked = score >= LVL3_TO_4;
+    finishBoard();
+    return;
+  }
+  if (shots.length < SHOTS) { nextTarget(); return; }
+  newRecord = score > best;
+  if (newRecord) { best = score; saveBest(BEST_KEY, best); }
+  unlocked = score >= 40;
+  finishBoard();
+}
+
+function update() {
+  tick++;
+  if (popup && ++popup.t > 75) popup = null;
+  if (pulse && ++pulse.t > 30) pulse = null;
+  if (level === 2) { if (phase !== 'over') updateKnives(); return; }
+  if (level === 3) { if (phase !== 'over') updateLevel3(); return; }
+  if (level === 4) { updateLevel4(); return; }
+  if (level === 5) { updateLevel5(); return; }
+  if (phase === 'flight') stepArrow();
+  else if (phase === 'landed' && --timer <= 0) finishShot();
+}
+
+function drawKnifeLevel() {
+  ctx.drawImage(bg, 0, 0, W, H);
+  if (shield && (!shield.gone || shield.fade > 0)) drawShield(shield);
+  if (knife && knife.stuck) drawKnife(knife);
+  drawArcher(-0.12, 0, false);
+  if (knife && !knife.stuck) drawKnife(knife);
+  drawFx();
+  drawHudKnives();
+  if (phase === 'kwait' || phase === 'kshow') label(`KLIKNIJ W TARCZĘ, ZANIM ZNIKNIE · MASZ ${String(SHOW_FRAMES[Math.min(shots.length, KNIVES - 1)] / 60).replace(".", ",")} S`, W / 2, H - 14, 'center', 'rgba(240,232,213,.45)', 10, 600, '2px');
+  if (phase === 'over') drawOver();
+}
+
+function draw() {
+  if (level === 2) { drawKnifeLevel(); return; }
+  ctx.drawImage(bg, 0, 0, W, H);
+  drawPennant();
+  if (target) drawTarget(target);
+  if (level === 5 && rider) drawRider(rider);
+  if (level === 4) {
+    if (kal && kal.mode !== 'hidden') drawKalkar(kal);
+    for (const r of ROCKS) drawRock(r);
+  }
+  if (arrow && arrow.stuck && !arrow.inKal) drawArrow(arrow);
+  const aim = phase === 'aiming' ? aimNow() : null;
+  drawArcher(aim ? aim.ang : lastAng, aim ? aim.pull : 0, phase === 'ready' || phase === 'aiming' || phase === 'await');
+  if (aim && aim.pull > 0.02) { drawPreview(aim.ang, aim.pull); drawPower(aim.pull); }
+  if (arrow && !arrow.stuck) drawArrow(arrow);
+  if (level === 5) drawEnemyArrows();
+  drawFx();
+  drawHud();
+  const hint = level === 5
+    ? (phase === 'ready' ? 'TRAF W GŁOWĘ LUB RAMIĘ · TARCZA, ZBROJA I PANCERZ KONIA CHRONIĄ' : '')
+    : level === 4
+    ? (phase === 'ready' ? 'KALKAR SKACZE MIĘDZY SKAŁAMI · TRAF GO W SKOKU' : '')
+    : level === 3
+    ? (phase === 'await' ? 'CZEKAJ NA TARCZĘ…' : phase === 'ready' ? 'TARCZA ZNIKA PO 3 S · STRZELAJ SZYBKO' : '')
+    : (phase === 'ready' ? 'PRZYTRZYMAJ I ODCIĄGNIJ W LEWO · PUŚĆ, ABY STRZELIĆ' : '');
+  if (hint) label(hint, W / 2, H - 14, 'center', 'rgba(240,232,213,.45)', 10, 600, '2px');
+  if (phase === 'over') drawOver();
+}
+
+/* ── Sterowanie ─────────────────────────────────── */
+
+function toScene(e) {
+  const r = canvas.getBoundingClientRect();
+  return { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height };
+}
+
+canvas.addEventListener('pointerdown', e => {
+  if (e.button !== 0) return;
+  e.preventDefault();
+  if (!started) return;
+  if (phase === 'over') {
+    if (gameOver) showTable();
+    else if (level === 1 && unlocked) startKnives();
+    else if (level === 2 && unlocked) startLevel3();
+    else if (level === 3 && unlocked) startLevel4();
+    else if (level === 4 && unlocked) startLevel5();
+    else if (level === 5 && unlocked) { tier++; newGame(); }
+    else newGame();
+    return;
+  }
+  if (level === 2) {
+    if (phase === 'kshow') throwKnife(toScene(e));
+    return;
+  }
+  if (phase !== 'ready') return;
+  const p = toScene(e);
+  drag = { x0: p.x, y0: p.y, x: p.x, y: p.y };
+  phase = 'aiming';
+  try { canvas.setPointerCapture(e.pointerId); } catch {}
+});
+canvas.addEventListener('pointermove', e => {
+  if (phase !== 'aiming') return;
+  const p = toScene(e);
+  drag.x = p.x;
+  drag.y = p.y;
+});
+canvas.addEventListener('pointerup', e => {
+  if (phase !== 'aiming') return;
+  const p = toScene(e);
+  drag.x = p.x;
+  drag.y = p.y;
+  release();
+});
+canvas.addEventListener('pointercancel', () => {
+  if (phase === 'aiming') { drag = null; phase = 'ready'; }
+});
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && phase === 'aiming') { drag = null; phase = 'ready'; }
+});
+
+/* ── Start ──────────────────────────────────────── */
+
+let last = performance.now(), acc = 0;
+function frame(now) {
+  acc += Math.min(now - last, 250);
+  last = now;
+  while (acc >= STEP) { update(); acc -= STEP; }
+  draw();
+  requestAnimationFrame(frame);
+}
+
+paintBackground();
+if (document.fonts) document.fonts.load('600 9px Cinzel').then(paintBackground, () => {});
+newGame();
+askName();
+requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>

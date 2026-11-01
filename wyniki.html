@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wyniki – Gra Zwiadowca</title>
+<meta name="description" content="Tabela wyników gry Zwiadowca: postęp i punkty graczy na strzelnicy w Redmont.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Layout: pasek nawigacji, zakładki i tabela wyników */
+:root {
+  --bg:         #100d08;
+  --nav-bg:     #0d0b06;
+  --fg:         #f0e8d5;
+  --fg-muted:   #9c8c6e;
+  --accent:     #8db86a;
+  --rule:       #3a3020;
+  --ring-gold:  #e9b928;
+  --ring-red:   #cf2f2a;
+  --ring-blue:  #2b78bd;
+  --ring-black: #1d1d1b;
+  --ring-white: #efe9da;
+  --display:    'Cinzel', Georgia, serif;
+  --body:       'EB Garamond', Georgia, serif;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.topnav {
+  background: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 14px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.topnav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: .85;
+}
+.topnav a:hover, .topnav a:focus-visible { opacity: 1; }
+.topnav a:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+.topnav-title {
+  color: rgba(240,232,213,.38);
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+/* Zakładki podstron gry: Gra / Wyniki */
+.subtabs {
+  display: flex; gap: 24px;
+  width: min(100%, 1100px, max(340px, calc((100vh - 220px) * 1.8636)));
+  max-width: 100%;
+  border-bottom: 1px solid var(--rule);
+}
+.subtabs a {
+  color: var(--fg-muted); text-decoration: none; font-family: var(--display);
+  font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  padding: 6px 0 8px; margin-bottom: -1px; border-bottom: 2px solid transparent;
+}
+.subtabs a:hover { color: var(--fg); }
+.subtabs a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+
+.btn {
+  background: var(--accent); color: #14140b; border: 0; border-radius: 3px; cursor: pointer;
+  font-family: var(--display); font-size: 11px; font-weight: 800; letter-spacing: .18em;
+  text-transform: uppercase; padding: 9px 14px; text-decoration: none; display: inline-block;
+}
+.btn.ghost { background: none; color: var(--accent); border: 1px solid rgba(141,184,106,.5); }
+.btn:focus-visible { outline: 1px solid var(--fg); outline-offset: 3px; }
+.scores { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: clamp(13px, 1.6vw, 16px); }
+.scores th {
+  font-family: var(--display); font-size: 10px; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--fg-muted); text-align: left; padding: 4px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.scores td { padding: 4px 8px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.05); }
+.scores .num { text-align: right; }
+.scores tr.me td { color: var(--ring-gold); }
+
+@media (max-width: 640px) {
+  .topnav { flex-wrap: wrap; }
+  .topnav-title { display: none; }
+}
+
+.page {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 18px;
+  padding-block: 24px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.subtabs, .board { width: min(100%, 820px); }
+.board h1 {
+  margin: 8px 0 4px; font-family: var(--display); font-weight: 600;
+  font-size: clamp(22px, 4vw, 34px); letter-spacing: .1em; text-transform: uppercase;
+}
+.board > p { margin: 0 0 18px; color: var(--fg-muted); font-style: italic; }
+.table-wrap { overflow-x: auto; }
+.scores td:first-child { color: var(--fg-muted); }
+.scores tr.top td:first-child { color: var(--ring-gold); }
+.empty { color: var(--fg-muted); font-style: italic; text-align: center; padding: 32px 0; }
+.board .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; margin-top: 20px; }
+
+.site-footer {
+  padding: 14px max(16px, env(safe-area-inset-right, 0px)) 18px max(16px, env(safe-area-inset-left, 0px));
+  border-top: 1px solid rgba(255,255,255,.06);
+  color: var(--fg-muted); font-size: 14px; font-style: italic; text-align: center;
+}
+.site-footer p { margin: 0; max-width: 70ch; margin-inline: auto; }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html">Gra Zwiadowca</a>
+  <span class="topnav-title">Wyniki</span>
+</nav>
+
+<main class="page">
+  <nav class="subtabs" aria-label="Podstrony gry">
+    <a href="index.html">Gra</a>
+    <a href="wyniki.html" aria-current="page">Wyniki</a>
+  </nav>
+  <section class="board">
+    <h1>Tabela graczy</h1>
+    <p>Kolejność według postępu (ukończone plansze), a przy remisie według sumy punktów. Wyniki zapisują się w tej przeglądarce.</p>
+    <div class="table-wrap">
+      <table class="scores">
+        <thead><tr><th class="num">#</th><th>Gracz</th><th>Postęp</th><th class="num">Plansze</th><th class="num">Punkty</th><th>Data</th></tr></thead>
+        <tbody id="body"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="empty" hidden>Nikt jeszcze nie zagrał. Bądź pierwszy!</div>
+    <div class="actions">
+      <a class="btn" href="index.html">Zagraj</a>
+      <button class="btn ghost" type="button" id="clear">Wyczyść tabelę</button>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Fanowska gra niekomercyjna inspirowana serią „Zwiadowcy” Johna Flanagana. Nie jest związana z autorem ani wydawcą; postacie i nazwy należą do ich właścicieli.</p>
+</footer>
+
+<script>
+(() => {
+const KEY = 'zwiadowcy-wyniki', TOTAL_BOARDS = 20;
+const body = document.getElementById('body');
+
+function load() {
+  try { const r = JSON.parse(localStorage.getItem(KEY)); return Array.isArray(r) ? r : []; } catch { return []; }
+}
+
+function render() {
+  const list = load().sort((a, b) => b.boards - a.boards || b.points - a.points || a.date.localeCompare(b.date));
+  body.textContent = '';
+  document.getElementById('empty').hidden = list.length > 0;
+  document.getElementById('clear').hidden = list.length === 0;
+  list.forEach((e, i) => {
+    const tr = document.createElement('tr');
+    if (i < 3) tr.className = 'top';
+    const date = new Date(e.date).toLocaleString('pl-PL', { dateStyle: 'short', timeStyle: 'short' });
+    const cells = [
+      [i + 1, true], [e.name, false],
+      [e.won ? 'Ukończona gra' : `Poziom ${e.tier} · plansza ${e.board}`, false],
+      [`${e.boards} / ${TOTAL_BOARDS}`, true], [e.points, true], [date, false],
+    ];
+    for (const [v, num] of cells) {
+      const td = document.createElement('td');
+      td.textContent = v;
+      if (num) td.className = 'num';
+      tr.appendChild(td);
+    }
+    body.appendChild(tr);
+  });
+}
+
+document.getElementById('clear').addEventListener('click', () => {
+  if (!confirm('Usunąć wszystkie wyniki z tabeli?')) return;
+  try { localStorage.removeItem(KEY); } catch {}
+  render();
+});
+
+render();
+})();
+</script>
+
+</body>
+</html>
