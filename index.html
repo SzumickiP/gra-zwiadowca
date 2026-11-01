@@ -270,8 +270,8 @@ canvas {
     <p><strong>Plansza 2: rzut nożem.</strong> Tarcza pojawia się w losowym miejscu: pierwsza zostaje na 3 sekundy, druga na 2 sekundy, a trzecia tylko na 1,5 sekundy. Kliknij w nią, zanim zniknie. Masz 3 noże, a do zaliczenia potrzeba co najmniej 24 na 30.</p>
     <p><strong>Plansza 3: znikające tarcze.</strong> Wracasz do łuku, ale tarcza pojawia się w losowym miejscu tylko na 3 sekundy i trzeba zdążyć napiąć łuk i strzelić. Masz 5 strzał, a do zaliczenia potrzeba co najmniej 40 na 50.</p>
     <p><strong>Plansza 4: kalkary.</strong> Kalkar zbliża się z prawej strony, skacząc między skałami. Każdy skok jest inny: raz szybszy, raz wolniejszy, raz niższy, raz wyższy, a czasem kalkar przeskakuje od razu przez jedną skałę. Za skałą czeka losowo długo, więc trafić go można tylko w skoku. Zaraz po pierwszym kalkarze wychodzi drugi i porusza się szybciej. Masz 3 płonące strzały, a planszę zaliczasz, gdy spalisz oba kalkary. Każdy spalony kalkar to 10 punktów.</p>
-    <p><strong>Plansza 5: Temudżeini.</strong> Z prawej strony nadjeżdża dwóch konnych Temudżeinów: czasem razem, czasem jeden po drugim. Jeżdżą losowo do przodu i do tyłu, raz wolno, raz szybko, czasem przystają. Pierwszy ma zbroję, małą okrągłą tarczę i opancerzonego konia, więc trzeba go trafić w głowę albo w odsłonięte ramię. Drugi nie ma tarczy ani zbroi: trafienie w głowę zabija go od razu, a w tułów trzeba go trafić 2 razy. Masz 5 strzał. Każdy Temudżein strzela do ciebie co 5 sekund, ale każdy twój strzał, nawet chybiony, zmusza ich do odliczania od nowa. Każde ich trafienie to −10 punktów, a każdy pokonany Temudżein daje 30 punktów. Planszę zaliczasz, gdy pokonasz obu.</p>
-    <p><strong>Plansza 6: wargale.</strong> Trzy wargale nadbiegają z prawej strony jeden po drugim i chowają się kolejno za niskim drzewem, głazem i drugim niskim drzewem. Kryjówki są niskie, więc da się strzelać nad nimi, a wargal jest od nich odrobinę wyższy. Kiedy dobiegnie do kryjówki, chowa się za nią cały i wybiega w losowym momencie. Trafienie w głowę zabija wargala od razu, w tułów (od pasa do szyi) trzeba trafić 2 razy, a strzał poniżej pasa nic nie daje. W biegu wargal raz po raz zasłania głowę ręką, a strzał w rękę nic nie daje. Czasem w losowym momencie przystaje i kuca, chowając głowę – wtedy można go trafić tylko w tułów. Każdy kolejny wargal jest szybszy. Masz 8 strzał, a planszę zaliczasz, gdy zabijesz wszystkie trzy wargale. Każdy zabity wargal to 10 punktów, a każdy, który dobiegnie do ciebie, to −50 punktów.</p>
+    <p><strong>Plansza 5: Temudżeini.</strong> Z prawej strony nadjeżdża dwóch konnych Temudżeinów: czasem razem, czasem jeden po drugim. Jeżdżą losowo do przodu i do tyłu, raz wolno, raz szybko, czasem przystają. Obu zabija się tak samo: trafienie w głowę zabija od razu, a trafienie w łuk, rękę albo tułów trzeba powtórzyć 2 razy. Strzał w konia albo w tarczę pierwszego jeźdźca nic nie daje. Masz 5 strzał. Każdy Temudżein strzela do ciebie co 5 sekund, ale każdy twój strzał, nawet chybiony, zmusza ich do odliczania od nowa. Każde ich trafienie to −10 punktów, a każdy pokonany Temudżein daje 30 punktów. Planszę zaliczasz, gdy pokonasz obu.</p>
+    <p><strong>Plansza 6: wargale.</strong> Trzy wargale nadbiegają z prawej strony jeden po drugim i chowają się kolejno za niskim drzewem, głazem i drugim niskim drzewem. Kryjówki są niskie, więc da się strzelać nad nimi, a wargal jest od nich odrobinę wyższy. Kiedy dobiegnie do kryjówki, chowa się za nią cały i wybiega w losowym momencie. Trafienie w głowę zabija wargala od razu, w tułów (od pasa do szyi) trzeba trafić 2 razy, a strzał poniżej pasa nic nie daje. W biegu wargal raz po raz zasłania głowę ręką, a strzał w rękę nic nie daje. Czasem w losowym momencie przystaje i kuca, chowając głowę – wtedy można go trafić tylko w tułów. Drugi wargal jest szybszy od pierwszego, a trzeci biegnie tak samo jak drugi. Masz 8 strzał, a planszę zaliczasz, gdy zabijesz wszystkie trzy wargale. Każdy zabity wargal to 10 punktów, a każdy, który dobiegnie do ciebie, to −50 punktów.</p>
     <ul class="rings" aria-label="Punktacja tarczy">
       <li style="--c: var(--ring-gold)">Złoto 10</li>
       <li style="--c: var(--ring-red)">Czerwień 8</li>
@@ -308,7 +308,7 @@ const PREVIEW_STEPS = 24, MAX_TIER = 4, BOARDS = 6;
 const LVL5_BEST_KEY = 'zwiadowcy-temudzein-rekord';
 const RIDER_ARROWS = 5, RIDERS = 2, ENEMY_EVERY = 300, ENEMY_HIT = 0.7, ENEMY_DMG = 10, KILL_PTS = 30;
 const LVL6_BEST_KEY = 'zwiadowcy-wargale-rekord';
-const WARGALS = 3, WARG_ARROWS = 8, WARG_PTS = 10, WARG_DMG = 50, WARG_SPEEDS = [1.7, 2.1, 2.5];
+const WARGALS = 3, WARG_ARROWS = 8, WARG_PTS = 10, WARG_DMG = 50, WARG_SPEEDS = [1.7, 2.1, 2.1];
 // Kryjówki od prawej: niskie drzewo, głaz, niskie drzewo. Są niskie, więc da się nad nimi strzelać.
 const LOW_RX = 46, LOW_RY = 80;
 const COVERS = [['tree', 750], ['rock', 570], ['tree', 390]].map(([kind, x], n) => {
@@ -1030,31 +1030,28 @@ function inEllipse(px, py, cx, cy, rx, ry) {
   return dx * dx + dy * dy <= 1;
 }
 
-// Co trafiła strzała w punkcie (px, py).
-// Jeździec 1 (zbroja i tarcza): zabija tylko głowa i odsłonięte ramiona.
-// Jeździec 2 (bez tarczy i zbroi): głowa zabija od razu, tułów po 2 trafieniach.
-// Ramiona zasłaniają mu tułów od przodu i z góry, więc u niego liczą się jako tułów.
+// Co trafiła strzała w punkcie (px, py). Obaj jeźdźcy mają te same zasady:
+// głowa zabija od razu, łuk, ręka i tułów zabijają po 2 trafieniach, koń i tarcza nic nie dają.
 function classifyHit(r, px, py) {
-  const g = riderGeo(r), x = r.x, y = GY + r.bob;
+  const g = riderGeo(r), x = r.x, y = GY + r.bob, b = g.bowHand;
   if (Math.hypot(px - g.head.x, py - g.head.y) <= g.head.r) return 'head';
-  if (segDist(px, py, g.shoulder, g.bowHand) <= 4.5 || segDist(px, py, g.shoulder, g.elbow) <= 4.5 ||
-      segDist(px, py, g.elbow, g.drawHand) <= 4.5) return r.kind === 1 ? 'arm' : 'body';
   if (r.kind === 1 && Math.hypot(px - g.shield.x, py - g.shield.y) <= g.shield.r + 1) return 'shield';
-  if (inEllipse(px, py, g.torso.x, g.torso.y, g.torso.rx, g.torso.ry)) return r.kind === 1 ? 'armor' : 'body';
+  if (segDist(px, py, g.shoulder, b) <= 4.5 || segDist(px, py, g.shoulder, g.elbow) <= 4.5 ||
+      segDist(px, py, g.elbow, g.drawHand) <= 4.5) return 'arm';
+  if (px >= b.x - 12 && px <= b.x + 6 && py >= b.y - 20 && py <= b.y + 20) return 'bow';
+  if (inEllipse(px, py, g.torso.x, g.torso.y, g.torso.rx, g.torso.ry)) return 'body';
   if (inEllipse(px, py, x, y - 52, 42, 19) || segDist(px, py, { x: x - 26, y: y - 60 }, { x: x - 47, y: y - 84 }) <= 9 ||
       Math.hypot(px - (x - 56), py - (y - 80)) <= 10 || (px > x - 36 && px < x + 36 && py > y - 42 && py <= GY)) return 'horse';
   return null;
 }
 
-const HIT_TEXT = {
-  head: 'Strzał w głowę!', arm: 'Trafiony w ramię!',
-  shield: 'W tarczę', armor: 'W zbroję', horse: 'W pancerz konia',
-};
+const WOUND_TEXT = { arm: 'W rękę! Jeszcze 1 trafienie', bow: 'W łuk! Jeszcze 1 trafienie', body: 'W tułów! Jeszcze 1 trafienie' };
 
 function riderHitText(r, what, kill) {
-  if (r.kind === 1) return kill ? `${HIT_TEXT[what]} +${KILL_PTS}` : HIT_TEXT[what];
   if (kill) return `${what === 'head' ? 'Strzał w głowę!' : 'Jeździec powalony!'} +${KILL_PTS}`;
-  return what === 'body' ? 'Ranny! Jeszcze raz w tułów' : 'W konia';
+  if (what === 'shield') return 'W tarczę';
+  if (what === 'horse') return r.kind === 1 ? 'W pancerz konia' : 'W konia';
+  return WOUND_TEXT[what];
 }
 
 function riderArrowHit(a, px, py) {
@@ -1068,8 +1065,7 @@ function riderArrowHit(a, px, py) {
     for (const r of alive) {
       const what = classifyHit(r, x, y);
       if (!what) continue;
-      const kill = r.kind === 1 ? what === 'head' || what === 'arm'
-        : what === 'head' || (what === 'body' && ++r.hits >= 2);
+      const kill = what === 'head' || (what in WOUND_TEXT && ++r.hits >= 2);
       land(x, y, kill ? KILL_PTS : 0);
       popup.text = riderHitText(r, what, kill);
       arrow.inKal = true;
@@ -1560,7 +1556,7 @@ function startLevel6() {
 }
 
 function spawnWargal() {
-  // Każdy kolejny wargal biegnie szybciej.
+  // Drugi wargal biegnie szybciej od pierwszego, trzeci tak samo jak drugi.
   warg = { i: 0, x: WARG_PATH[0], mode: 'move', t: 0, wait: 0, dist: 0, hits: 0, stuck: [],
     g: 0, gWait: Math.random() * 150, gHold: 15 + Math.random() * 60, gSpd: 0.08 + Math.random() * 0.17, c: 0, hold: 0, stopIn: 60 + Math.random() * 120, sp: WARG_SPEEDS[Math.min(wargIndex, WARG_SPEEDS.length - 1)] };
 }
@@ -2248,7 +2244,7 @@ function draw() {
   const hint = level === 6
     ? (phase === 'ready' ? 'GŁOWA ZABIJA OD RAZU · TUŁÓW 2 RAZY · RĘKA I NOGI NIC' : phase === 'noarrows' ? 'BRAK STRZAŁ · WARGALE NADCHODZĄ' : '')
     : level === 5
-    ? (phase === 'ready' ? 'W ZBROI: GŁOWA LUB RAMIĘ · BEZ ZBROI: GŁOWA LUB 2 RAZY TUŁÓW' : '')
+    ? (phase === 'ready' ? 'GŁOWA ZABIJA OD RAZU · ŁUK, RĘKA, TUŁÓW 2 RAZY · KOŃ I TARCZA NIC' : '')
     : level === 4
     ? (phase === 'ready' ? 'KALKAR SKACZE MIĘDZY SKAŁAMI · TRAF GO W SKOKU' : '')
     : level === 3
