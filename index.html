@@ -203,6 +203,20 @@ canvas {
   .topnav-title { display: none; }
 }
 
+/* Telefon w poziomie: mało wysokości, więc scena wypełnia ekran, a nawigacja się chowa */
+@media (orientation: landscape) and (max-height: 500px) {
+  .topnav { display: none; }
+  .stage { padding-block: 4px 12px; gap: 4px; justify-content: flex-start; }
+  .frame, .rules, .subtabs {
+    width: min(100%, calc((100vh - 40px) * 1.8636));
+    width: min(100%, calc((100dvh - 40px) * 1.8636));
+  }
+  .subtabs a { font-size: 10px; padding: 2px 0 4px; }
+  .overlay { padding: 8px; }
+  .panel h2 { font-size: 18px; }
+  .panel p { font-size: 14px; margin-bottom: 8px; }
+}
+
 .site-footer {
   padding: 14px max(16px, env(safe-area-inset-right, 0px)) 18px max(16px, env(safe-area-inset-left, 0px));
   border-top: 1px solid rgba(255,255,255,.06);
