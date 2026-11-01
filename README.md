@@ -1,8 +1,6 @@
 # Gra Zwiadowca
 
-Przeglądarkowa gra zręcznościowa na strzelnicy w Redmont: strzelanie z łuku, rzut nożem, znikające tarcze, kalkary, konni Temudżeini, wargale i bitwa. 4 poziomy po 7 plansz.
-
-Fanowska gra niekomercyjna inspirowana serią „Zwiadowcy” Johna Flanagana. Nie jest związana z autorem ani wydawcą.
+Przeglądarkowa gra zręcznościowa na strzelnicy w Dębowym Grodzie: strzelanie z łuku, rzut nożem, znikające tarcze, mroczniaki, jeźdźcy, wilczury i bitwa. 4 poziomy po 7 plansz.
 
 ## Uruchomienie
 
